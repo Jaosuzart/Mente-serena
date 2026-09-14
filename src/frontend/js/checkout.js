@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!selectedPlan) return;
         const preco = getPrecoComDesconto(selectedPlan);
         const label = descontoAtual > 0
-            ? `Garantir Minha Vaga (R$ ${preco}) 🏷️ -${descontoAtual}%`
-            : `Garantir Minha Vaga (R$ ${preco})`;
+            ? `Garantir Minha Vaga (R$ ${preco}/mês) 🏷️ -${descontoAtual}%`
+            : `Garantir Minha Vaga (R$ ${preco}/mês)`;
         btnComprarText.textContent = label;
     }
 
