@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/webp" href="assets/images/hero.webp">
+    <title>WhatsApp Auth | Mente Serena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+
+    <main class="container">
+        <div class="glass-card">
+            <div class="header">
+                <div class="status-indicator">
+                    <span class="dot" id="statusDot"></span>
+                    <span id="statusText">Conectando ao Servidor...</span>
+                </div>
+                <h1>Mente Serena Bot</h1>
+                <p>Escaneie o QR Code para conectar o WhatsApp</p>
+            </div>
+
+            <div class="qr-wrapper">
+                <div class="loader" id="qrLoader"></div>
+                <canvas id="qrcodeCanvas"></canvas>
+            </div>
+
+            <div class="instructions">
+                <ol>
+                    <li>Abra o WhatsApp no seu celular</li>
+                    <li>Toque em <strong>Mais opções</strong> (Android) ou <strong>Configurações</strong> (iPhone)</li>
+                    <li>Toque em <strong>Aparelhos conectados</strong> e depois em <strong>Conectar um aparelho</strong>
+                    </li>
+                    <li>Aponte a câmera para esta tela para capturar o código</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/whatsapp.js"></script>
+</body>
+
+</html>

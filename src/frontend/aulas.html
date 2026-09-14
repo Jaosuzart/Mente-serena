@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno | Mente Serena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap"
+            rel="stylesheet">
+    </noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" media="print"
+        onload="this.media='all'">
+    <noscript>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    </noscript>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+</head>
+
+<body class="bg-light-ms">
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <nav class="navbar navbar-expand-lg navbar-ms fixed-top border-bottom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Mente Serena</a>
+            <div class="d-flex align-items-center">
+                <span class="text-muted small me-3 d-none d-md-inline">Bem-vindo(a), Aluno(a)</span>
+                <a href="index.html" class="btn btn-sm btn-outline-secondary">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 100px; margin-bottom: 50px;">
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-8">
+                <h1 class="h2 mb-1" id="current-module-title">Módulo 1 — A pausa consciente</h1>
+                <p class="text-muted" id="current-lesson-title">Aula 01: Como fazer uma pausa antes de reagir</p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <div class="progress-bar-ms">
+                    <div class="progress-fill" id="course-progress" style="width: 12.5%;"></div>
+                </div>
+                <div class="text-muted small mt-1 text-end">Progresso: <span id="progress-text">1/8</span> aulas</div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="video-container mb-4">
+                    <img src="assets/images/foto-capa.webp" alt="Capa do vídeo" class="img-fluid" id="video-placeholder"
+                        width="1200" height="675" fetchpriority="high">
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <button class="btn btn-ms-primary rounded-circle"
+                            style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                            ▶
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-4 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="h4 mb-0" id="lesson-detail-title">Como fazer uma pausa antes de reagir</h3>
+                        <span class="badge bg-secondary-ms" id="lesson-detail-duration">08 min</span>
+                    </div>
+                    <p class="text-muted" id="lesson-detail-desc">Uma introdução prática à diferença entre reação
+                        impulsiva e resposta consciente.</p>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-ms-secondary btn-sm" id="btn-prev" disabled>&larr; Aula Anterior</button>
+                        <button class="btn btn-ms-primary btn-sm" id="btn-next">Próxima Aula &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-white rounded-4 shadow-sm p-3 sticky-lg-top"
+                    style="top: 100px; max-height: calc(100vh - 120px); overflow-y: auto;">
+                    <h4 class="h5 mb-4 text-primary-ms px-2">Conteúdo do Curso</h4>
+
+                    <div class="aula-list" id="aula-list-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/aulas.js" defer></script>
+    <script src="js/progresso.js" defer></script>
+</body>
+
+</html>
