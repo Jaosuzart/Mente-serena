@@ -5,7 +5,8 @@ if (typeof MercadoPago !== 'undefined') {
     });
 }
 
-const btnEssential = document.getElementById('btn-buy-essential');
+const btnBasic = document.getElementById('btn-buy-basic');
+const btnIntermediary = document.getElementById('btn-buy-intermediary');
 const btnPremium = document.getElementById('btn-buy-premium');
 const btnFree = document.getElementById('btn-free');
 const feedbackMsg = document.getElementById('feedback-message');
@@ -69,12 +70,16 @@ async function iniciarPagamento(btn, plan, preco) {
     }
 }
 
-if (btnEssential) {
-    btnEssential.addEventListener('click', () => iniciarPagamento(btnEssential, 'essential', 450));
+if (btnBasic) {
+    btnBasic.addEventListener('click', () => iniciarPagamento(btnBasic, 'basico', 60));
+}
+
+if (btnIntermediary) {
+    btnIntermediary.addEventListener('click', () => iniciarPagamento(btnIntermediary, 'intermediario', 90));
 }
 
 if (btnPremium) {
-    btnPremium.addEventListener('click', () => iniciarPagamento(btnPremium, 'premium', 550));
+    btnPremium.addEventListener('click', () => iniciarPagamento(btnPremium, 'premium', 100));
 }
 
 if (btnFree) {

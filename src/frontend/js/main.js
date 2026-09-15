@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-in-up');
     fadeElements.forEach(el => observer.observe(el));
 
-    // Remove ugly hash from URL if page is loaded with it
     if (window.location.hash) {
         setTimeout(() => {
             history.replaceState('', document.title, window.location.pathname + window.location.search);
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                // Compensa a altura da navbar fixa
                 const navHeight = document.querySelector('.navbar-ms').offsetHeight;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - navHeight;
@@ -42,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     top: offsetPosition,
                     behavior: "smooth"
                 });
-                
-                // Keep URL clean without hash
+
                 history.replaceState('', document.title, window.location.pathname + window.location.search);
             }
         });

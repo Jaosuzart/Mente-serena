@@ -5,18 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Oficial | Mente Serena</title>
+    <meta name="description"
+        content="Garanta sua vaga no curso Mente Serena. Desenvolva calma, resiliência e comunicação assertiva.">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/checkout.css">
-    <script src="js/checkout.js" defer></script>
+
     <script src="js/theme.js"></script>
+    <script src="js/checkout.js" defer></script>
 </head>
 
 <body>
     <main class="container">
         <header class="header">
             <h1>Mente Serena Curso Completo</h1>
-            <p>Desenvolva calma, resiliência e comunicação assertiva com estratégias inspiradas em pesquisas de
-                psicologia e neurociência.</p>
+            <p>Desenvolva calma, resiliência e comunicação assertiva com estratégias inspiradas em psicologia e
+                neurociência.</p>
         </header>
 
         <section class="checkout-card">
@@ -24,7 +28,7 @@
                 <span class="original-price">Escolha seu plano:</span>
             </div>
 
-            <form id="checkout-form">
+            <form id="checkout-form" method="POST">
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
                     <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
@@ -35,32 +39,32 @@
                     <input type="email" id="email" name="email" required placeholder="seu.melhor@email.com">
                 </div>
 
-                <fieldset class="plan-selection"
-                    style="margin-bottom: 1.5rem; border: 1px solid var(--border-color, #ccc); padding: 1rem; border-radius: 8px;">
-                    <legend style="font-weight: 600; padding: 0 0.5rem;">Selecione o Plano</legend>
-                    <div class="plan-option" style="margin-bottom: 0.5rem;">
+                <fieldset class="plan-selection">
+                    <legend>Selecione o Plano</legend>
+
+                    <div class="plan-option">
                         <input type="radio" id="plan-standard" name="plan" value="standard" checked>
-                        <label for="plan-standard" style="display: inline-block; cursor: pointer;">
-                            <strong>Plano Standard</strong> - R$ 350,00 (ou em at� 12x via Mercado Pago)
+                        <label for="plan-standard">
+                            <strong>Plano Standard</strong> - R$ 350,00 (ou em até 12x via Mercado Pago)
                         </label>
                     </div>
+
                     <div class="plan-option">
                         <input type="radio" id="plan-premium" name="plan" value="premium">
-                        <label for="plan-premium" style="display: inline-block; cursor: pointer;">
-                            <strong>Plano Premium</strong> - R$ 500,00 (ou em at� 12x via Mercado Pago)
+                        <label for="plan-premium">
+                            <strong>Plano Premium</strong> - R$ 500,00 (ou em até 12x via Mercado Pago)
                         </label>
                     </div>
                 </fieldset>
-
-                <div class="form-group alert notice"
-                    style="background-color: var(--alert-bg, #fff3cd); padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.9rem;">
-                    <strong>Aviso:</strong> Pagamento processado com seguran�a pelo Mercado Pago.
+                <div class="alert notice" role="alert">
+                    <strong>Aviso:</strong> As aulas serão gravadas. Pagamento processado com segurança pelo Mercado
+                    Pago.
                 </div>
 
                 <div class="actions">
-                    <button type="submit" id="btn-comprar" class="btn-primary" style="width: 100%;">
-                        <span class="btn-text" id="btn-comprar-text">Garantir Minha Vaga no Mercado Pago</span>
-                        <div class="loader" hidden></div>
+                    <button type="submit" id="btn-comprar" class="btn-primary">
+                        <span class="btn-text" id="btn-comprar-text">Garantir Minha Vaga</span>
+                        <div class="loader" aria-hidden="true" style="display: none;"></div>
                     </button>
                 </div>
             </form>

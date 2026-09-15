@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideMessage();
 
             try {
-                const response = await fetch(`${API_URL}/vaga_gratis`, {
+                const response = await fetch(`${API_URL}/claim_free_spot`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email }),

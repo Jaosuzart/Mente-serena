@@ -12,9 +12,19 @@ const createPreference = async (req, res) => {
     try {
         const { email, nome, plan, pagamento = 'todos', cupom = null } = req.body;
 
-        let productPrice = 450.00;
-        let productTitle = "Curso Mente Serena - Acesso Completo";
-        let productId = "curso_mente_serena_450";
+        let productPrice = 60.00;
+        let productTitle = "Curso Mente Serena - Plano Básico";
+        let productId = "curso_mente_serena_basico";
+
+        if (plan === 'intermediario') {
+            productPrice = 90.00;
+            productTitle = "Curso Mente Serena - Plano Intermediário";
+            productId = "curso_mente_serena_intermediario";
+        } else if (plan === 'premium') {
+            productPrice = 100.00;
+            productTitle = "Curso Mente Serena - Plano Premium";
+            productId = "curso_mente_serena_premium";
+        }
 
         const metodoPagamento = isMetodoPagamentoValido(pagamento) ? pagamento : 'todos';
 

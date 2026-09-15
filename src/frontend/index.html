@@ -341,11 +341,26 @@
             </div>
         </section>
 
+        <!-- Seção do Trailer / Video -->
+        <section class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8 text-center">
+                    <span class="text-primary fw-bold text-uppercase tracking-wider">Trailer do Curso</span>
+                    <h2 class="display-6 fw-bolder mb-4">Veja como a Pausa Consciente pode mudar tudo</h2>
+                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-lg border border-primary-subtle">
+                        <video controls poster="assets/images/foto-capa.webp" class="w-100 h-100 object-fit-cover" loading="lazy">
+                            <source src="assets/images/Como_a_Pausa_Consciente_Salva_Relacionamentos.mp4" type="video/mp4">
+                            Seu navegador não suporta a tag de vídeo.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="bg-body-tertiary py-5 border-top border-primary-subtle" aria-labelledby="pricing-title">
             <div class="container py-4">
                 <div class="text-center mb-5">
-                    <h2 id="pricing-title" class="display-5 fw-bolder text-primary mb-3">Escolha sua Jornada</h2>
+                    <h2 id="pricing-title" class="display-5 fw-bolder text-primary mb-3">Promoção Especial: Escolha sua Jornada</h2>
                     <p class="text-body-secondary fs-5">Invista em você e na qualidade duradoura dos seus
                         relacionamentos.</p>
                     <div class="alert alert-success d-inline-block mt-3 shadow-sm border-0 fw-medium px-4 py-3"
@@ -355,88 +370,68 @@
                     </div>
                 </div>
 
-                <div class="row g-4 justify-content-center align-items-stretch mx-auto" style="max-width: 1000px;">
+                <div class="row g-4 justify-content-center align-items-stretch mx-auto" style="max-width: 1200px;">
 
-                    <div class="col-md-6">
+                    <!-- Plano Básico -->
+                    <div class="col-lg-4 col-md-6">
                         <div class="card h-100 shadow-sm border-primary-subtle">
-                            <div class="card-body p-4 p-lg-5 d-flex flex-column">
-                                <h3 class="card-title fw-bold text-body mb-2">Plano Essencial</h3>
-                                <p class="text-body-secondary mb-4">A fundação para relacionamentos saudáveis.</p>
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h3 class="card-title fw-bold text-body mb-2">Plano Básico</h3>
+                                <p class="text-body-secondary mb-4">O ponto de partida ideal.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <span class="fs-1 fw-bolder text-primary">R$ 450</span><span
-                                        class="text-body-secondary fw-semibold">,00</span><span
-                                        class="text-body-secondary ms-1">/mês</span>
-                                    <div class="text-muted small mt-2 fw-medium"><i
-                                            class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
+                                    <span class="text-decoration-line-through text-muted fs-5 d-block mb-1">R$ 90,00</span>
+                                    <span class="fs-1 fw-bolder text-primary">R$ 60</span><span class="text-body-secondary fw-semibold">,00</span><span class="text-body-secondary ms-1">/mês</span>
+                                    <div class="text-muted small mt-2 fw-medium"><i class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
                                 </div>
                                 <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Acesso a todos os módulos do curso</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Suporte exclusivo da nossa equipe</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Acesso aos módulos básicos do curso</span></li>
                                 </ul>
-                                <button id="btn-buy-essential" class="btn btn-primary btn-lg w-100 shadow-sm"
-                                    aria-label="Comprar Plano Essencial por 450 reais">Selecionar Essencial</button>
-                                <div
-                                    class="mt-4 ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm border border-primary-subtle">
-                                    <video controls poster="assets/images/foto-capa.webp"
-                                        class="w-100 h-100 object-fit-cover" loading="lazy">
-                                        <source src="assets/images/Como_a_Pausa_Consciente_Salva_Relacionamentos.mp4"
-                                            type="video/mp4">
-                                        Seu navegador não suporta a tag de vídeo.
-                                    </video>
-                                </div>
+                                <button id="btn-buy-basic" class="btn btn-outline-primary btn-lg w-100 shadow-sm" aria-label="Comprar Plano Básico">Selecionar Básico</button>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Plano Intermediário -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100 shadow-sm border-primary-subtle">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h3 class="card-title fw-bold text-body mb-2">Plano Intermediário</h3>
+                                <p class="text-body-secondary mb-4">Para quem busca acompanhamento.</p>
+                                <div class="mb-4 pb-4 border-bottom border-primary-subtle">
+                                    <span class="text-decoration-line-through text-muted fs-5 d-block mb-1">R$ 120,00</span>
+                                    <span class="fs-1 fw-bolder text-primary">R$ 90</span><span class="text-body-secondary fw-semibold">,00</span><span class="text-body-secondary ms-1">/mês</span>
+                                    <div class="text-muted small mt-2 fw-medium"><i class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
+                                </div>
+                                <ul class="list-unstyled mb-5 flex-grow-1">
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium text-body">Benefícios do Básico</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Suporte exclusivo da equipe</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Live semanal</span></li>
+                                </ul>
+                                <button id="btn-buy-intermediary" class="btn btn-outline-primary btn-lg w-100 shadow-sm" aria-label="Comprar Plano Intermediário">Selecionar Intermediário</button>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="col-md-6">
+                    <!-- Plano Premium -->
+                    <div class="col-lg-4 col-md-12">
                         <div class="card h-100 shadow-lg border-primary position-relative" style="border-width: 2px;">
-                            <span
-                                class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-4 py-2 text-white shadow fw-bold fs-6 tracking-wide">
-                                <i class="bi bi-star-fill text-warning me-1"></i> RECOMENDADO
-                            </span>
-                            <div class="card-body p-4 p-lg-5 d-flex flex-column">
+                            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-4 py-2 text-white shadow fw-bold fs-6 tracking-wide"><i class="bi bi-star-fill text-warning me-1"></i> RECOMENDADO</span>
+                            <div class="card-body p-4 d-flex flex-column">
                                 <h3 class="card-title fw-bold text-body mb-2 mt-2">Plano Premium</h3>
                                 <p class="text-body-secondary mb-4">A experiência completa de transformação.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <span class="fs-1 fw-bolder text-primary">R$ 550</span><span
-                                        class="text-body-secondary fw-semibold">,00</span><span
-                                        class="text-body-secondary ms-1">/mês</span>
-                                    <div class="text-muted small mt-2 fw-medium"><i
-                                            class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
+                                    <span class="text-decoration-line-through text-muted fs-5 d-block mb-1">R$ 160,00</span>
+                                    <span class="fs-1 fw-bolder text-primary">R$ 100</span><span class="text-body-secondary fw-semibold">,00</span><span class="text-body-secondary ms-1">/mês</span>
+                                    <div class="text-muted small mt-2 fw-medium"><i class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
                                 </div>
                                 <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-bolder text-body">Todos os benefícios Essenciais</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Curso de feminismo</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Curso de boas práticas com as pessoas</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Live semanal</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Desconto para livros para comprar</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-bolder text-body">Benefícios Intermediários</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Clube da leitura de filósofos</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Manual de boas práticas</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Cursos de programação avançada</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Curso de feminismo</span></li>
                                 </ul>
-                                <button id="btn-buy-premium" class="btn btn-primary btn-lg w-100 shadow-sm"
-                                    aria-label="Comprar Plano Premium por 550 reais">Selecionar Premium</button>
-                                <div
-                                    class="mt-4 ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm border border-primary-subtle">
-                                    <video controls poster="assets/images/foto-capa.webp"
-                                        class="w-100 h-100 object-fit-cover" loading="lazy">
-                                        <source src="assets/images/Como_a_Pausa_Consciente_Salva_Relacionamentos.mp4"
-                                            type="video/mp4">
-                                        Seu navegador não suporta a tag de vídeo.
-                                    </video>
-                                </div>
+                                <button id="btn-buy-premium" class="btn btn-primary btn-lg w-100 shadow-sm" aria-label="Comprar Plano Premium">Selecionar Premium</button>
                             </div>
                         </div>
                     </div>
