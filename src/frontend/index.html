@@ -379,14 +379,22 @@
                                 <h3 class="card-title fw-bold text-body mb-2">Plano Básico</h3>
                                 <p class="text-body-secondary mb-4">O ponto de partida ideal.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <span class="text-decoration-line-through text-muted fs-5 d-block mb-1">R$ 90,00</span>
-                                    <span class="fs-1 fw-bolder text-primary">R$ 60</span><span class="text-body-secondary fw-semibold">,00</span><span class="text-body-secondary ms-1">/mês</span>
-                                    <div class="text-muted small mt-2 fw-medium"><i class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="fs-4 fw-bolder text-primary">R$ 60</span><span class="text-body-secondary">/mês</span>
+                                            <div class="text-muted small">Mensal</div>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="fs-4 fw-bolder text-primary">R$ 90</span>
+                                            <div class="text-muted small">Vitalício</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <ul class="list-unstyled mb-5 flex-grow-1">
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Acesso aos módulos básicos do curso</span></li>
                                 </ul>
-                                <button id="btn-buy-basic" class="btn btn-outline-primary btn-lg w-100 shadow-sm" aria-label="Comprar Plano Básico">Selecionar Básico</button>
+                                <button id="btn-buy-basic-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2" aria-label="Comprar Mensal">Assinar Mensal (R$ 60)</button>
+                                <button id="btn-buy-basic-vitalicio" class="btn btn-primary w-100 shadow-sm" aria-label="Comprar Vitalício">Comprar Vitalício (R$ 90)</button>
                             </div>
                         </div>
                     </div>
@@ -398,16 +406,24 @@
                                 <h3 class="card-title fw-bold text-body mb-2">Plano Intermediário</h3>
                                 <p class="text-body-secondary mb-4">Para quem busca acompanhamento.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <span class="text-decoration-line-through text-muted fs-5 d-block mb-1">R$ 120,00</span>
-                                    <span class="fs-1 fw-bolder text-primary">R$ 90</span><span class="text-body-secondary fw-semibold">,00</span><span class="text-body-secondary ms-1">/mês</span>
-                                    <div class="text-muted small mt-2 fw-medium"><i class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="fs-4 fw-bolder text-primary">R$ 70</span><span class="text-body-secondary">/mês</span>
+                                            <div class="text-muted small">Mensal</div>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="fs-4 fw-bolder text-primary">R$ 130</span>
+                                            <div class="text-muted small">Vitalício</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <ul class="list-unstyled mb-5 flex-grow-1">
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium text-body">Benefícios do Básico</span></li>
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Suporte exclusivo da equipe</span></li>
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Live semanal</span></li>
                                 </ul>
-                                <button id="btn-buy-intermediary" class="btn btn-outline-primary btn-lg w-100 shadow-sm" aria-label="Comprar Plano Intermediário">Selecionar Intermediário</button>
+                                <button id="btn-buy-intermediary-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2" aria-label="Comprar Mensal">Assinar Mensal (R$ 70)</button>
+                                <button id="btn-buy-intermediary-vitalicio" class="btn btn-primary w-100 shadow-sm" aria-label="Comprar Vitalício">Comprar Vitalício (R$ 130)</button>
                             </div>
                         </div>
                     </div>
@@ -417,12 +433,19 @@
                         <div class="card h-100 shadow-lg border-primary position-relative" style="border-width: 2px;">
                             <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-4 py-2 text-white shadow fw-bold fs-6 tracking-wide"><i class="bi bi-star-fill text-warning me-1"></i> RECOMENDADO</span>
                             <div class="card-body p-4 d-flex flex-column">
-                                <h3 class="card-title fw-bold text-body mb-2 mt-2">Plano Premium</h3>
+                                <h3 class="card-title fw-bold text-body mb-2 mt-2">Plano Vitalício</h3>
                                 <p class="text-body-secondary mb-4">A experiência completa de transformação.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <span class="text-decoration-line-through text-muted fs-5 d-block mb-1">R$ 160,00</span>
-                                    <span class="fs-1 fw-bolder text-primary">R$ 100</span><span class="text-body-secondary fw-semibold">,00</span><span class="text-body-secondary ms-1">/mês</span>
-                                    <div class="text-muted small mt-2 fw-medium"><i class="bi bi-arrow-repeat me-1"></i>Renovação automática</div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <span class="fs-4 fw-bolder text-primary">R$ 90</span><span class="text-body-secondary">/mês</span>
+                                            <div class="text-muted small">Mensal</div>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="fs-4 fw-bolder text-primary">R$ 150</span>
+                                            <div class="text-muted small">Vitalício</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <ul class="list-unstyled mb-5 flex-grow-1">
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-bolder text-body">Benefícios Intermediários</span></li>
@@ -430,8 +453,10 @@
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Manual de boas práticas</span></li>
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Cursos de programação avançada</span></li>
                                     <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Curso de feminismo</span></li>
+                                    <li class="mb-3 d-flex align-items-start"><i class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span class="fw-medium">Acesso vitalício garantido</span></li>
                                 </ul>
-                                <button id="btn-buy-premium" class="btn btn-primary btn-lg w-100 shadow-sm" aria-label="Comprar Plano Premium">Selecionar Premium</button>
+                                <button id="btn-buy-premium-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2" aria-label="Comprar Mensal">Assinar Mensal (R$ 90)</button>
+                                <button id="btn-buy-premium-vitalicio" class="btn btn-primary w-100 shadow-sm" aria-label="Comprar Vitalício">Comprar Vitalício (R$ 150)</button>
                             </div>
                         </div>
                     </div>

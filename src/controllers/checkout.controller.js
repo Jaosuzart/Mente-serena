@@ -13,17 +13,29 @@ const createPreference = async (req, res) => {
         const { email, nome, plan, pagamento = 'todos', cupom = null } = req.body;
 
         let productPrice = 60.00;
-        let productTitle = "Curso Mente Serena - Plano Básico";
-        let productId = "curso_mente_serena_basico";
+        let productTitle = "Curso Mente Serena - Básico (Mensal)";
+        let productId = "curso_mente_serena_mensal_1";
 
-        if (plan === 'intermediario') {
+        if (plan === 'vitalicio1') {
             productPrice = 90.00;
-            productTitle = "Curso Mente Serena - Plano Intermediário";
-            productId = "curso_mente_serena_intermediario";
-        } else if (plan === 'premium') {
-            productPrice = 100.00;
-            productTitle = "Curso Mente Serena - Plano Premium";
-            productId = "curso_mente_serena_premium";
+            productTitle = "Curso Mente Serena - Básico (Vitalício)";
+            productId = "curso_mente_serena_vitalicio_1";
+        } else if (plan === 'mensal2') {
+            productPrice = 70.00;
+            productTitle = "Curso Mente Serena - Intermediário (Mensal)";
+            productId = "curso_mente_serena_mensal_2";
+        } else if (plan === 'vitalicio2') {
+            productPrice = 130.00;
+            productTitle = "Curso Mente Serena - Intermediário (Vitalício)";
+            productId = "curso_mente_serena_vitalicio_2";
+        } else if (plan === 'mensal3') {
+            productPrice = 90.00;
+            productTitle = "Curso Mente Serena - Avançado (Mensal)";
+            productId = "curso_mente_serena_mensal_3";
+        } else if (plan === 'vitalicio3') {
+            productPrice = 150.00;
+            productTitle = "Curso Mente Serena - Avançado (Vitalício)";
+            productId = "curso_mente_serena_vitalicio_3";
         }
 
         const metodoPagamento = isMetodoPagamentoValido(pagamento) ? pagamento : 'todos';

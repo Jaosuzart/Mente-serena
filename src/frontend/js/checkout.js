@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cupomValidado = null;
     let descontoAtual = 0;
-    const PRECOS = { standard: 500, premium: 650 };
+    const PRECOS = { mensal1: 60, vitalicio1: 90, mensal2: 70, vitalicio2: 130, mensal3: 90, vitalicio3: 150 };
 
     function getPrecoComDesconto(plano) {
         const base = PRECOS[plano] || 0;
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!selectedPlan) return;
         const preco = getPrecoComDesconto(selectedPlan);
         const label = descontoAtual > 0
-            ? `Garantir Minha Vaga (R$ ${preco}/mês) 🏷️ -${descontoAtual}%`
-            : `Garantir Minha Vaga (R$ ${preco}/mês)`;
+            ? `Garantir Minha Vaga (R$ ${preco}) 🏷️ -${descontoAtual}%`
+            : `Garantir Minha Vaga (R$ ${preco})`;
         btnComprarText.textContent = label;
     }
 

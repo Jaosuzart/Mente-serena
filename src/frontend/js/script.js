@@ -70,17 +70,20 @@ async function iniciarPagamento(btn, plan, preco) {
     }
 }
 
-if (btnBasic) {
-    btnBasic.addEventListener('click', () => iniciarPagamento(btnBasic, 'basico', 60));
-}
+const btnBasicMensal = document.getElementById('btn-buy-basic-mensal');
+const btnBasicVitalicio = document.getElementById('btn-buy-basic-vitalicio');
+if (btnBasicMensal) btnBasicMensal.addEventListener('click', () => iniciarPagamento(btnBasicMensal, 'mensal1', 60));
+if (btnBasicVitalicio) btnBasicVitalicio.addEventListener('click', () => iniciarPagamento(btnBasicVitalicio, 'vitalicio1', 90));
 
-if (btnIntermediary) {
-    btnIntermediary.addEventListener('click', () => iniciarPagamento(btnIntermediary, 'intermediario', 90));
-}
+const btnIntermediaryMensal = document.getElementById('btn-buy-intermediary-mensal');
+const btnIntermediaryVitalicio = document.getElementById('btn-buy-intermediary-vitalicio');
+if (btnIntermediaryMensal) btnIntermediaryMensal.addEventListener('click', () => iniciarPagamento(btnIntermediaryMensal, 'mensal2', 70));
+if (btnIntermediaryVitalicio) btnIntermediaryVitalicio.addEventListener('click', () => iniciarPagamento(btnIntermediaryVitalicio, 'vitalicio2', 130));
 
-if (btnPremium) {
-    btnPremium.addEventListener('click', () => iniciarPagamento(btnPremium, 'premium', 100));
-}
+const btnPremiumMensal = document.getElementById('btn-buy-premium-mensal');
+const btnPremiumVitalicio = document.getElementById('btn-buy-premium-vitalicio');
+if (btnPremiumMensal) btnPremiumMensal.addEventListener('click', () => iniciarPagamento(btnPremiumMensal, 'mensal3', 90));
+if (btnPremiumVitalicio) btnPremiumVitalicio.addEventListener('click', () => iniciarPagamento(btnPremiumVitalicio, 'vitalicio3', 150));
 
 if (btnFree) {
     btnFree.addEventListener('click', async () => {
