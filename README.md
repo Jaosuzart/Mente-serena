@@ -10,13 +10,10 @@
 ## 🚀 Sobre o Projeto
 
 O **Mente Serena** é uma landing page e plataforma de checkout altamente otimizada, criada com Node.js e Vanilla JS. A plataforma integra diretamente com o **Mercado Pago** para pagamentos transparentes e possui um robô de **WhatsApp** embutido (via Baileys) para suporte e automação. 
-
 O projeto conta com uma UI refinada (Modo Noturno / Glassmorphism), políticas de rate-limiting contra ataques DDoS, sanitização de inputs e verificação criptográfica de Webhooks para garantir total segurança financeira.
-
----
-
+Print do projeto:
+<img width="1375" height="704" alt="image" src="https://github.com/user-attachments/assets/ef7318ca-cb1e-4501-adcf-2ed461b5ced1" />
 ## 🛠️ Tecnologias Utilizadas
-
 ### Frontend
 - **HTML5 & CSS3** (com tipografia do Google Fonts e animações suaves)
 - **Bootstrap 5.3.3** (Layout responsivo e utilitários)
