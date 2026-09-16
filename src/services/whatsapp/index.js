@@ -11,9 +11,6 @@ function setConnectionState(status, qr = null) {
     connectionStatus = status;
     currentQr = qr;
 }
-
-/**
- */
 function getConnectionState() {
     return { status: connectionStatus, qr: currentQr };
 }
@@ -21,7 +18,7 @@ async function initWhatsApp() {
     try {
         setConnectionState('CONNECTING');
         const { sock, saveCreds } = await createConnection();
-        sockInstance = sock; 
+        sockInstance = sock;
 
         sock.ev.on('creds.update', saveCreds);
 
@@ -47,8 +44,8 @@ async function sendMessage(phone, message) {
     return sendTextMessage(sockInstance, phone, message);
 }
 
-module.exports = { 
-    initWhatsApp, 
+module.exports = {
+    initWhatsApp,
     sendMessage,
     getConnectionState
 };
