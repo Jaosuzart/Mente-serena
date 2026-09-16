@@ -1,7 +1,5 @@
 const pool = require('../config/database');
 
-/**
- */
 const claimFreeSpot = async (req, res) => {
     try {
         const { email } = req.body;
@@ -20,10 +18,6 @@ const claimFreeSpot = async (req, res) => {
         }
 
         console.log(`🎉 [Vagas] Vaga gratuita resgatada com sucesso pelo email: ${email}`);
-
-        // Idealmente, você chamaria um sistema de e-mail aqui (Nodemailer) para enviar o acesso
-        // ou inseriria o usuário em uma tabela de Alunos.
-        // Para este desafio, retornamos o sucesso.
         return res.status(200).json({
             success: true,
             message: 'Vaga gratuita garantida com sucesso! Em breve você receberá as instruções de acesso no seu e-mail.'

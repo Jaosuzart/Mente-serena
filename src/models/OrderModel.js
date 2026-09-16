@@ -1,9 +1,6 @@
 const db = require('../config/database');
 
 class OrderModel {
-    /**
-     * Cria um novo pedido no banco de dados com status inicial (ex: pendente)
-     */
     static async createOrder(orderData) {
         try {
             const { preference_id, order_id, nome, email, plano, status } = orderData;
@@ -19,10 +16,6 @@ class OrderModel {
             throw error;
         }
     }
-
-    /**
-     * Atualiza o status de um pedido com base no ID do pagamento aprovado pelo webhook
-     */
     static async updateOrderStatusByPayment(paymentId, status, orderId) {
         try {
             const [result] = await db.query(
@@ -36,10 +29,6 @@ class OrderModel {
             throw error;
         }
     }
-
-    /**
-     * Busca um pedido por preference_id
-     */
     static async getOrderByPreferenceId(preferenceId) {
         try {
             const [rows] = await db.query('SELECT * FROM pedidos WHERE preference_id = ? LIMIT 1', [preferenceId]);

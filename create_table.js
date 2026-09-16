@@ -3,7 +3,6 @@ require('dotenv').config();
 
 async function run() {
   try {
-    // A URI de conexão com o banco agora é carregada com segurança do arquivo .env
     const aivenURI = process.env.DATABASE_URL;
     
     if (!aivenURI) {

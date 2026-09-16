@@ -130,7 +130,7 @@ if (supportBtn) {
     supportBtn.addEventListener('click', (e) => {
         e.preventDefault();
         const p = ['55', '71', '982767129'].join('');
-        const msg = encodeURIComponent('Olá, gostaria de tirar dúvidas sobre o Mente Serena.');
+        const msg = encodeURIComponent('olá, seja bem-vindo ao curso de mente serena');
         window.open(`https://wa.me/${p}?text=${msg}`, '_blank', 'noopener,noreferrer');
     });
 }
