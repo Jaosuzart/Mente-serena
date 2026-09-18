@@ -35,6 +35,12 @@ async function iniciarPagamento(btn, plan, preco) {
         }
 
         const data = await response.json();
+        
+        if (data.is_subscription && data.init_point) {
+            window.location.href = data.init_point;
+            return;
+        }
+
         const prefId = data.preferenceId || data.id;
 
         if (!prefId) {
@@ -72,8 +78,10 @@ async function iniciarPagamento(btn, plan, preco) {
 
 const btnBasicMensal = document.getElementById('btn-buy-basic-mensal');
 const btnBasicVitalicio = document.getElementById('btn-buy-basic-vitalicio');
+const btnTrial = document.getElementById('btn-buy-trial');
 if (btnBasicMensal) btnBasicMensal.addEventListener('click', () => iniciarPagamento(btnBasicMensal, 'mensal1', 60));
 if (btnBasicVitalicio) btnBasicVitalicio.addEventListener('click', () => iniciarPagamento(btnBasicVitalicio, 'vitalicio1', 90));
+if (btnTrial) btnTrial.addEventListener('click', () => iniciarPagamento(btnTrial, 'trial', 0));
 
 const btnIntermediaryMensal = document.getElementById('btn-buy-intermediary-mensal');
 const btnIntermediaryVitalicio = document.getElementById('btn-buy-intermediary-vitalicio');

@@ -38,6 +38,16 @@ class OrderModel {
             throw error;
         }
     }
+
+    static async countTrials() {
+        try {
+            const [rows] = await db.query('SELECT COUNT(*) as count FROM pedidos WHERE plano = ?', ['trial']);
+            return rows[0].count;
+        } catch (error) {
+            console.error('Erro ao contar trials:', error);
+            throw error;
+        }
+    }
 }
 
 module.exports = OrderModel;

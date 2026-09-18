@@ -1,4 +1,4 @@
-const { MercadoPagoConfig, Preference } = require('mercadopago');
+const { MercadoPagoConfig, Preference, PreApproval } = require('mercadopago');
 const OrderModel = require('../models/OrderModel');
 const crypto = require('crypto');
 const { registrarFiltroUsuario } = require('../frontend/assets/filters/userFilters');
@@ -7,6 +7,7 @@ const { getPaymentMethodConfig, isMetodoPagamentoValido } = require('../frontend
 
 const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
 const preference = new Preference(client);
+const preapproval = new PreApproval(client);
 
 const createPreference = async (req, res) => {
     try {
@@ -58,8 +59,54 @@ const createPreference = async (req, res) => {
             }
         }
 
-
         const orderId = crypto.randomUUID();
+
+        if (plan === 'trial') {
+            try {
+                const totalTrials = await OrderModel.countTrials();
+                if (totalTrials >= 2) {
+                    return res.status(403).json({ error: "As 2 vagas do Teste Grátis já foram preenchidas! Aproveite um de nossos planos regulares." });
+                }
+
+                const response = await preapproval.create({
+                    body: {
+                        reason: "Curso Mente Serena - Trial de 15 Dias (Mensal)",
+                        auto_recurring: {
+                            frequency: 1,
+                            frequency_type: "months",
+                            transaction_amount: 60.00,
+                            currency_id: "BRL",
+                            free_trial: {
+                                frequency: 15,
+                                frequency_type: "days"
+                            }
+                        },
+                        back_url: `${process.env.FRONTEND_URL}/sucesso`,
+                        payer_email: email,
+                        external_reference: orderId,
+                        status: "pending"
+                    }
+                });
+
+                await OrderModel.createOrder({
+                    preference_id: response.id,
+                    order_id: orderId,
+                    nome: nome,
+                    email: email,
+                    plano: plan,
+                    status: 'pendente'
+                });
+
+                return res.status(200).json({
+                    is_subscription: true,
+                    init_point: response.init_point
+                });
+            } catch (error) {
+                console.error("Erro ao criar trial (PreApproval) do Mercado Pago:", error);
+                return res.status(500).json({ error: "Falha ao processar o trial." });
+            }
+        }
+
         const paymentMethodsConfig = getPaymentMethodConfig(metodoPagamento);
 
         const response = await preference.create({

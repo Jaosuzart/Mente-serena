@@ -2,29 +2,26 @@ const { DisconnectReason } = require('@whiskeysockets/baileys');
 const qrcode = require('qrcode-terminal');
 
 /**
- * Lida com as atualizações de conexão (QR Code, Conexão aberta, Desconexões)
- * @param {object} update Objeto de atualização do Baileys
- * @param {function} reconnectCallback Função a ser chamada se precisar reconectar
- * @param {function} setStateCallback Função para atualizar o estado pro frontend
+ * @param {object} 
+ * @param {function} r
+ * @param {function} 
  */
 function handleConnectionUpdate(update, reconnectCallback, setStateCallback) {
     const { connection, lastDisconnect, qr } = update;
 
-    // Se receber um evento pedindo QR/Autenticação
     if (qr) {
-        console.log('\n[WHATSAPP] Escaneie o QR Code abaixo:');
+        console.log('\n[WHATSAPP] Escaneie o QR Code abaixo com seu celular (Aparelhos Conectados):');
         qrcode.generate(qr, { small: true });
 
         const whatsappNumber = process.env.WHATSAPP_NUMBER || '5571982767129';
-        const whatsappApiUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(qr)}`;
+        const welcomeMsg = process.env.WHATSAPP_WELCOME_MSG || 'ol\u00e1, seja bem-vindo ao curso mente serena';
+        const whatsappApiUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(welcomeMsg)}`;
 
-        console.log('\n[WHATSAPP] 🔗 Acesse a API externa abaixo para ser redirecionado diretamente:');
+        console.log('\n[WHATSAPP] \ud83d\udd17 Ou acesse a API externa abaixo (Segunda Op\u00e7\u00e3o - mensagem de boas-vindas):');
         console.log(`${whatsappApiUrl}\n`);
 
         setStateCallback('WAITING_QR', qr);
     }
-
-    // Se a conexão for fechada
     if (connection === 'close') {
         const statusCode = lastDisconnect?.error?.output?.statusCode;
         const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
