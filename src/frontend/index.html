@@ -32,11 +32,16 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    <div class="bg-warning text-dark text-center py-2 fw-bold px-3 shadow-sm"
+        style="letter-spacing: 0.5px; font-size: 0.95rem; z-index: 1050; position: relative;">
+        🎉 <span class="text-uppercase">Especial Semana do Cliente:</span> Aproveite os planos promocionais com
+        descontos exclusivos por tempo limitado!
+    </div>
     <header class="header-glass py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="/" class="d-flex align-items-center gap-2 text-decoration-none"
                 aria-label="Mente Serena - Página inicial">
-                <img src="assets/images/hero.webp" alt="Logo Mente Serena" width="44" height="44"
+                <img src="assets/images/logo-premium.webp" alt="Logo Mente Serena" width="44" height="44"
                     style="object-fit:contain; width:44px; height:44px;"
                     onerror="this.outerHTML='<i class=\'bi bi-yin-yang fs-2 text-primary\'></i>'">
                 <span class="fs-5 fw-bolder text-primary d-none d-sm-inline">Mente Serena</span>
@@ -200,74 +205,80 @@
 
             </div>
         </section>
-        <section class="bg-body-tertiary py-5 border-top border-bottom border-primary-subtle"
+        <section class="py-5 border-top border-bottom" style="background-color: var(--bs-body-bg);"
             aria-labelledby="avaliacoes-title">
-            <div class="container py-4 text-center">
-                <h2 id="avaliacoes-title" class="h1 text-primary fw-bolder mb-4">Aprovações Reais</h2>
-                <p class="text-body-secondary fs-5 mb-5 mx-auto" style="max-width: 800px;">Mais do que teoria,
-                    resultados visíveis na qualidade de vida dos nossos alunos.</p>
+            <div class="container py-5">
+                <div class="row mb-5 align-items-center">
+                    <div class="col-lg-6">
+                        <span class="text-uppercase fw-bold text-primary tracking-wide"
+                            style="letter-spacing: 2px; font-size: 0.85rem;">Depoimentos Reais</span>
+                        <h2 id="avaliacoes-title" class="display-6 fw-bold mt-2 mb-0">O que nossos alunos dizem</h2>
+                    </div>
+                    <div class="col-lg-6 text-lg-end mt-3 mt-lg-0">
+                        <p class="text-body-secondary fs-5 mb-0">Resultados práticos na comunicação e inteligência
+                            emocional comprovados.</p>
+                    </div>
+                </div>
 
-                <div class="row justify-content-center g-4" style="max-width: 900px; margin: 0 auto;">
-                    <div class="col-12 col-md-6 fade-in-up">
-                        <div
-                            class="card h-100 border border-primary-subtle shadow-sm rounded-4 text-start p-4 position-relative overflow-hidden">
-                            <div class="position-absolute top-0 end-0 p-3 opacity-10">
-                                <i class="bi bi-quote text-primary" style="font-size: 5rem; line-height: 1;"></i>
-                            </div>
-                            <div class="card-body position-relative z-1 p-0 d-flex flex-column">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold me-3 border border-primary-subtle"
-                                        style="width: 56px; height: 56px; font-size: 1.3rem;">LM</div>
-                                    <div>
-                                        <h5 class="mb-1 fw-bold text-body">Lucas M.</h5>
-                                        <div class="text-warning small" style="letter-spacing: 2px;">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
-                                        </div>
-                                    </div>
+                <div class="row g-4">
+                    <div class="col-md-6 fade-in-up">
+                        <div class="card h-100 border-0 shadow-sm rounded-0 border-start border-4 border-primary"
+                            style="background-color: var(--ms-card-bg);">
+                            <div class="card-body p-5">
+                                <div class="text-warning mb-3" style="letter-spacing: 2px;">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                        class="bi bi-star-fill"></i>
                                 </div>
-                                <p class="fst-italic text-body-secondary mb-4 fs-6 flex-grow-1">"O Mente Serena
+                                <p class="fs-5 text-body-secondary mb-4" style="line-height: 1.7;">"O Mente Serena
                                     transformou a forma como eu me comunico em casa. A técnica da pausa consciente me
-                                    salvou de várias discussões desnecessárias. Um verdadeiro divisor de águas!"</p>
-                                <div
-                                    class="d-flex align-items-center text-muted small fw-medium mt-auto pt-3 border-top border-secondary-subtle">
-                                    <i class="bi bi-patch-check-fill text-success me-2 fs-5"></i>
-                                    <span>Aluno verificado &bull; 10/09/2026</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 fade-in-up" style="transition-delay: 0.2s;">
-                        <div
-                            class="card h-100 border border-primary-subtle shadow-sm rounded-4 text-start p-4 position-relative overflow-hidden">
-                            <div class="position-absolute top-0 end-0 p-3 opacity-10">
-                                <i class="bi bi-quote text-primary" style="font-size: 5rem; line-height: 1;"></i>
-                            </div>
-                            <div class="card-body position-relative z-1 p-0 d-flex flex-column">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold me-3 border border-primary-subtle"
-                                        style="width: 56px; height: 56px; font-size: 1.3rem;">MR</div>
+                                    salvou de várias discussões desnecessárias. Um divisor de águas na minha família."
+                                </p>
+                                <div class="d-flex align-items-center mt-auto">
+                                    <div class="bg-body-secondary rounded-circle d-flex align-items-center justify-content-center text-body-secondary fw-bold me-3"
+                                        style="width: 48px; height: 48px;">LM</div>
                                     <div>
-                                        <h5 class="mb-1 fw-bold text-body">Mariana R.</h5>
-                                        <div class="text-warning small" style="letter-spacing: 2px;">
-                                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                                class="bi bi-star-fill"></i>
-                                        </div>
+                                        <h6 class="mb-0 fw-bold">Lucas M.</h6>
+                                        <small class="text-muted d-flex align-items-center"><i
+                                                class="bi bi-patch-check-fill text-success me-1"></i> Aluno Verificado
+                                            &bull; Setor Corporativo</small>
                                     </div>
                                 </div>
-                                <p class="fst-italic text-body-secondary mb-4 fs-6 flex-grow-1">"Eu tinha muita
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 fade-in-up" style="transition-delay: 0.1s;">
+                        <div class="card h-100 border-0 shadow-sm rounded-0 border-start border-4 border-primary"
+                            style="background-color: var(--ms-card-bg);">
+                            <div class="card-body p-5">
+                                <div class="text-warning mb-3" style="letter-spacing: 2px;">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                        class="bi bi-star-fill"></i>
+                                </div>
+                                <p class="fs-5 text-body-secondary mb-4" style="line-height: 1.7;">"Eu tinha muita
                                     dificuldade em estabelecer limites. O Módulo 4 me deu as ferramentas exatas para
-                                    dizer 'não' com firmeza e empatia. Recomendo o Mente Serena de olhos fechados."</p>
-                                <div
-                                    class="d-flex align-items-center text-muted small fw-medium mt-auto pt-3 border-top border-secondary-subtle">
-                                    <i class="bi bi-patch-check-fill text-success me-2 fs-5"></i>
-                                    <span>Aluna verificada &bull; 12/09/2026</span>
+                                    dizer 'não' com firmeza e empatia no trabalho e na vida pessoal."</p>
+                                <div class="d-flex align-items-center mt-auto">
+                                    <div class="bg-body-secondary rounded-circle d-flex align-items-center justify-content-center text-body-secondary fw-bold me-3"
+                                        style="width: 48px; height: 48px;">MR</div>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold">Mariana R.</h6>
+                                        <small class="text-muted d-flex align-items-center"><i
+                                                class="bi bi-patch-check-fill text-success me-1"></i> Aluna Verificada
+                                            &bull; Gerente de Projetos</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#pricing-title" class="text-primary text-decoration-none fw-bold"
+                        style="letter-spacing: 1px;">Junte-se a eles e comece hoje <i
+                            class="bi bi-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
@@ -334,8 +345,6 @@
                 </div>
 
                 <div class="row g-4 justify-content-center align-items-stretch mx-auto" style="max-width: 1200px;">
-
-                    <!-- Plano Básico -->
                     <div class="col-lg-4 col-md-6">
                         <div class="card h-100 shadow-sm border-primary-subtle">
                             <div class="card-body p-4 d-flex flex-column">
@@ -344,12 +353,12 @@
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
-                                            <span class="fs-4 fw-bolder text-primary">R$ 60</span><span
+                                            <span class="fs-4 fw-bolder text-primary">R$ 20</span><span
                                                 class="text-body-secondary">/mês</span>
                                             <div class="text-muted small">Mensal</div>
                                         </div>
                                         <div class="text-end">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 90</span>
+                                            <span class="fs-4 fw-bolder text-primary">R$ 30</span>
                                             <div class="text-muted small">Vitalício</div>
                                         </div>
                                     </div>
@@ -362,9 +371,9 @@
                                 <button id="btn-buy-trial" class="btn btn-warning w-100 shadow-sm mb-2 fw-bold"
                                     aria-label="Teste Grátis">Teste Grátis por 15 Dias</button>
                                 <button id="btn-buy-basic-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2"
-                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 60)</button>
+                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 20)</button>
                                 <button id="btn-buy-basic-vitalicio" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 90)</button>
+                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 30)</button>
                             </div>
                         </div>
                     </div>
@@ -376,12 +385,12 @@
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
-                                            <span class="fs-4 fw-bolder text-primary">R$ 70</span><span
+                                            <span class="fs-4 fw-bolder text-primary">R$ 40</span><span
                                                 class="text-body-secondary">/mês</span>
                                             <div class="text-muted small">Mensal</div>
                                         </div>
                                         <div class="text-end">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 130</span>
+                                            <span class="fs-4 fw-bolder text-primary">R$ 50</span>
                                             <div class="text-muted small">Vitalício</div>
                                         </div>
                                     </div>
@@ -399,9 +408,9 @@
                                 </ul>
                                 <button id="btn-buy-intermediary-mensal"
                                     class="btn btn-outline-primary w-100 shadow-sm mb-2"
-                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 70)</button>
+                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 40)</button>
                                 <button id="btn-buy-intermediary-vitalicio" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 130)</button>
+                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 50)</button>
                             </div>
                         </div>
                     </div>
@@ -416,12 +425,12 @@
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
-                                            <span class="fs-4 fw-bolder text-primary">R$ 90</span><span
+                                            <span class="fs-4 fw-bolder text-primary">R$ 60</span><span
                                                 class="text-body-secondary">/mês</span>
                                             <div class="text-muted small">Mensal</div>
                                         </div>
                                         <div class="text-end">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 150</span>
+                                            <span class="fs-4 fw-bolder text-primary">R$ 80</span>
                                             <div class="text-muted small">Vitalício</div>
                                         </div>
                                     </div>
@@ -447,9 +456,9 @@
                                             class="fw-medium">Acesso vitalício garantido</span></li>
                                 </ul>
                                 <button id="btn-buy-premium-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2"
-                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 90)</button>
+                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 60)</button>
                                 <button id="btn-buy-premium-vitalicio" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 150)</button>
+                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 80)</button>
                             </div>
                         </div>
                     </div>
@@ -463,7 +472,7 @@
     <footer class="bg-body py-5 border-top border-primary-subtle text-center text-body-secondary mt-auto">
         <div class="container py-3">
             <div class="mb-3 d-flex justify-content-center align-items-center gap-2">
-                <img src="assets/images/hero.webp" alt="Logo Mente Serena" width="40" height="40"
+                <img src="assets/images/logo-premium.webp" alt="Logo Mente Serena" width="40" height="40"
                     style="object-fit:contain; width:40px; height:40px;"
                     onerror="this.outerHTML='<i class=\'bi bi-yin-yang fs-2 text-primary\'></i>'">
                 <h5 class="fw-bold text-primary mb-0">Mente Serena</h5>

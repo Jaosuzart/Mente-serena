@@ -64,8 +64,8 @@ const createPreference = async (req, res) => {
         if (plan === 'trial') {
             try {
                 const totalTrials = await OrderModel.countTrials();
-                if (totalTrials >= 2) {
-                    return res.status(403).json({ error: "As 2 vagas do Teste Grátis já foram preenchidas! Aproveite um de nossos planos regulares." });
+                if (totalTrials >= 20) {
+                    return res.status(403).json({ error: "As 20 vagas do Teste Grátis já foram preenchidas! Aproveite um de nossos planos regulares." });
                 }
 
                 const response = await preapproval.create({
@@ -74,7 +74,7 @@ const createPreference = async (req, res) => {
                         auto_recurring: {
                             frequency: 1,
                             frequency_type: "months",
-                            transaction_amount: 60.00,
+                            transaction_amount: 20.00,
                             currency_id: "BRL",
                             free_trial: {
                                 frequency: 15,

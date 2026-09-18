@@ -79,19 +79,19 @@ async function iniciarPagamento(btn, plan, preco) {
 const btnBasicMensal = document.getElementById('btn-buy-basic-mensal');
 const btnBasicVitalicio = document.getElementById('btn-buy-basic-vitalicio');
 const btnTrial = document.getElementById('btn-buy-trial');
-if (btnBasicMensal) btnBasicMensal.addEventListener('click', () => iniciarPagamento(btnBasicMensal, 'mensal1', 60));
-if (btnBasicVitalicio) btnBasicVitalicio.addEventListener('click', () => iniciarPagamento(btnBasicVitalicio, 'vitalicio1', 90));
+if (btnBasicMensal) btnBasicMensal.addEventListener('click', () => iniciarPagamento(btnBasicMensal, 'mensal1', 20));
+if (btnBasicVitalicio) btnBasicVitalicio.addEventListener('click', () => iniciarPagamento(btnBasicVitalicio, 'vitalicio1', 30));
 if (btnTrial) btnTrial.addEventListener('click', () => iniciarPagamento(btnTrial, 'trial', 0));
 
 const btnIntermediaryMensal = document.getElementById('btn-buy-intermediary-mensal');
 const btnIntermediaryVitalicio = document.getElementById('btn-buy-intermediary-vitalicio');
-if (btnIntermediaryMensal) btnIntermediaryMensal.addEventListener('click', () => iniciarPagamento(btnIntermediaryMensal, 'mensal2', 70));
-if (btnIntermediaryVitalicio) btnIntermediaryVitalicio.addEventListener('click', () => iniciarPagamento(btnIntermediaryVitalicio, 'vitalicio2', 130));
+if (btnIntermediaryMensal) btnIntermediaryMensal.addEventListener('click', () => iniciarPagamento(btnIntermediaryMensal, 'mensal2', 40));
+if (btnIntermediaryVitalicio) btnIntermediaryVitalicio.addEventListener('click', () => iniciarPagamento(btnIntermediaryVitalicio, 'vitalicio2', 50));
 
 const btnPremiumMensal = document.getElementById('btn-buy-premium-mensal');
 const btnPremiumVitalicio = document.getElementById('btn-buy-premium-vitalicio');
-if (btnPremiumMensal) btnPremiumMensal.addEventListener('click', () => iniciarPagamento(btnPremiumMensal, 'mensal3', 90));
-if (btnPremiumVitalicio) btnPremiumVitalicio.addEventListener('click', () => iniciarPagamento(btnPremiumVitalicio, 'vitalicio3', 150));
+if (btnPremiumMensal) btnPremiumMensal.addEventListener('click', () => iniciarPagamento(btnPremiumMensal, 'mensal3', 60));
+if (btnPremiumVitalicio) btnPremiumVitalicio.addEventListener('click', () => iniciarPagamento(btnPremiumVitalicio, 'vitalicio3', 80));
 
 if (btnFree) {
     btnFree.addEventListener('click', async () => {
