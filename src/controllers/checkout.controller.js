@@ -17,7 +17,11 @@ const createPreference = async (req, res) => {
         let productTitle = "Curso Mente Serena - Básico (Mensal)";
         let productId = "curso_mente_serena_mensal_1";
 
-        if (plan === 'vitalicio1') {
+        if (plan === 'trial') {
+            productPrice = 20.00;
+            productTitle = "Curso Mente Serena - Teste Grátis (Básico)";
+            productId = "curso_mente_serena_trial_1";
+        } else if (plan === 'vitalicio1') {
             productPrice = 30.00;
             productTitle = "Curso Mente Serena - Básico (Vitalício)";
             productId = "curso_mente_serena_vitalicio_1";
@@ -78,8 +82,7 @@ const createPreference = async (req, res) => {
                 };
 
                 if (plan === 'trial') {
-                    // Trial always sets the recurring price to 20.00 after the 15 days
-                    autoRecurring.transaction_amount = 20.00;
+                    autoRecurring.transaction_amount = productPrice;
                     autoRecurring.free_trial = {
                         frequency: 15,
                         frequency_type: "days"
@@ -106,12 +109,11 @@ const createPreference = async (req, res) => {
                     status: 'pendente'
                 });
 
-                // Registrar o uso do cupom se aplicável
                 try {
                     await registrarFiltroUsuario({
                         email: email,
                         plano: plan,
-                        pagamento: 'cartao', // Assinaturas usam cartão
+                        pagamento: 'cartao',
                         cupom: cupomCodigo,
                         desconto: descontoAplicado,
                     });
