@@ -32,11 +32,24 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <div class="bg-warning text-dark text-center py-2 fw-bold px-3 shadow-sm"
-        style="letter-spacing: 0.5px; font-size: 0.95rem; z-index: 1050; position: relative;">
+    <div id="promoBanner" class="bg-warning text-dark text-center py-2 fw-bold px-3 shadow-sm"
+        style="letter-spacing: 0.5px; font-size: 0.95rem; z-index: 1050; position: relative; padding-right: 40px !important;">
         🎉 <span class="text-uppercase">Especial Semana do Cliente:</span> Aproveite os planos promocionais com
         descontos exclusivos por tempo limitado!
+        <button type="button" onclick="fecharBannerPromo()" aria-label="Fechar" title="Fechar banner"
+            style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 1.5rem; line-height: 1; color: inherit; opacity: 0.7; cursor: pointer; transition: opacity 0.2s;">
+            &times;
+        </button>
     </div>
+    <script>
+        if (localStorage.getItem('promoBannerFechado') === 'true') {
+            document.getElementById('promoBanner').style.display = 'none';
+        }
+        function fecharBannerPromo() {
+            document.getElementById('promoBanner').style.display = 'none';
+            localStorage.setItem('promoBannerFechado', 'true');
+        }
+    </script>
     <header class="header-glass py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="/" class="d-flex align-items-center gap-2 text-decoration-none"
