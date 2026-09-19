@@ -346,8 +346,10 @@ button:disabled {
     animation: spin 1s ease-in-out infinite;
 }
 
-.btn-secondary {
-    transform: translate(-50%, -50%) rotate(360deg);
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 
