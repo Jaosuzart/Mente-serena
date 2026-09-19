@@ -1,4 +1,3 @@
-// aulas.js - Lógica de renderização de conteúdo das aulas
 
 const modules = [
     {

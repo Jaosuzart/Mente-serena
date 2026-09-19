@@ -3,24 +3,15 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
-
-// ==========================================
-// IMPORT DE ROTAS
-// ==========================================
-
 const checkoutRoutes = require('./routes/checkout.routes');
 const webhookRoutes = require('./routes/webhook.routes');
 const cupomRoutes = require('./routes/cupom.routes');
 const whatsappRoutes = require('./routes/whatsapp.routes');
 const freeSpotsRoutes = require('./routes/free_spots.routes');
 const app = express();
-
-// ==========================================
-// CONFIGURAÇÕES DE SEGURANÇA E MIDDLEWARES
-// ==========================================
-app.use(helmet({ contentSecurityPolicy: false })); // Proteção de headers, desabilitando CSP para não bloquear scripts externos (Mercado Pago, CDN)
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({
-    origin: process.env.FRONTEND_URL || '*', // Restringir em produção para o domínio exato
+    origin: process.env.FRONTEND_URL || '*',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
