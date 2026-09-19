@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const savedTheme = localStorage.getItem('theme');
     
-    const initialTheme = savedTheme ? savedTheme : 'dark';
+    const initialTheme = savedTheme ? savedTheme : 'light';
     setTheme(initialTheme);
 
     if (themeToggleBtn) {

@@ -13,28 +13,28 @@ const createPreference = async (req, res) => {
     try {
         const { email, nome, plan, pagamento = 'todos', cupom = null } = req.body;
 
-        let productPrice = 60.00;
+        let productPrice = 20.00;
         let productTitle = "Curso Mente Serena - Básico (Mensal)";
         let productId = "curso_mente_serena_mensal_1";
 
         if (plan === 'vitalicio1') {
-            productPrice = 90.00;
+            productPrice = 30.00;
             productTitle = "Curso Mente Serena - Básico (Vitalício)";
             productId = "curso_mente_serena_vitalicio_1";
         } else if (plan === 'mensal2') {
-            productPrice = 70.00;
+            productPrice = 40.00;
             productTitle = "Curso Mente Serena - Intermediário (Mensal)";
             productId = "curso_mente_serena_mensal_2";
         } else if (plan === 'vitalicio2') {
-            productPrice = 130.00;
+            productPrice = 50.00;
             productTitle = "Curso Mente Serena - Intermediário (Vitalício)";
             productId = "curso_mente_serena_vitalicio_2";
         } else if (plan === 'mensal3') {
-            productPrice = 90.00;
+            productPrice = 60.00;
             productTitle = "Curso Mente Serena - Avançado (Mensal)";
             productId = "curso_mente_serena_mensal_3";
         } else if (plan === 'vitalicio3') {
-            productPrice = 150.00;
+            productPrice = 80.00;
             productTitle = "Curso Mente Serena - Avançado (Vitalício)";
             productId = "curso_mente_serena_vitalicio_3";
         }
@@ -61,26 +61,35 @@ const createPreference = async (req, res) => {
 
         const orderId = crypto.randomUUID();
 
-        if (plan === 'trial') {
+        if (plan === 'trial' || plan.includes('mensal')) {
             try {
-                const totalTrials = await OrderModel.countTrials();
-                if (totalTrials >= 20) {
-                    return res.status(403).json({ error: "As 20 vagas do Teste Grátis já foram preenchidas! Aproveite um de nossos planos regulares." });
+                if (plan === 'trial') {
+                    const totalTrials = await OrderModel.countTrials();
+                    if (totalTrials >= 20) {
+                        return res.status(403).json({ error: "As 20 vagas do Teste Grátis já foram preenchidas! Aproveite um de nossos planos regulares." });
+                    }
+                }
+
+                let autoRecurring = {
+                    frequency: 1,
+                    frequency_type: "months",
+                    transaction_amount: productPrice,
+                    currency_id: "BRL"
+                };
+
+                if (plan === 'trial') {
+                    // Trial always sets the recurring price to 20.00 after the 15 days
+                    autoRecurring.transaction_amount = 20.00;
+                    autoRecurring.free_trial = {
+                        frequency: 15,
+                        frequency_type: "days"
+                    };
                 }
 
                 const response = await preapproval.create({
                     body: {
-                        reason: "Curso Mente Serena - Trial de 15 Dias (Mensal)",
-                        auto_recurring: {
-                            frequency: 1,
-                            frequency_type: "months",
-                            transaction_amount: 20.00,
-                            currency_id: "BRL",
-                            free_trial: {
-                                frequency: 15,
-                                frequency_type: "days"
-                            }
-                        },
+                        reason: productTitle,
+                        auto_recurring: autoRecurring,
                         back_url: `${process.env.FRONTEND_URL}/sucesso`,
                         payer_email: email,
                         external_reference: orderId,
@@ -97,13 +106,33 @@ const createPreference = async (req, res) => {
                     status: 'pendente'
                 });
 
+                // Registrar o uso do cupom se aplicável
+                try {
+                    await registrarFiltroUsuario({
+                        email: email,
+                        plano: plan,
+                        pagamento: 'cartao', // Assinaturas usam cartão
+                        cupom: cupomCodigo,
+                        desconto: descontoAplicado,
+                    });
+
+                    if (cupomCodigo) {
+                        await registrarUsoCupom(email, cupomCodigo, descontoAplicado, orderId);
+                    }
+                } catch (filterError) {
+                    console.error("⚠️  Erro ao registrar filtro/cupom do usuário:", filterError);
+                }
+
                 return res.status(200).json({
                     is_subscription: true,
-                    init_point: response.init_point
+                    init_point: response.init_point,
+                    preco_final: autoRecurring.transaction_amount,
+                    desconto_aplicado: descontoAplicado,
+                    cupom_mensagem: cupomMensagem,
                 });
             } catch (error) {
-                console.error("Erro ao criar trial (PreApproval) do Mercado Pago:", error);
-                return res.status(500).json({ error: "Falha ao processar o trial." });
+                console.error("Erro ao criar assinatura (PreApproval) do Mercado Pago:", error);
+                return res.status(500).json({ error: "Falha ao processar a assinatura." });
             }
         }
 

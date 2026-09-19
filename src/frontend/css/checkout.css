@@ -1,5 +1,6 @@
 :root {
     --primary-color: #0A192F;
+    --primary-hover: #172a4f;
     --accent-hover: #2e8b82;
 
     --secondary-color: #f1f5f9;
@@ -22,7 +23,7 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-body.dark-mode {
+[data-bs-theme="dark"] body {
     --primary-color: #1a365d;
     --primary-hover: #2a4365;
     --accent-color: #4fd1c5;
@@ -124,7 +125,6 @@ body {
     display: block;
     color: var(--text-light);
     font-size: 0.875rem;
-    text-decoration: line-through;
     margin-bottom: 4px;
 }
 
@@ -164,6 +164,11 @@ body {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+
+.form-group input::placeholder {
+    color: var(--text-light);
+    opacity: 0.7;
 }
 
 .form-group input:focus {
@@ -326,4 +331,27 @@ button:disabled {
         animation-duration: 0.01ms;
         transition-duration: 0.01ms;
     }
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+}
+
+.btn-secondary {
+    transform: translate(-50%, -50%) rotate(360deg);
+}
+
+
+.btn-secondary .loader {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: var(--secondary-text);
 }

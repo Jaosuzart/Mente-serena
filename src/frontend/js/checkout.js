@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cupomValidado = null;
     let descontoAtual = 0;
-    const PRECOS = { mensal1: 60, vitalicio1: 90, mensal2: 70, vitalicio2: 130, mensal3: 90, vitalicio3: 150 };
+    // Preços atualizados para bater com a Landing Page
+    const PRECOS = { trial: 0, mensal1: 20, vitalicio1: 30, mensal2: 40, vitalicio2: 50, mensal3: 60, vitalicio3: 80 };
 
     function getPrecoComDesconto(plano) {
         const base = PRECOS[plano] || 0;
@@ -39,9 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         btnComprarText.textContent = label;
     }
 
+    // Auto-selecionar plano baseado na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const planFromUrl = urlParams.get('plan');
+    if (planFromUrl) {
+        const radio = Array.from(radiosPlan).find(r => r.value === planFromUrl);
+        if (radio) {
+            radio.checked = true;
+        }
+    }
+
     Array.from(radiosPlan).forEach(radio => {
         radio.addEventListener('change', updateButtonPrice);
     });
+    
+    // Initial call to set the correct price on load
+    updateButtonPrice();
 
     if (btnAplicarCupom) {
         btnAplicarCupom.addEventListener('click', async () => {
