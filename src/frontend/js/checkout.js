@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cupomValidado = null;
     let descontoAtual = 0;
-    // Preços atualizados para bater com a Landing Page
     const PRECOS = { trial: 0, mensal1: 30, mensal2: 50, mensal3: 70 };
 
     function getPrecoComDesconto(plano) {
@@ -40,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnComprarText.textContent = label;
     }
 
-    // Auto-selecionar plano baseado na URL
     const urlParams = new URLSearchParams(window.location.search);
     const planFromUrl = urlParams.get('plan');
     if (planFromUrl) {
@@ -53,8 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Array.from(radiosPlan).forEach(radio => {
         radio.addEventListener('change', updateButtonPrice);
     });
-    
-    // Initial call to set the correct price on load
+
     updateButtonPrice();
 
     if (btnAplicarCupom) {

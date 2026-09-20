@@ -22,14 +22,14 @@ if (supportBtn) {
 const promoBanner = document.getElementById('promoBanner');
 const btnFecharPromo = document.getElementById('btnFecharPromo');
 
-if (promoBanner && localStorage.getItem('promoBannerFechado') === 'true') {
+if (promoBanner && sessionStorage.getItem('promoBannerFechado') === 'true') {
     promoBanner.style.display = 'none';
 }
 
 if (btnFecharPromo && promoBanner) {
     btnFecharPromo.addEventListener('click', () => {
         promoBanner.style.display = 'none';
-        localStorage.setItem('promoBannerFechado', 'true');
+        sessionStorage.setItem('promoBannerFechado', 'true');
     });
 }
 
