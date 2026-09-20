@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cupomValidado = null;
     let descontoAtual = 0;
     // Preços atualizados para bater com a Landing Page
-    const PRECOS = { trial: 0, mensal1: 20, vitalicio1: 30, mensal2: 40, vitalicio2: 50, mensal3: 60, vitalicio3: 80 };
+    const PRECOS = { trial: 0, mensal1: 30, mensal2: 50, mensal3: 70 };
 
     function getPrecoComDesconto(plano) {
         const base = PRECOS[plano] || 0;

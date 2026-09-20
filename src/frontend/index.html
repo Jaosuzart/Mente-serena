@@ -37,20 +37,11 @@
         style="letter-spacing: 0.5px; font-size: 0.95rem; z-index: 1050; position: relative; padding-right: 40px !important;">
         🎉 <span class="text-uppercase">Especial Semana do Cliente:</span> Aproveite os planos promocionais com
         descontos exclusivos por tempo limitado!
-        <button type="button" onclick="fecharBannerPromo()" aria-label="Fechar" title="Fechar banner"
+        <button type="button" id="btnFecharPromo" aria-label="Fechar" title="Fechar banner"
             style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 1.5rem; line-height: 1; color: inherit; opacity: 0.7; cursor: pointer; transition: opacity 0.2s;">
             &times;
         </button>
     </div>
-    <script>
-        if (localStorage.getItem('promoBannerFechado') === 'true') {
-            document.getElementById('promoBanner').style.display = 'none';
-        }
-        function fecharBannerPromo() {
-            document.getElementById('promoBanner').style.display = 'none';
-            localStorage.setItem('promoBannerFechado', 'true');
-        }
-    </script>
     <header class="header-glass py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <a href="/" class="d-flex align-items-center gap-2 text-decoration-none"
@@ -365,15 +356,10 @@
                                 <h3 class="card-title fw-bold text-body mb-2">Plano Básico</h3>
                                 <p class="text-body-secondary mb-4">O ponto de partida ideal.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div>
-                                            <span class="fs-4 fw-bolder text-primary">R$ 20</span><span
+                                    <div class="d-flex justify-content-center align-items-center mb-3">
+                                        <div class="text-center">
+                                            <span class="fs-4 fw-bolder text-primary">R$ 30</span><span
                                                 class="text-body-secondary">/mês</span>
-                                            <div class="text-muted small">Mensal</div>
-                                        </div>
-                                        <div class="text-end">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 30</span>
-                                            <div class="text-muted small">Vitalício</div>
                                         </div>
                                     </div>
                                 </div>
@@ -384,10 +370,8 @@
                                 </ul>
                                 <button id="btn-buy-trial" class="btn btn-warning w-100 shadow-sm mb-2 fw-bold"
                                     aria-label="Teste Grátis">Teste Grátis por 15 Dias</button>
-                                <button id="btn-buy-basic-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2"
-                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 20)</button>
-                                <button id="btn-buy-basic-vitalicio" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 30)</button>
+                                <button id="btn-buy-basic-mensal" class="btn btn-primary w-100 shadow-sm"
+                                    aria-label="Assinar Mensal">Assinar Mensal (R$ 30)</button>
                             </div>
                         </div>
                     </div>
@@ -397,15 +381,10 @@
                                 <h3 class="card-title fw-bold text-body mb-2">Plano Intermediário</h3>
                                 <p class="text-body-secondary mb-4">Para quem busca acompanhamento.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div>
-                                            <span class="fs-4 fw-bolder text-primary">R$ 40</span><span
+                                    <div class="d-flex justify-content-center align-items-center mb-3">
+                                        <div class="text-center">
+                                            <span class="fs-4 fw-bolder text-primary">R$ 50</span><span
                                                 class="text-body-secondary">/mês</span>
-                                            <div class="text-muted small">Mensal</div>
-                                        </div>
-                                        <div class="text-end">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 50</span>
-                                            <div class="text-muted small">Vitalício</div>
                                         </div>
                                     </div>
                                 </div>
@@ -421,10 +400,8 @@
                                             class="fw-medium">Live semanal</span></li>
                                 </ul>
                                 <button id="btn-buy-intermediary-mensal"
-                                    class="btn btn-outline-primary w-100 shadow-sm mb-2"
-                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 40)</button>
-                                <button id="btn-buy-intermediary-vitalicio" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 50)</button>
+                                    class="btn btn-primary w-100 shadow-sm"
+                                    aria-label="Assinar Mensal">Assinar Mensal (R$ 50)</button>
                             </div>
                         </div>
                     </div>
@@ -434,18 +411,13 @@
                                 class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-4 py-2 text-white shadow fw-bold fs-6 tracking-wide"><i
                                     class="bi bi-star-fill text-warning me-1"></i> RECOMENDADO</span>
                             <div class="card-body p-4 d-flex flex-column">
-                                <h3 class="card-title fw-bold text-body mb-2 mt-2">Plano Vitalício</h3>
+                                <h3 class="card-title fw-bold text-body mb-2 mt-2">Plano Avançado</h3>
                                 <p class="text-body-secondary mb-4">A experiência completa de transformação.</p>
                                 <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div>
-                                            <span class="fs-4 fw-bolder text-primary">R$ 60</span><span
+                                    <div class="d-flex justify-content-center align-items-center mb-3">
+                                        <div class="text-center">
+                                            <span class="fs-4 fw-bolder text-primary">R$ 70</span><span
                                                 class="text-body-secondary">/mês</span>
-                                            <div class="text-muted small">Mensal</div>
-                                        </div>
-                                        <div class="text-end">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 80</span>
-                                            <div class="text-muted small">Vitalício</div>
                                         </div>
                                     </div>
                                 </div>
@@ -467,12 +439,10 @@
                                             class="fw-medium">Curso de feminismo</span></li>
                                     <li class="mb-3 d-flex align-items-start"><i
                                             class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Acesso vitalício garantido</span></li>
+                                            class="fw-medium">Acesso completo garantido</span></li>
                                 </ul>
-                                <button id="btn-buy-premium-mensal" class="btn btn-outline-primary w-100 shadow-sm mb-2"
-                                    aria-label="Comprar Mensal">Assinar Mensal (R$ 60)</button>
-                                <button id="btn-buy-premium-vitalicio" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Comprar Vitalício">Comprar Vitalício (R$ 80)</button>
+                                <button id="btn-buy-premium-mensal" class="btn btn-primary w-100 shadow-sm"
+                                    aria-label="Assinar Mensal">Assinar Mensal (R$ 70)</button>
                             </div>
                         </div>
                     </div>
@@ -524,22 +494,7 @@
     <script src="js/theme.js"></script>
     <script src="js/script.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const cookieBanner = document.getElementById('cookieConsentBanner');
-            const btnAccept = document.getElementById('btnCookieAccept');
 
-            if (!localStorage.getItem('cookieConsent')) {
-                cookieBanner.classList.remove('d-none');
-            }
-
-            btnAccept.addEventListener('click', function () {
-                localStorage.setItem('cookieConsent', 'true');
-                cookieBanner.style.transform = 'translateY(100%)';
-                setTimeout(() => cookieBanner.classList.add('d-none'), 300);
-            });
-        });
-    </script>
 </body>
 
 </html>
