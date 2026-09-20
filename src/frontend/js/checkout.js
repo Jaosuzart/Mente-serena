@@ -223,20 +223,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function toggleLoading(btn, isLoading) {
         const textSpan = btn.querySelector('.btn-text');
-        const loader = btn.querySelector('.loader');
-
         btn.disabled = isLoading;
-        textSpan.style.opacity = isLoading ? '0' : '1';
-        loader.hidden = !isLoading;
+        if (isLoading) {
+            textSpan.dataset.originalText = textSpan.textContent;
+            textSpan.textContent = 'Processando...';
+        } else {
+            textSpan.textContent = textSpan.dataset.originalText || textSpan.textContent;
+        }
     }
 
     function showMessage(text, type) {
+        if (!statusMsg) return;
         statusMsg.textContent = text;
         statusMsg.className = `mensagem ${type}`;
         statusMsg.hidden = false;
     }
 
     function hideMessage() {
+        if (!statusMsg) return;
         statusMsg.hidden = true;
     }
 });

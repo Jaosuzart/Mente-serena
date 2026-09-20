@@ -9,6 +9,12 @@ const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN 
 const preference = new Preference(client);
 const preapproval = new PreApproval(client);
 
+// Validação de ambiente
+const isDev = process.env.NODE_ENV !== 'production';
+if (isDev) {
+    console.info('🧪 [Mercado Pago] Modo DESENVOLVIMENTO ativo. Certifique-se de usar credenciais e e-mails de teste.');
+}
+
 const createPreference = async (req, res) => {
     try {
         const { email, nome, plan, pagamento = 'todos', cupom = null } = req.body;
@@ -134,6 +140,22 @@ const createPreference = async (req, res) => {
                 });
             } catch (error) {
                 console.error("Erro ao criar assinatura (PreApproval) do Mercado Pago:", error);
+                
+                // Detectar erro de ambiente (mistura teste/produção)
+                const errorMsg = error?.message || error?.cause?.message || JSON.stringify(error);
+                if (errorMsg.includes('real or test users') || error?.status === 400) {
+                    console.error(`\n❌ [Mercado Pago] Conflito de ambiente detectado!`);
+                    console.error(`   payer_email enviado: ${email}`);
+                    console.error(`   → O Access Token e o payer_email devem ser AMBOS de teste ou AMBOS de produção.`);
+                    console.error(`   → Crie usuários de teste em: https://www.mercadopago.com.br/developers/panel/app\n`);
+                    
+                    return res.status(400).json({ 
+                        error: isDev 
+                            ? 'O e-mail informado não é de um usuário de teste do Mercado Pago. Use um e-mail de conta de teste.'
+                            : 'Erro ao processar pagamento. Tente novamente ou use outro e-mail.'
+                    });
+                }
+                
                 return res.status(500).json({ error: "Falha ao processar a assinatura." });
             }
         }

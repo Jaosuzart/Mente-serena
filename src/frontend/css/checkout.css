@@ -332,26 +332,4 @@ button:disabled {
         transition-duration: 0.01ms;
     }
 }
-
-.loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 1s ease-in-out infinite;
-
-    .loader {
-        transform: translate(-50%, -50%) rotate(360deg);
-
-    }
-}
-
-.btn-secondary .loader {
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    border-top-color: var(--secondary-text);
-}
+
