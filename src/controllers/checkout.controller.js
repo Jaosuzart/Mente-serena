@@ -9,7 +9,6 @@ const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN 
 const preference = new Preference(client);
 const preapproval = new PreApproval(client);
 
-// Validação de ambiente
 const isDev = process.env.NODE_ENV !== 'production';
 if (isDev) {
     console.info('🧪 [Mercado Pago] Modo DESENVOLVIMENTO ativo. Certifique-se de usar credenciais e e-mails de teste.');
@@ -91,6 +90,8 @@ const createPreference = async (req, res) => {
                         payer_email: email,
                         external_reference: orderId,
                         status: "pending"
+                        // PreApproval usa notificação configurada no painel dev do MP,
+                        // mas caso alguma versão suporte envio direto, seria aqui.
                     }
                 });
 
@@ -128,7 +129,7 @@ const createPreference = async (req, res) => {
                 });
             } catch (error) {
                 console.error("Erro ao criar assinatura (PreApproval) do Mercado Pago:", error);
-                
+
                 // Detectar erro de ambiente (mistura teste/produção)
                 const errorMsg = error?.message || error?.cause?.message || JSON.stringify(error);
                 if (errorMsg.includes('real or test users') || error?.status === 400) {
@@ -136,14 +137,14 @@ const createPreference = async (req, res) => {
                     console.error(`   payer_email enviado: ${email}`);
                     console.error(`   → O Access Token e o payer_email devem ser AMBOS de teste ou AMBOS de produção.`);
                     console.error(`   → Crie usuários de teste em: https://www.mercadopago.com.br/developers/panel/app\n`);
-                    
-                    return res.status(400).json({ 
-                        error: isDev 
+
+                    return res.status(400).json({
+                        error: isDev
                             ? 'O e-mail informado não é de um usuário de teste do Mercado Pago. Use um e-mail de conta de teste.'
                             : 'Erro ao processar pagamento. Tente novamente ou use outro e-mail.'
                     });
                 }
-                
+
                 return res.status(500).json({ error: "Falha ao processar a assinatura." });
             }
         }
@@ -172,7 +173,8 @@ const createPreference = async (req, res) => {
                     failure: `${process.env.FRONTEND_URL}/falha`,
                     pending: `${process.env.FRONTEND_URL}/pendente`
                 },
-                auto_return: "approved"
+                auto_return: "approved",
+                notification_url: process.env.FRONTEND_URL ? `${process.env.FRONTEND_URL}/webhook` : undefined
             }
         });
         try {
