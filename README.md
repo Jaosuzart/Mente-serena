@@ -119,3 +119,26 @@ Como exigido em projetos financeiros, a plataforma Mente Serena contém:
 
 Feito com dedicação para maximizar a tranquilidade e a conversão do **Mente Serena**! 🧘‍♂️✨
 # Mente-serena
+
+
+## Manutenção e limites operacionais
+
+- `npm test`: executa testes locais de validação, configuração, inicialização e rotas HTTP, sem pagamentos, mensagens ou acesso ao banco externo.
+- `src/app.js` exporta a aplicação Express sem abrir a porta nem iniciar integrações ao ser importado. `npm start`, `node src/app.js` e `node server.js` continuam iniciando o serviço.
+- `src/server.js` prepara a tabela `free_spots` antes de aceitar requisições. Uma falha no banco aborta a inicialização. Em SIGINT/SIGTERM, o servidor para de aceitar conexões e encerra o pool, com prazo máximo de 15 segundos.
+- As regras internas de cupons, usuários e pagamentos ficam em `src/services/filters`, fora da pasta pública. O catálogo aceito pelo checkout está em `src/config/plans.js`.
+- `DB_CONN_LIMIT` limita conexões por processo (padrão 10); `DB_QUEUE_LIMIT` limita requisições aguardando conexão (padrão 100); `DB_CONNECT_TIMEOUT_MS` limita o estabelecimento da conexão (padrão 10000 ms). Valores inválidos interrompem a inicialização. Fila cheia produz erro, em vez de acumular espera sem limite.
+- `DATABASE_URL`, quando definida, tem prioridade sobre os campos `DB_*` de conexão. Sem URL, as credenciais são passadas diretamente ao driver, preservando caracteres especiais. `DB_SSL=false` permite conexão local sem TLS; a política de certificados existente foi preservada.
+
+### Antes de executar várias instâncias
+
+Estas melhorias não tornam o sistema automaticamente distribuído. O limite de conexões deve considerar a soma de todos os processos. O rate limit atual usa memória local; múltiplas instâncias precisam compartilhar seu armazenamento. A sessão WhatsApp ainda é local: mantenha apenas um processo com `WHATSAPP_ENABLED=true` e planeje um serviço dedicado para compartilhar seu estado. Os endpoints de status das demais instâncias não representam o processo do bot.
+
+O limite de 20 trials ainda usa contagem seguida de criação, portanto pode ser ultrapassado por requisições concorrentes. Reservas transacionais, idempotência do checkout e tratamento durável de webhooks permanecem como trabalho adicional antes de operar em grande escala. Os testes locais não substituem a homologação com MySQL e Mercado Pago de teste.
+
+
+### Testes de integração externos
+
+Execute `npm run test:integration` para verificar a conexão MySQL, o schema necessário, as consultas dos modelos em tabelas temporárias, o limite de fila e a autenticação no Mercado Pago. O comando exige `.env.test.local` preenchido e não utiliza `.env` nem credenciais herdadas do sistema. Execute `npm run test:config` para verificar os campos sem abrir conexões. O arquivo `.env.test.local` já é ignorado pelo Git e deve conter a configuração completa do ambiente de teste.
+
+Os testes não alteram tabelas permanentes, não leem registros de clientes e não criam pagamentos ou assinaturas. Tabelas temporárias são destruídas ao encerrar a conexão. A conta Mercado Pago é consultada em modo somente leitura e o teste de prontidão falha se ela não tiver a identificação `test_user`. Aprovar esses testes não equivale a concluir uma compra: a homologação de criação e aprovação de assinatura exige vendedor e comprador de teste e validação do webhook.

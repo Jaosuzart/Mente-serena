@@ -1,5 +1,5 @@
-const db = require('../../../config/database');
-const { isUsuarioNovo } = require('./userFilters');
+const db = require('../../config/database');
+const { isUsuarioNovo } = require('./userService');
 
 const CUPONS_DISPONIVEIS = {
     'BEMVINDO10': {

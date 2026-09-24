@@ -1,9 +1,10 @@
+const { getPlan } = require('../config/plans');
 const { MercadoPagoConfig, Preference, PreApproval } = require('mercadopago');
 const OrderModel = require('../models/OrderModel');
 const crypto = require('crypto');
-const { registrarFiltroUsuario } = require('../frontend/assets/filters/userFilters');
-const { validarCupom, aplicarDesconto, registrarUsoCupom } = require('../frontend/assets/filters/couponFilters');
-const { getPaymentMethodConfig, isMetodoPagamentoValido } = require('../frontend/assets/filters/paymentFilters');
+const { registrarFiltroUsuario } = require('../services/checkout/userService');
+const { validarCupom, aplicarDesconto } = require('../services/checkout/couponService');
+const { getPaymentMethodConfig, isMetodoPagamentoValido } = require('../services/checkout/paymentService');
 
 const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
 const preference = new Preference(client);
@@ -18,23 +19,11 @@ const createPreference = async (req, res) => {
     try {
         const { email, nome, plan, pagamento = 'todos', cupom = null } = req.body;
 
-        let productPrice = 30.00;
-        let productTitle = "Curso Mente Serena - Básico (Mensal)";
-        let productId = "curso_mente_serena_mensal_1";
-
-        if (plan === 'trial') {
-            productPrice = 30.00;
-            productTitle = "Curso Mente Serena - Teste Grátis (Básico)";
-            productId = "curso_mente_serena_trial_1";
-        } else if (plan === 'mensal2') {
-            productPrice = 50.00;
-            productTitle = "Curso Mente Serena - Intermediário (Mensal)";
-            productId = "curso_mente_serena_mensal_2";
-        } else if (plan === 'mensal3') {
-            productPrice = 70.00;
-            productTitle = "Curso Mente Serena - Avançado (Mensal)";
-            productId = "curso_mente_serena_mensal_3";
-        }
+        const selectedPlan = getPlan(plan);
+        if (!selectedPlan) return res.status(422).json({ error: 'Plano inválido.' });
+        let productPrice = selectedPlan.price;
+        const productTitle = selectedPlan.title;
+        const productId = selectedPlan.productId;
 
         const metodoPagamento = isMetodoPagamentoValido(pagamento) ? pagamento : 'todos';
 
@@ -86,12 +75,10 @@ const createPreference = async (req, res) => {
                     body: {
                         reason: productTitle,
                         auto_recurring: autoRecurring,
-                        back_url: `${process.env.FRONTEND_URL}/sucesso`,
+                        back_url: `${process.env.FRONTEND_URL}/sucesso.html`,
                         payer_email: email,
                         external_reference: orderId,
                         status: "pending"
-                        // PreApproval usa notificação configurada no painel dev do MP,
-                        // mas caso alguma versão suporte envio direto, seria aqui.
                     }
                 });
 
@@ -112,10 +99,6 @@ const createPreference = async (req, res) => {
                         cupom: cupomCodigo,
                         desconto: descontoAplicado,
                     });
-
-                    if (cupomCodigo) {
-                        await registrarUsoCupom(email, cupomCodigo, descontoAplicado, orderId);
-                    }
                 } catch (filterError) {
                     console.error("⚠️  Erro ao registrar filtro/cupom do usuário:", filterError);
                 }
@@ -129,8 +112,6 @@ const createPreference = async (req, res) => {
                 });
             } catch (error) {
                 console.error("Erro ao criar assinatura (PreApproval) do Mercado Pago:", error);
-
-                // Detectar erro de ambiente (mistura teste/produção)
                 const errorMsg = error?.message || error?.cause?.message || JSON.stringify(error);
                 if (errorMsg.includes('real or test users') || error?.status === 400) {
                     console.error(`\n❌ [Mercado Pago] Conflito de ambiente detectado!`);
@@ -169,9 +150,9 @@ const createPreference = async (req, res) => {
                 external_reference: orderId,
                 payment_methods: paymentMethodsConfig,
                 back_urls: {
-                    success: `${process.env.FRONTEND_URL}/sucesso`,
-                    failure: `${process.env.FRONTEND_URL}/falha`,
-                    pending: `${process.env.FRONTEND_URL}/pendente`
+                    success: `${process.env.FRONTEND_URL}/sucesso.html`,
+                    failure: `${process.env.FRONTEND_URL}/falha.html`,
+                    pending: `${process.env.FRONTEND_URL}/pendente.html`
                 },
                 auto_return: "approved",
                 notification_url: process.env.FRONTEND_URL ? `${process.env.FRONTEND_URL}/webhook` : undefined
@@ -199,10 +180,6 @@ const createPreference = async (req, res) => {
                 cupom: cupomCodigo,
                 desconto: descontoAplicado,
             });
-
-            if (cupomCodigo) {
-                await registrarUsoCupom(email, cupomCodigo, descontoAplicado, orderId);
-            }
         } catch (filterError) {
             console.error("⚠️  Erro ao registrar filtro do usuário:", filterError);
         }

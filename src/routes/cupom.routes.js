@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { validarCupom } = require('../frontend/assets/filters/couponFilters');
+const { validarCupom } = require('../services/checkout/couponService');
 const { validateEmailOnly } = require('../middlewares/validateInput');
 const { checkoutLimiter } = require('../middlewares/rateLimit');
 router.post('/', checkoutLimiter, validateEmailOnly, async (req, res) => {

@@ -1,3 +1,4 @@
+const { getPlan } = require('../config/plans');
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
 
 /**
@@ -27,11 +28,18 @@ function validateCheckoutInput(req, res, next) {
         });
     }
 
-    if (!email || !EMAIL_REGEX.test(email)) {
+    if (!email || email.length > 254 || !EMAIL_REGEX.test(email)) {
         return res.status(422).json({
             error: 'Dados inválidos',
             message: 'Por favor, informe um endereço de e-mail válido.'
         });
+    }
+
+    if (!getPlan(req.body?.plan)) {
+        return res.status(422).json({ error: 'Dados inválidos', message: 'Selecione um plano válido.' });
+    }
+    if (req.body.cupom != null && (typeof req.body.cupom !== 'string' || req.body.cupom.length > 50)) {
+        return res.status(422).json({ error: 'Dados inválidos', message: 'Cupom inválido.' });
     }
 
     req.body.nome = nome;
@@ -44,7 +52,7 @@ function validateEmailOnly(req, res, next) {
     const rawEmail = req.body?.email;
     const email = sanitize(rawEmail)?.toLowerCase();
 
-    if (!email || !EMAIL_REGEX.test(email)) {
+    if (!email || email.length > 254 || !EMAIL_REGEX.test(email)) {
         return res.status(422).json({
             error: 'Dados inválidos',
             message: 'Por favor, informe um endereço de e-mail válido.'

@@ -39,6 +39,16 @@ class OrderModel {
         }
     }
 
+    static async getOrderByOrderId(orderId) {
+        try {
+            const [rows] = await db.query('SELECT * FROM pedidos WHERE order_id = ? LIMIT 1', [orderId]);
+            return rows.length > 0 ? rows[0] : null;
+        } catch (error) {
+            console.error('Erro ao buscar pedido por order_id:', error);
+            throw error;
+        }
+    }
+
     static async countTrials() {
         try {
             const [rows] = await db.query('SELECT COUNT(*) as count FROM pedidos WHERE plano = ?', ['trial']);

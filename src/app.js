@@ -25,13 +25,13 @@ app.use('/webhook', webhookRoutes);
 app.use('/validar_cupom', cupomRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
 app.use('/claim_free_spot', freeSpotsRoutes);
-const { initWhatsApp } = require('./services/whatsapp');
 
+module.exports = app;
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, async () => {
-    console.log(`✅ Servidor rodando em: http://localhost:${PORT}`);
-    console.log(`⏳ Inicializando o WhatsApp Baileys...`);
-    initWhatsApp().catch(err => console.error("Falha ao iniciar WhatsApp:", err));
-});
+// Mantém compatibilidade com `node src/app.js`.
+if (require.main === module) {
+    require('./server').start().catch(error => {
+        console.error('Falha ao iniciar servidor:', error.message);
+        process.exitCode = 1;
+    });
+}

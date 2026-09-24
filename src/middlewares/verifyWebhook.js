@@ -44,7 +44,7 @@ function verifyMercadoPagoWebhook(req, res, next) {
         return res.status(401).json({ error: 'Webhook não autorizado: timestamp expirado.' });
     }
 
-    const dataId = req.query.id || req.body?.data?.id || '';
+    const dataId = req.query['data.id'] || req.query.id || req.body?.data?.id || '';
     const manifest = `id:${dataId};request-id:${requestId || ''};ts:${ts};`;
 
     const expectedHash = crypto

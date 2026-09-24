@@ -1,5 +1,3 @@
-const { createConnection } = require('./connection');
-const { handleConnectionUpdate } = require('./handlers/connection.handler');
 const { handleMessagesUpsert } = require('./handlers/message.handler');
 const { sendTextMessage } = require('./actions');
 
@@ -16,6 +14,8 @@ function getConnectionState() {
 }
 async function initWhatsApp() {
     try {
+        const { createConnection } = require('./connection');
+        const { handleConnectionUpdate } = require('./handlers/connection.handler');
         setConnectionState('CONNECTING');
         const { sock, saveCreds } = await createConnection();
         sockInstance = sock;

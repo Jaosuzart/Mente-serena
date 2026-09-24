@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "pm2:start": "pm2 start src/app.js --name \"api-checkout\" --instances 1 --env production"
+    "pm2:start": "pm2 start src/app.js --name \"api-checkout\" --instances 1 --env production",
+    "test": "node --test tests/*.test.js",
+    "test:integration": "npm run test:config && node --test --test-concurrency=1 tests/integration/*.test.js",
+    "test:config": "node scripts/check-test-environment.js"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^7.0.0-rc14",

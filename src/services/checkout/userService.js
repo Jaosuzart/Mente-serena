@@ -1,4 +1,4 @@
-const db = require('../../../config/database');
+const db = require('../../config/database');
 
 async function registrarFiltroUsuario(filterData) {
     const { email, plano, pagamento, cupom = null, desconto = 0 } = filterData;
