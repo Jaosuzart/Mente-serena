@@ -14,7 +14,6 @@ function buildDatabaseOptions(env = process.env) {
         user: env.DB_USER,
         password: env.DB_PASSWORD,
         database: env.DB_NAME,
-        // Mantém a compatibilidade SSL anterior quando DB_SSL não é informado.
         ssl: env.DB_SSL === 'false' ? undefined : { rejectUnauthorized: false }
     };
     return {
