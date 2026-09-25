@@ -22,7 +22,7 @@ test('checkout mantém os quatro planos e normaliza os dados', () => {
         assert.equal(body.email, 'maria@example.com');
         assert.equal(body.nome, 'Maria Silva');
     }
-    assert.deepEqual(['trial', 'mensal1', 'mensal2', 'mensal3'].map(id => getPlan(id).price), [30, 30, 50, 70]);
+    assert.deepEqual(['trial', 'mensal1', 'mensal2', 'mensal3'].map(id => getPlan(id).price), [30, 30, 50, 90]);
 });
 
 test('planos ausentes, objetos e nomes herdados são rejeitados', () => {
