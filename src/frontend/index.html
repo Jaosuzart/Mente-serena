@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-bs-theme="dark">
+<html lang="pt-BR" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/webp" href="assets/images/hero.webp">
     <title>Mente Serena - Transforme seus relacionamentos</title>
     <meta name="description"
         content="Curso Mente Serena: Aprenda a gerenciar emoções, aplicar a pausa consciente e construir relações saudáveis com empatia e resiliência.">
@@ -16,508 +15,258 @@
     <meta property="og:title" content="Mente Serena - Transforme seus relacionamentos">
     <meta property="og:description"
         content="Domine a leitura social e transforme suas relações. Aprenda a gerenciar emoções e aplicar a pausa consciente.">
-    <meta property="og:image" content="https://menteserena.life/assets/images/video-capa.png">
+    <meta property="og:image" content="https://menteserena.life/assets/images/foto-capa.webp">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://menteserena.life">
     <meta property="twitter:title" content="Mente Serena - Transforme seus relacionamentos">
     <meta property="twitter:description"
         content="Domine a leitura social e transforme suas relações. Aprenda a gerenciar emoções e aplicar a pausa consciente.">
-    <meta property="twitter:image" content="https://menteserena.life/assets/images/video-capa.png">
+    <meta property="twitter:image" content="https://menteserena.life/assets/images/foto-capa.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="preload" as="image" href="assets/images/foto-capa.webp">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/webp" href="assets/images/logo-premium.webp">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-    <div id="promoBanner" class="bg-warning text-dark text-center py-2 fw-bold px-3 shadow-sm"
-        style="letter-spacing: 0.5px; font-size: 0.95rem; z-index: 1050; position: relative; padding-right: 40px !important;">
-        🎉 <span class="text-uppercase">Especial Semana do Cliente:</span> Aproveite os planos promocionais com
-        descontos exclusivos por tempo limitado!
-        <button type="button" id="btnFecharPromo" aria-label="Fechar" title="Fechar banner"
-            style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 1.5rem; line-height: 1; color: inherit; opacity: 0.7; cursor: pointer; transition: opacity 0.2s;">
-            &times;
-        </button>
+<body class="home-page">
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+    <div id="promoBanner" class="promo-banner">
+        <p><strong>Especial Semana do Cliente:</strong> Aproveite os planos promocionais com descontos exclusivos por tempo limitado!</p>
+        <button type="button" id="btnFecharPromo" class="icon-button promo-banner__close" aria-label="Fechar promoção" hidden><span aria-hidden="true">×</span></button>
     </div>
-    <header class="header-glass py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a href="/" class="d-flex align-items-center gap-2 text-decoration-none"
-                aria-label="Mente Serena - Página inicial">
-                <img src="assets/images/logo-premium.webp" alt="Logo Mente Serena" width="44" height="44"
-                    style="object-fit:contain; width:44px; height:44px;"
-                    onerror="this.outerHTML='<i class=\'bi bi-yin-yang fs-2 text-primary\'></i>'">
-                <span class="fs-5 fw-bolder text-primary d-none d-sm-inline">Mente Serena</span>
+    <header class="site-header">
+        <div class="page-container site-header__inner">
+            <a href="/" class="brand" aria-label="Mente Serena — página inicial">
+                <img src="assets/images/logo-premium.webp" alt="" width="44" height="44">
+                <span>Mente Serena</span>
             </a>
-            <nav class="d-none d-md-flex gap-4 align-items-center">
-                <a href="#hero-title" class="nav-link-custom text-decoration-none fw-bold">Sobre o Curso</a>
-                <a href="#modules-title" class="nav-link-custom text-decoration-none fw-bold">Módulos</a>
-                <a href="#avaliacoes-title" class="nav-link-custom text-decoration-none fw-bold">Depoimentos</a>
+            <nav class="site-nav" aria-label="Navegação principal">
+                <a href="#hero-title">Sobre o curso</a>
+                <a href="#modules-title">Módulos</a>
+                <a href="#avaliacoes-title">Depoimentos</a>
+                <a href="#pricing-title">Planos</a>
             </nav>
-            <button id="theme-toggle" class="btn btn-outline-warning rounded-circle"
-                aria-label="Alternar modo claro/escuro">
-                <i class="bi bi-sun-fill" id="theme-icon"></i>
+            <button type="button" id="theme-toggle" class="icon-button" aria-label="Ativar modo escuro" aria-pressed="false" hidden>
+                <span id="theme-icon" aria-hidden="true">☾</span>
             </button>
         </div>
     </header>
-    <main class="flex-grow-1 container py-5">
-        <section class="text-center mb-5" aria-labelledby="hero-title">
-            <h2 id="hero-title" class="display-5 fw-bold text-primary mb-3">Mente Serena</h2>
-            <p class="lead text-body-secondary mx-auto mb-5" style="max-width: 800px;">
-                Transforme seus relacionamentos! Aprenda a gerenciar emoções, aplicar a pausa consciente e construir
-                relações saudáveis com empatia e resiliência através de técnicas de leitura social e maturidade
-                relacional.
-            </p>
-            <div class="mx-auto shadow-lg rounded-4 overflow-hidden border border-primary-subtle"
-                style="max-width:820px;">
-                <img src="assets/images/foto-capa.webp" alt="Capa do Curso Mente Serena" class="img-fluid w-100"
-                    loading="eager" style="display:block; max-height:480px; object-fit:cover;">
+    <main id="main-content" class="page-container" tabindex="-1">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__copy">
+                <span class="eyebrow">Conheça o Mente Serena</span>
+                <h1 id="hero-title">Relações mais leves começam com <span>uma pausa.</span></h1>
+                <p class="hero__description">Aprenda a compreender suas emoções, comunicar-se com clareza e construir relações com mais empatia e equilíbrio.</p>
+                <div class="hero__actions">
+                    <a href="#pricing-title" class="button button--primary">Escolher meu plano <span aria-hidden="true">→</span></a>
+                    <a href="#modules-title" class="button button--secondary">Explorar o curso</a>
+                </div>
+                <ul class="hero__facts" aria-label="Estrutura do curso">
+                    <li><strong>4</strong> módulos</li>
+                    <li><strong>20</strong> aulas</li>
+                    <li>Curso online</li>
+                </ul>
+            </div>
+            <img class="hero__image" src="assets/images/foto-capa.webp" alt="Capa do curso Mente Serena" width="1280" height="720" fetchpriority="high">
+        </section>
+        <section class="page-section" aria-labelledby="modules-title">
+            <div class="section-heading">
+                <span class="eyebrow">Seu caminho de aprendizado</span>
+                <h2 id="modules-title">Uma etapa de cada vez.</h2>
+                <p>Do autoconhecimento à construção de relações mais saudáveis. Explore as aulas de cada módulo.</p>
+            </div>
+            <details class="course-module" name="course-modules" open>
+                <summary class="course-module__summary"><h3><span class="course-module__number">01</span> Fundamentos da Comunicação e Leitura Social</h3></summary>
+                <ol class="lesson-list" start="1">
+                    <li><strong>Aula 1:</strong> Autoconhecimento intrapessoal e mapeamento de gatilhos emocionais.</li>
+                    <li><strong>Aula 2:</strong> Leitura de linguagem não-verbal, postura corporal e sinais de receptividade.</li>
+                    <li><strong>Aula 3:</strong> Comunicação direta, clara e eliminação de ambiguidades ou suposições.</li>
+                    <li><strong>Aula 4:</strong> Escuta ativa e atenção plena sem interrupções.</li>
+                    <li><strong>Aula 5:</strong> Validação emocional e demonstração de interesse genuíno pelo interlocutor.</li>
+                </ol>
+            </details>
+            <details class="course-module" name="course-modules">
+                <summary class="course-module__summary"><h3><span class="course-module__number">02</span> Inteligência Emocional e Empatia</h3></summary>
+                <ol class="lesson-list" start="6">
+                    <li><strong>Aula 6:</strong> Empatia cognitiva (compreender a perspectiva alheia sem absorver o estresse).</li>
+                    <li><strong>Aula 7:</strong> Autorregulação emocional e o uso da pausa consciente antes de responder.</li>
+                    <li><strong>Aula 8:</strong> Controle de impulsos interpessoais e paciência em momentos de tensão.</li>
+                    <li><strong>Aula 9:</strong> Construção de confiança através da coerência entre fala e atitude.</li>
+                    <li><strong>Aula 10:</strong> Alinhamento transparente de expectativas interpessoais.</li>
+                </ol>
+            </details>
+            <details class="course-module" name="course-modules">
+                <summary class="course-module__summary"><h3><span class="course-module__number">03</span> Conversação Assertiva, Encantamento e Conexão</h3></summary>
+                <ol class="lesson-list" start="11">
+                    <li><strong>Aula 11:</strong> Comunicação assertiva: expressar desejos e intenções com clareza e firmeza.</li>
+                    <li><strong>Aula 12:</strong> Uso da linguagem positiva e elogios sinceros pautados no respeito.</li>
+                    <li><strong>Aula 13:</strong> Formulação de perguntas abertas para aprofundar conversas significativas.</li>
+                    <li><strong>Aula 14:</strong> Desescalada de conflitos com uso de declarações focadas no "eu".</li>
+                    <li><strong>Aula 15:</strong> Presença de qualidade e cultivo de momentos de conexão autêntica.</li>
+                </ol>
+            </details>
+            <details class="course-module" name="course-modules">
+                <summary class="course-module__summary"><h3><span class="course-module__number">04</span> Maturidade Relacional, Limites e Sustentabilidade</h3></summary>
+                <ol class="lesson-list" start="16">
+                    <li><strong>Aula 16:</strong> Identificação e respeito aos limites e espaço do outro.</li>
+                    <li><strong>Aula 17:</strong> Estabelecimento de limites pessoais e habilidade de dizer "não" com firmeza e educação.</li>
+                    <li><strong>Aula 18:</strong> Altruísmo equilibrado: praticar a generosidade sem negligenciar o autocuidado.</li>
+                    <li><strong>Aula 19:</strong> Cultivo da reciprocidade cotidiana e demonstração de gratidão.</li>
+                    <li><strong>Aula 20:</strong> Sustentabilidade relacional e respeito mútuo contínuo.</li>
+                </ol>
+            </details>
+        </section>
+        <section class="page-section" aria-labelledby="avaliacoes-title">
+            <div class="section-heading">
+                <span class="eyebrow">Depoimentos do curso</span>
+                <h2 id="avaliacoes-title">O que dizem sobre o Mente Serena</h2>
+                <p>Confira os depoimentos sobre o curso e seu instrutor.</p>
+            </div>
+            <div class="testimonials-layout">
+                <img class="testimonials-layout__image" src="assets/images/dialogo-sereno.webp" alt="Duas pessoas dialogando calmamente, com uma planta entre elas." width="960" height="640" loading="lazy" decoding="async">
+                <div class="testimonials-list">
+                    <figure class="testimonial-card">
+                        <blockquote><p>“Muito bom! É um dos maiores feministas que vi na história do Brasil. Meu herói!”</p></blockquote>
+                        <figcaption>Maddu</figcaption>
+                    </figure>
+                    <figure class="testimonial-card">
+                        <blockquote><p>“É um dos maiores intelectuais da história da humanidade.”</p></blockquote>
+                        <figcaption>João Fernando</figcaption>
+                    </figure>
+                    <figure class="testimonial-card">
+                        <blockquote><p>“ Esse curso me ensinou a pensar de outra forma e a me pensar como um verdadeiro intelectual.”</p></blockquote>
+                        <figcaption>João Carlos Ribeiro</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <section class="reflections" aria-labelledby="exemplos-title">
+                <h3 id="exemplos-title">Exemplos ilustrativos de reflexão</h3>
+                <p>Os textos abaixo são fictícios. Não são depoimentos de alunos nem resultados comprovados do curso.</p>
+                <div class="reflections__grid">
+                    <article class="reflection-card">
+                        <span class="badge">Exemplo fictício</span>
+                        <h4>Passei a questionar minhas próprias certezas.</h4>
+                        <p>O curso me incentivou a olhar para outras perspectivas e refletir antes de formar uma opinião.</p>
+                    </article>
+                    <article class="reflection-card">
+                        <span class="badge">Exemplo fictício</span>
+                        <h4>Pensar melhor começa por reconhecer o que ainda não sabemos.</h4>
+                        <p>Encontrei um incentivo para estudar, fazer perguntas e construir minhas próprias ideias.</p>
+                    </article>
+                    <article class="reflection-card">
+                        <span class="badge">Exemplo fictício</span>
+                        <h4>Aprendi a dar mais espaço à reflexão.</h4>
+                        <p>Comecei a observar meus pensamentos e a organizar melhor aquilo que quero comunicar.</p>
+                    </article>
+                </div>
+            </section>
+            <p class="section-link"><a href="#pricing-title">Conheça os planos <span aria-hidden="true">→</span></a></p>
+        </section>
+        <section class="page-section" aria-labelledby="sobre-mim-title">
+            <div class="mentor-card">
+                <img class="mentor-card__portrait" src="assets/images/foto_de_joao.webp" alt="João Marcelo, mentor do curso Mente Serena" width="1024" height="1024" loading="lazy" decoding="async">
+                <div>
+                    <span class="eyebrow">Seu mentor</span>
+                    <h2 id="sobre-mim-title">João Marcelo</h2>
+                    <p>Sou estudante de técnico em desenvolvimento de sistemas e apaixonado pelas nuances das <strong>ciências humanas</strong>. Além de tudo, <strong>eu sou o Thomas Shelby</strong>. É importante esclarecer que <strong>não sou psicólogo</strong> para ministrar um curso clínico de psicologia — essas etapas serão conduzidas por outros profissionais qualificados da área. O meu domínio e o que eu posso ensinar a fundo envolve feminismo, muita teoria e programação.</p>
+                    <aside class="notice" aria-label="Aviso importante">
+                        <p><strong>Aviso importante:</strong> Este site é apenas para fins de estudo e compartilhamento de conhecimento. Ele de forma alguma substitui uma consulta formal com um psicólogo.</p>
+                    </aside>
+                    <blockquote class="mentor-card__quote"><p>“Para alguns é perigoso, mas para os íntimos é Thomas Shelby.”</p></blockquote>
+                </div>
             </div>
         </section>
-        <section class="mb-5" aria-labelledby="modules-title">
-            <h3 id="modules-title" class="h2 text-center text-primary fw-bold mb-4">Conteúdo do Curso</h3>
-            <div class="accordion shadow-sm" id="modulesAccordion">
-                <div class="accordion-item border-primary-subtle mb-3 rounded overflow-hidden">
-                    <h4 class="accordion-header" id="headingOne">
-                        <button class="accordion-button fs-5 fw-semibold text-primary" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                            aria-controls="collapseOne">
-                            <i class="bi bi-person-lines-fill me-3 fs-4"></i> Módulo 1: Fundamentos da Comunicação e
-                            Leitura Social
-                        </button>
-                    </h4>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#modulesAccordion">
-                        <div class="accordion-body bg-body-tertiary">
-                            <ul class="list-group list-group-flush border-0">
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 1:</strong>
-                                    Autoconhecimento intrapessoal e mapeamento de gatilhos emocionais.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 2:</strong>
-                                    Leitura de linguagem não-verbal, postura corporal e sinais de receptividade.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 3:</strong>
-                                    Comunicação direta, clara e eliminação de ambiguidades ou suposições.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 4:</strong>
-                                    Escuta ativa e atenção plena sem interrupções.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 5:</strong>
-                                    Validação emocional e demonstração de interesse genuíno pelo interlocutor.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item border-primary-subtle mb-3 rounded overflow-hidden">
-                    <h4 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed fs-5 fw-semibold text-primary" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                            aria-controls="collapseTwo">
-                            <i class="bi bi-heart-pulse-fill me-3 fs-4"></i> Módulo 2: Inteligência Emocional e Empatia
-                        </button>
-                    </h4>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#modulesAccordion">
-                        <div class="accordion-body bg-body-tertiary">
-                            <ul class="list-group list-group-flush border-0">
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 6:</strong>
-                                    Empatia cognitiva (compreender a perspectiva alheia sem absorver o estresse).</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 7:</strong>
-                                    Autorregulação emocional e o uso da pausa consciente antes de responder.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 8:</strong>
-                                    Controle de impulsos interpessoais e paciência em momentos de tensão.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 9:</strong>
-                                    Construção de confiança através da coerência entre fala e atitude.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 10:</strong>
-                                    Alinhamento transparente de expectativas interpessoais.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item border-primary-subtle mb-3 rounded overflow-hidden">
-                    <h4 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed fs-5 fw-semibold text-primary" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                            aria-controls="collapseThree">
-                            <i class="bi bi-chat-quote-fill me-3 fs-4"></i> Módulo 3: Conversação Assertiva,
-                            Encantamento e Conexão
-                        </button>
-                    </h4>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#modulesAccordion">
-                        <div class="accordion-body bg-body-tertiary">
-                            <ul class="list-group list-group-flush border-0">
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 11:</strong>
-                                    Comunicação assertiva: expressar desejos e intenções com clareza e firmeza.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 12:</strong>
-                                    Uso da linguagem positiva e elogios sinceros pautados no respeito.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 13:</strong>
-                                    Formulação de perguntas abertas para aprofundar conversas significativas.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 14:</strong>
-                                    Desescalada de conflitos com uso de declarações focadas no "eu".</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 15:</strong>
-                                    Presença de qualidade e cultivo de momentos de conexão autêntica.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item border-primary-subtle mb-3 rounded overflow-hidden">
-                    <h4 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed fs-5 fw-semibold text-primary" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
-                            aria-controls="collapseFour">
-                            <i class="bi bi-shield-check me-3 fs-4"></i> Módulo 4: Maturidade Relacional, Limites e
-                            Sustentabilidade
-                        </button>
-                    </h4>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                        data-bs-parent="#modulesAccordion">
-                        <div class="accordion-body bg-body-tertiary">
-                            <ul class="list-group list-group-flush border-0">
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 16:</strong>
-                                    Identificação e respeito aos limites e espaço do outro.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 17:</strong>
-                                    Estabelecimento de limites pessoais e habilidade de dizer "não" com firmeza e
-                                    educação.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 18:</strong>
-                                    Altruísmo equilibrado: praticar a generosidade sem negligenciar o autocuidado.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 19:</strong>
-                                    Cultivo da reciprocidade cotidiana e demonstração de gratidão.</li>
-                                <li class="list-group-item bg-transparent py-3"><i
-                                        class="bi bi-play-circle-fill text-success me-3"></i><strong>Aula 20:</strong>
-                                    Sustentabilidade relacional e respeito mútuo contínuo.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <section class="page-section trailer" aria-labelledby="trailer-title">
+            <div class="section-heading section-heading--centered">
+                <span class="eyebrow">Trailer do curso</span>
+                <h2 id="trailer-title">Veja como a Pausa Consciente pode mudar tudo</h2>
+            </div>
+            <video class="trailer__video" controls preload="none" poster="assets/images/foto-capa.webp" width="1280" height="720" aria-label="Trailer do curso: a pausa consciente">
+                <source src="assets/images/Como_a_Pausa_Consciente_Salva_Relacionamentos.mp4" type="video/mp4">
+                Seu navegador não suporta vídeo. <a href="assets/images/Como_a_Pausa_Consciente_Salva_Relacionamentos.mp4">Baixe o trailer.</a>
+            </video>
+        </section>
+        <section class="page-section" aria-labelledby="pricing-title">
+            <div class="section-heading section-heading--centered">
+                <span class="eyebrow">Invista no seu aprendizado</span>
+                <h2 id="pricing-title">Um plano para o seu momento.</h2>
+                <p>Invista em você e na qualidade duradoura dos seus relacionamentos.</p>
+                <p class="funding-note">100% da arrecadação é revertida para custeio de estúdio e melhorias das aulas.</p>
+            </div>
+            <div class="plans-grid">
+                <article class="plan-card" aria-labelledby="plan-basic-title">
 
-            </div>
-        </section>
-        <section class="py-5 border-top border-bottom" style="background-color: var(--bs-body-bg);"
-            aria-labelledby="avaliacoes-title">
-            <div class="container py-5">
-                <div class="row mb-5 align-items-center">
-                    <div class="col-lg-6">
-                        <span class="text-uppercase fw-bold text-primary tracking-wide"
-                            style="letter-spacing: 2px; font-size: 0.85rem;">Depoimentos do curso</span>
-                        <h2 id="avaliacoes-title" class="display-6 fw-bold mt-2 mb-0">O que dizem sobre o Mente Serena</h2>
+                    <h3 id="plan-basic-title">Plano Básico</h3>
+                    <p class="plan-card__description">O ponto de partida ideal.</p>
+                    <p class="plan-card__price"><strong>R$ 30</strong><span>/mês</span></p>
+                    <ul class="plan-card__features">
+                        <li>Acesso aos módulos básicos do curso</li>
+                    </ul>
+                    <div class="plan-card__actions">
+                        <a id="btn-buy-trial" class="button button--secondary" href="checkout.html?plan=trial">Teste grátis por 15 dias</a>
+                        <a id="btn-buy-basic-mensal" class="button button--primary" href="checkout.html?plan=mensal1">Assinar Básico (R$ 30/mês)</a>
                     </div>
-                    <div class="col-lg-6 mt-3 mt-lg-0">
-                        <p class="text-body-secondary fs-5 mb-0">Confira os depoimentos sobre o curso e seu instrutor.</p>
-                    </div>
-                </div>
-                <figure class="mx-auto mb-5" style="max-width: 640px;">
-                    <img src="assets/images/dialogo-sereno.webp"
-                        alt="Ilustração minimalista de duas pessoas dialogando calmamente, com uma planta entre elas."
-                        width="960" height="640" loading="lazy" decoding="async"
-                        class="img-fluid rounded-4 d-block w-100">
-                </figure>
-                <div class="row g-4 justify-content-center">
-                    <div class="col-12 col-md-6 col-lg-4 fade-in-up">
-                        <figure class="card h-100 border-0 shadow-sm rounded-4 bg-body p-4 transition-all hover-lift mb-0">
-                            <blockquote class="text-body fs-5 mb-4" style="line-height: 1.6;">
-                                <p class="mb-0">“Muito bom! É um dos maiores feministas que vi na história do Brasil. Meu herói!”</p>
-                            </blockquote>
-                            <figcaption class="mt-auto">
-                                <span class="d-block fw-bold text-body">Maddu</span>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 fade-in-up">
-                        <figure class="card h-100 border-0 shadow-sm rounded-4 bg-body p-4 transition-all hover-lift mb-0">
-                            <blockquote class="text-body fs-5 mb-4" style="line-height: 1.6;">
-                                <p class="mb-0">“É um dos maiores intelectuais da história da humanidade.”</p>
-                            </blockquote>
-                            <figcaption class="mt-auto">
-                                <span class="d-block fw-bold text-body">João Fernando</span>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 fade-in-up">
-                        <figure class="card h-100 border-0 shadow-sm rounded-4 bg-body p-4 transition-all hover-lift mb-0">
-                            <blockquote class="text-body fs-5 mb-4" style="line-height: 1.6;">
-                                <p class="mb-0">“<strong class="d-block mb-2">Esse curso me ensinou a pensar de outra forma</strong><span class="d-block text-body-secondary fs-6">e a me pensar como um verdadeiro intelectual.”</span></p>
-                            </blockquote>
-                            <figcaption class="mt-auto">
-                                <span class="d-block fw-bold text-body">João Carlos Ribeiro</span>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-                <section class="mt-5 pt-4 border-top" aria-labelledby="exemplos-title">
-                    <h3 id="exemplos-title" class="h4 fw-bold">Exemplos ilustrativos de reflexão</h3>
-                    <p class="text-body-secondary mb-4">Os textos abaixo são fictícios. Não são depoimentos de alunos nem resultados comprovados do curso.</p>
-                    <div class="row g-4">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <article class="h-100 rounded-4 border p-4 bg-body-tertiary">
-                                <span class="badge text-bg-secondary mb-3">Exemplo fictício</span>
-                                <h4 class="h5 fw-bold">Passei a questionar minhas próprias certezas.</h4>
-                                <p class="text-body-secondary mb-0">O curso me incentivou a olhar para outras perspectivas e refletir antes de formar uma opinião.</p>
-                            </article>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <article class="h-100 rounded-4 border p-4 bg-body-tertiary">
-                                <span class="badge text-bg-secondary mb-3">Exemplo fictício</span>
-                                <h4 class="h5 fw-bold">Pensar melhor começa por reconhecer o que ainda não sabemos.</h4>
-                                <p class="text-body-secondary mb-0">Encontrei um incentivo para estudar, fazer perguntas e construir minhas próprias ideias.</p>
-                            </article>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <article class="h-100 rounded-4 border p-4 bg-body-tertiary">
-                                <span class="badge text-bg-secondary mb-3">Exemplo fictício</span>
-                                <h4 class="h5 fw-bold">Aprendi a dar mais espaço à reflexão.</h4>
-                                <p class="text-body-secondary mb-0">Comecei a observar meus pensamentos e a organizar melhor aquilo que quero comunicar.</p>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-                <div class="text-center mt-5">
-                    <a href="#pricing-title" class="btn btn-link text-primary text-decoration-none fw-bold p-0"
-                        style="letter-spacing: 1px;">Conheça o curso <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </section>
-        <section class="container py-5 my-5" aria-labelledby="sobre-mim-title">
-            <div class="row align-items-center bg-body-tertiary rounded-4 p-4 p-md-5 shadow-sm border border-primary-subtle mx-0 mx-md-auto"
-                style="max-width: 1000px;">
-                <div class="col-md-5 text-center mb-4 mb-md-0 position-relative">
-                    <div class="position-absolute w-100 h-100 bg-primary opacity-10 rounded-circle top-50 start-50 translate-middle"
-                        style="max-width: 280px; max-height: 280px; filter: blur(20px);"></div>
-                    <img src="assets/images/foto_de_joao.webp" loading="lazy"
-                        alt="Foto de João Marcelo, mentor do curso Mente Serena"
-                        class="img-fluid rounded-circle shadow-lg border border-4 border-body position-relative z-1 w-100"
-                        style="max-width: 260px; aspect-ratio: 1/1; object-fit: cover;"
-                        onerror="this.outerHTML='<div style=&quot;max-width:260px; aspect-ratio:1/1;&quot; class=&quot;w-100 rounded-circle bg-primary-subtle d-flex align-items-center justify-content-center mx-auto&quot;><i class=&quot;bi bi-person-circle fs-1 text-primary&quot;></i></div>'">
-                </div>
-                <div class="col-md-7 ps-md-4 text-center text-md-start">
-                    <span class="text-primary fw-bold text-uppercase tracking-wider">Seu Mentor</span>
-                    <h2 id="sobre-mim-title" class="display-6 text-primary fw-bolder mt-2 mb-4">João Marcelo</h2>
-                    <p class="text-body-secondary fs-5 mb-3">
-                        Sou estudante de
-                        técnico em desenvolvimento de sistemas e apaixonado pelas nuances das <strong>ciências
-                            humanas</strong>. Além de tudo, <strong>eu sou o Thomas Shelby</strong>. É importante
-                        esclarecer que <strong>não sou psicólogo</strong> para
-                        ministrar um curso clínico de psicologia — essas etapas serão conduzidas por outros
-                        profissionais qualificados da área. O meu domínio e o que eu posso ensinar a fundo envolve
-                        feminismo, muita teoria e programação.
-                    </p>
-                    <div class="alert alert-warning text-start shadow-sm border-warning-subtle border border-1 d-inline-block p-3 mb-4 rounded-3"
-                        role="alert">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-exclamation-triangle-fill fs-3 text-warning-emphasis me-3"></i>
-                            <p class="mb-0 fw-medium text-warning-emphasis"
-                                style="line-height: 1.4; font-size: 0.95rem;">
-                                <strong>Aviso Importante:</strong> Este site é apenas para fins de estudo e
-                                compartilhamento de conhecimento. Ele de forma alguma substitui uma consulta formal com
-                                um psicólogo.
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="p-4 bg-body rounded-3 border border-primary-subtle shadow-sm border-start border-4 border-primary-start">
-                        <p class="text-body fs-5 fst-italic mb-0 fw-medium">
-                            "Para alguns é perigoso, mas para os íntimos é Thomas Shelby."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-xl-8 text-center">
-                    <span class="text-primary fw-bold text-uppercase tracking-wider">Trailer do Curso</span>
-                    <h2 class="display-6 fw-bolder mb-4">Veja como a Pausa Consciente pode mudar tudo</h2>
-                    <div class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-lg border border-primary-subtle">
-                        <video controls poster="assets/images/foto-capa.webp" class="w-100 h-100 object-fit-cover"
-                            loading="lazy">
-                            <source src="assets/images/Como_a_Pausa_Consciente_Salva_Relacionamentos.mp4"
-                                type="video/mp4">
-                            Seu navegador não suporta a tag de vídeo.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="bg-body-tertiary py-5 border-top border-primary-subtle" aria-labelledby="pricing-title">
-            <div class="container py-4">
-                <div class="text-center mb-5">
-                    <h2 id="pricing-title" class="display-5 fw-bolder text-primary mb-3">Promoção Especial: Escolha sua
-                        Jornada</h2>
-                    <p class="text-body-secondary fs-5">Invista em você e na qualidade duradoura dos seus
-                        relacionamentos.</p>
-                    <div class="alert alert-success d-inline-block mt-3 shadow-sm border-0 fw-medium px-4 py-3"
-                        role="alert">
-                        <i class="bi bi-piggy-bank-fill me-2 fs-5"></i> 100% da arrecadação é revertida para custeio de
-                        estúdio e melhorias das aulas.
-                    </div>
-                </div>
+                </article>
+                <article class="plan-card" aria-labelledby="plan-intermediary-title">
 
-                <div class="row g-4 justify-content-center align-items-stretch mx-auto" style="max-width: 1200px;">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card h-100 shadow-sm border-primary-subtle">
-                            <div class="card-body p-4 d-flex flex-column">
-                                <h3 class="card-title fw-bold text-body mb-2">Plano Básico</h3>
-                                <p class="text-body-secondary mb-4">O ponto de partida ideal.</p>
-                                <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <div class="d-flex justify-content-center align-items-center mb-3">
-                                        <div class="text-center">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 30</span><span
-                                                class="text-body-secondary">/mês</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Acesso aos módulos básicos do curso</span></li>
-                                </ul>
-                                <button id="btn-buy-trial" class="btn btn-warning w-100 shadow-sm mb-2 fw-bold"
-                                    aria-label="Teste Grátis">Teste Grátis por 15 Dias</button>
-                                <button id="btn-buy-basic-mensal" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Assinar Mensal">Assinar Mensal (R$ 30)</button>
-                            </div>
-                        </div>
+                    <h3 id="plan-intermediary-title">Plano Intermediário</h3>
+                    <p class="plan-card__description">Para quem busca acompanhamento.</p>
+                    <p class="plan-card__price"><strong>R$ 50</strong><span>/mês</span></p>
+                    <ul class="plan-card__features">
+                        <li>Benefícios do Básico</li>
+                        <li>Suporte exclusivo da equipe</li>
+                        <li>Live semanal</li>
+                    </ul>
+                    <div class="plan-card__actions">
+                        <a id="btn-buy-intermediary-mensal" class="button button--primary" href="checkout.html?plan=mensal2">Assinar Intermediário (R$ 50/mês)</a>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card h-100 shadow-sm border-primary-subtle">
-                            <div class="card-body p-4 d-flex flex-column">
-                                <h3 class="card-title fw-bold text-body mb-2">Plano Intermediário</h3>
-                                <p class="text-body-secondary mb-4">Para quem busca acompanhamento.</p>
-                                <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <div class="d-flex justify-content-center align-items-center mb-3">
-                                        <div class="text-center">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 50</span><span
-                                                class="text-body-secondary">/mês</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium text-body">Benefícios do Básico</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Suporte exclusivo da equipe</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Live semanal</span></li>
-                                </ul>
-                                <button id="btn-buy-intermediary-mensal" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Assinar Mensal">Assinar Mensal (R$ 50)</button>
-                            </div>
-                        </div>
+                </article>
+                <article class="plan-card plan-card--featured" aria-labelledby="plan-premium-title">
+                    <span class="plan-card__badge">Recomendado</span>
+                    <h3 id="plan-premium-title">Plano Avançado</h3>
+                    <p class="plan-card__description">A experiência completa de transformação.</p>
+                    <p class="plan-card__price"><strong>R$ 90</strong><span>/mês</span></p>
+                    <ul class="plan-card__features">
+                        <li>Benefícios Intermediários</li>
+                        <li>Clube da leitura de filósofos</li>
+                        <li>Manual de boas práticas</li>
+                        <li>Curso de programação avançada</li>
+                        <li>Curso de política</li>
+                        <li>Curso de feminismo</li>
+                        <li>Acesso completo garantido</li>
+                    </ul>
+                    <div class="plan-card__actions">
+                        <a id="btn-buy-premium-mensal" class="button button--primary" href="checkout.html?plan=mensal3">Assinar Avançado (R$ 90/mês)</a>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card h-100 shadow-lg border-primary position-relative" style="border-width: 2px;">
-                            <span
-                                class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-warning px-4 py-2 text-dark shadow fw-bold fs-6 tracking-wide"><i
-                                    class="bi bi-star-fill text-dark me-1"></i> RECOMENDADO</span>
-                            <div class="card-body p-4 d-flex flex-column">
-                                <h3 class="card-title fw-bold text-body mb-2 mt-2">Plano Avançado</h3>
-                                <p class="text-body-secondary mb-4">A experiência completa de transformação.</p>
-                                <div class="mb-4 pb-4 border-bottom border-primary-subtle">
-                                    <div class="d-flex justify-content-center align-items-center mb-3">
-                                        <div class="text-center">
-                                            <span class="fs-4 fw-bolder text-primary">R$ 90</span><span
-                                                class="text-body-secondary">/mês</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="list-unstyled mb-5 flex-grow-1">
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-bolder text-body">Benefícios Intermediários</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Clube da leitura de filósofos</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Manual de boas práticas</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Curso de programação avançada</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Curso de política</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Curso de feminismo</span></li>
-                                    <li class="mb-3 d-flex align-items-start"><i
-                                            class="bi bi-check-circle-fill text-success me-3 mt-1"></i> <span
-                                            class="fw-medium">Acesso completo garantido</span></li>
-                                </ul>
-                                <button id="btn-buy-premium-mensal" class="btn btn-primary w-100 shadow-sm"
-                                    aria-label="Assinar Mensal">Assinar Mensal (R$ 70)</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="wallet_container" class="d-flex justify-content-center mt-5"></div>
-                <p id="feedback-message" class="text-center mt-4 fw-bold fs-5 text-success" aria-live="polite"></p>
+                </article>
             </div>
         </section>
     </main>
-    <footer class="bg-body py-5 border-top border-primary-subtle text-center text-body-secondary mt-auto">
-        <div class="container py-3">
-            <div class="mb-3 d-flex justify-content-center align-items-center gap-2">
-                <img src="assets/images/logo-premium.webp" alt="Logo Mente Serena" width="40" height="40"
-                    style="object-fit:contain; width:40px; height:40px;"
-                    onerror="this.outerHTML='<i class=\'bi bi-yin-yang fs-2 text-primary\'></i>'">
-                <span class="fs-5 fw-bold text-primary mb-0">Mente Serena</span>
-            </div>
-            <p class="mb-2 fw-medium text-body">&copy; 2026 Mente Serena. Todos os direitos reservados.</p>
-            <p class="mb-4 small">CNPJ: 68.655.211/0001-04 — Salvador/BA</p>
-            <div class="d-flex justify-content-center align-items-center gap-4 flex-wrap">
-                <a href="politica-de-privacidade.html"
-                    class="text-decoration-none text-body-secondary nav-link-custom">Política de Privacidade</a>
-                <a href="termos-de-uso.html" class="text-decoration-none text-body-secondary nav-link-custom">Termos de
-                    Uso</a>
-                <a href="politica-reembolso.html"
-                    class="text-decoration-none text-body-secondary nav-link-custom">Política de Reembolso</a>
-            </div>
+    <footer class="site-footer">
+        <div class="page-container">
+            <a class="brand" href="/">
+                <img src="assets/images/logo-premium.webp" alt="" width="40" height="40" loading="lazy">
+                <span>Mente Serena</span>
+            </a>
+            <p>© 2026 Mente Serena. Todos os direitos reservados.</p>
+            <p>CNPJ: 68.655.211/0001-04 — Salvador/BA</p>
+            <nav class="footer-nav" aria-label="Informações legais">
+                <a href="politica-de-privacidade.html">Política de Privacidade</a>
+                <a href="termos-de-uso.html">Termos de Uso</a>
+                <a href="politica-reembolso.html">Política de Reembolso</a>
+            </nav>
+            <a class="support-link" href="https://wa.me/5571982767129?text=ol%C3%A1%2C%20seja%20bem-vindo%20ao%20curso%20de%20mente%20serena" target="_blank" rel="noopener noreferrer">Falar com suporte no WhatsApp <span class="visually-hidden">(abre em nova aba)</span></a>
         </div>
     </footer>
-    <a href="#" id="supportActionBtn" class="whatsapp-float" aria-label="Falar conosco no WhatsApp">
-        <i class="bi bi-whatsapp fs-4"></i>
-        <span class="d-none d-md-inline">Falar com Suporte</span>
-    </a>
-    <div id="cookieConsentBanner"
-        class="position-fixed bottom-0 start-0 w-100 bg-body border-top border-primary-subtle shadow-lg p-3 d-none"
-        style="z-index: 1050; transition: transform 0.3s ease;">
-        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
-            <p class="mb-0 text-body-secondary fs-6 text-center text-md-start">
-                Nós utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência no site. Ao continuar
-                navegando, você concorda com a nossa <a href="politica-de-privacidade.html"
-                    class="text-primary fw-medium text-decoration-none">Política de Privacidade</a>.
-            </p>
-            <button id="btnCookieAccept" class="btn btn-primary text-nowrap shadow-sm fw-bold px-4 rounded-pill">Ok,
-                Entendido</button>
+    <aside id="cookieConsentBanner" class="cookie-banner" aria-label="Aviso sobre cookies" hidden>
+        <div class="page-container cookie-banner__inner">
+            <p>Nós utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência no site. Ao continuar navegando, você concorda com a nossa <a href="politica-de-privacidade.html">Política de Privacidade</a>.</p>
+            <button type="button" id="btnCookieAccept" class="button button--primary">Ok, entendido</button>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/script.js"></script>
+    </aside>
+    <script src="js/script.js" defer></script>
 </body>
-
 </html>

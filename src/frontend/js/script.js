@@ -1,49 +1,66 @@
-const btnBasicMensal = document.getElementById('btn-buy-basic-mensal');
-const btnTrial = document.getElementById('btn-buy-trial');
-if (btnBasicMensal) btnBasicMensal.addEventListener('click', () => window.location.href = 'checkout.html?plan=mensal1');
-if (btnTrial) btnTrial.addEventListener('click', () => window.location.href = 'checkout.html?plan=trial');
+(() => {
+    'use strict';
 
-const btnIntermediaryMensal = document.getElementById('btn-buy-intermediary-mensal');
-if (btnIntermediaryMensal) btnIntermediaryMensal.addEventListener('click', () => window.location.href = 'checkout.html?plan=mensal2');
-
-const btnPremiumMensal = document.getElementById('btn-buy-premium-mensal');
-if (btnPremiumMensal) btnPremiumMensal.addEventListener('click', () => window.location.href = 'checkout.html?plan=mensal3');
-
-const supportBtn = document.getElementById('supportActionBtn');
-if (supportBtn) {
-    supportBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const p = ['55', '71', '982767129'].join('');
-        const msg = encodeURIComponent('olá, seja bem-vindo ao curso de mente serena');
-        window.open(`https://wa.me/${p}?text=${msg}`, '_blank', 'noopener,noreferrer');
-    });
-}
-
-const promoBanner = document.getElementById('promoBanner');
-const btnFecharPromo = document.getElementById('btnFecharPromo');
-
-if (promoBanner && sessionStorage.getItem('promoBannerFechado') === 'true') {
-    promoBanner.style.display = 'none';
-}
-
-if (btnFecharPromo && promoBanner) {
-    btnFecharPromo.addEventListener('click', () => {
-        promoBanner.style.display = 'none';
-        sessionStorage.setItem('promoBannerFechado', 'true');
-    });
-}
-
-const cookieBanner = document.getElementById('cookieConsentBanner');
-const btnCookieAccept = document.getElementById('btnCookieAccept');
-
-if (cookieBanner && btnCookieAccept) {
-    if (!localStorage.getItem('cookieConsent')) {
-        cookieBanner.classList.remove('d-none');
+    // Storage can be blocked by browser privacy settings. UI must still work.
+    function readPreference(storageName, key) {
+        try {
+            return window[storageName].getItem(key);
+        } catch {
+            return null;
+        }
     }
 
-    btnCookieAccept.addEventListener('click', () => {
-        localStorage.setItem('cookieConsent', 'true');
-        cookieBanner.style.transform = 'translateY(100%)';
-        setTimeout(() => cookieBanner.classList.add('d-none'), 300);
-    });
-}
+    function savePreference(storageName, key, value) {
+        try {
+            window[storageName].setItem(key, value);
+        } catch {
+            // The current-page action still succeeds without persistence.
+        }
+    }
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    function setTheme(theme) {
+        document.documentElement.dataset.bsTheme = theme;
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+        }
+        if (themeIcon) {
+            themeIcon.textContent = theme === 'dark' ? '☀' : '☾';
+        }
+    }
+
+    setTheme(readPreference('localStorage', 'theme') === 'dark' ? 'dark' : 'light');
+    if (themeToggle) {
+        themeToggle.hidden = false;
+        themeToggle.addEventListener('click', () => {
+            const theme = document.documentElement.dataset.bsTheme === 'dark' ? 'light' : 'dark';
+            setTheme(theme);
+            savePreference('localStorage', 'theme', theme);
+        });
+    }
+
+    const promoBanner = document.getElementById('promoBanner');
+    const closePromo = document.getElementById('btnFecharPromo');
+    if (promoBanner) {
+        promoBanner.hidden = readPreference('sessionStorage', 'promoBannerFechado') === 'true';
+        if (closePromo) closePromo.hidden = false;
+        closePromo?.addEventListener('click', () => {
+            promoBanner.hidden = true;
+            savePreference('sessionStorage', 'promoBannerFechado', 'true');
+            document.querySelector('.brand')?.focus();
+        });
+    }
+
+    const cookieBanner = document.getElementById('cookieConsentBanner');
+    const acceptCookies = document.getElementById('btnCookieAccept');
+    if (cookieBanner && acceptCookies) {
+        cookieBanner.hidden = readPreference('localStorage', 'cookieConsent') === 'true';
+        acceptCookies.addEventListener('click', () => {
+            cookieBanner.hidden = true;
+            savePreference('localStorage', 'cookieConsent', 'true');
+            document.querySelector('.support-link')?.focus();
+        });
+    }
+})();
