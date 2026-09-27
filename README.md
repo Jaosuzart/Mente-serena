@@ -143,4 +143,3 @@ Execute `npm run test:integration` para verificar a conexão MySQL, o schema nec
 
 Os testes não alteram tabelas permanentes, não leem registros de clientes e não criam pagamentos ou assinaturas. Tabelas temporárias são destruídas ao encerrar a conexão. A conta Mercado Pago é consultada em modo somente leitura e o teste de prontidão falha se ela não tiver a identificação `test_user`. Aprovar esses testes não equivale a concluir uma compra: a homologação de criação e aprovação de assinatura exige vendedor e comprador de teste e validação do webhook.
 # Mente-serena
-# Mente-serena
