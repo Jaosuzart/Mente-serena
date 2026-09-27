@@ -1,10 +1,8 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mente-serena-web",
   "compatibility_date": "2026-09-27",
-  // Deploy only public frontend files. The Express API runs separately.
   "assets": {
-    "directory": "./src/frontend",
-    "html_handling": "auto-trailing-slash",
-    "not_found_handling": "none"
+    "directory": "./public"
   }
 }
