@@ -3,6 +3,6 @@
   "name": "mente-serena-web",
   "compatibility_date": "2026-09-27",
   "assets": {
-    "directory": "./public"
+    "directory": "."
   }
 }
