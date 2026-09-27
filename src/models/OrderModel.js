@@ -1,63 +1,144 @@
 const db = require('../config/database');
 
 class OrderModel {
+
     static async createOrder(orderData) {
-        try {
-            const { preference_id, order_id, nome, email, plano, status } = orderData;
-            
-            const [result] = await db.query(
-                'INSERT INTO pedidos (preference_id, order_id, nome, email, plano, status) VALUES (?, ?, ?, ?, ?, ?)',
-                [preference_id, order_id, nome, email, plano, status || 'pendente']
+
+        const {
+            preference_id,
+            order_id,
+            nome,
+            email,
+            plano,
+            status
+        } = orderData;
+
+        const [result] =
+            await db.query(
+                `
+                INSERT INTO pedidos
+                (
+                    preference_id,
+                    order_id,
+                    nome,
+                    email,
+                    plano,
+                    status
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+                `,
+                [
+                    preference_id,
+                    order_id,
+                    nome,
+                    email,
+                    plano,
+                    status || 'pendente'
+                ]
             );
-            
-            return result.insertId;
-        } catch (error) {
-            console.error('Erro ao criar pedido no banco:', error);
-            throw error;
-        }
-    }
-    static async updateOrderStatusByPayment(paymentId, status, orderId) {
-        try {
-            const [result] = await db.query(
-                'UPDATE pedidos SET status = ?, payment_id = ? WHERE order_id = ?',
-                [status, paymentId, orderId]
-            );
-            
-            return result.affectedRows > 0;
-        } catch (error) {
-            console.error('Erro ao atualizar status do pedido:', error);
-            throw error;
-        }
-    }
-    static async getOrderByPreferenceId(preferenceId) {
-        try {
-            const [rows] = await db.query('SELECT * FROM pedidos WHERE preference_id = ? LIMIT 1', [preferenceId]);
-            return rows.length > 0 ? rows[0] : null;
-        } catch (error) {
-            console.error('Erro ao buscar pedido:', error);
-            throw error;
-        }
+
+        return result.insertId;
     }
 
-    static async getOrderByOrderId(orderId) {
-        try {
-            const [rows] = await db.query('SELECT * FROM pedidos WHERE order_id = ? LIMIT 1', [orderId]);
-            return rows.length > 0 ? rows[0] : null;
-        } catch (error) {
-            console.error('Erro ao buscar pedido por order_id:', error);
-            throw error;
-        }
+    static async updateOrderStatusByPayment(
+        paymentId,
+        status,
+        orderId
+    ) {
+
+        const [result] =
+            await db.query(
+                `
+                UPDATE pedidos
+                SET
+                    status = ?,
+                    payment_id = ?
+                WHERE order_id = ?
+                `,
+                [
+                    status,
+                    String(paymentId),
+                    orderId
+                ]
+            );
+
+        return result.affectedRows > 0;
+    }
+
+    static async getOrderByPreferenceId(
+        preferenceId
+    ) {
+
+        const [rows] =
+            await db.query(
+                `
+                SELECT *
+                FROM pedidos
+                WHERE preference_id = ?
+                LIMIT 1
+                `,
+                [preferenceId]
+            );
+
+        return rows[0] || null;
+    }
+
+    static async getOrderByOrderId(
+        orderId
+    ) {
+
+        const [rows] =
+            await db.query(
+                `
+                SELECT *
+                FROM pedidos
+                WHERE order_id = ?
+                LIMIT 1
+                `,
+                [orderId]
+            );
+
+        return rows[0] || null;
+    }
+
+    static async getOrderByPaymentId(
+        paymentId
+    ) {
+
+        const [rows] =
+            await db.query(
+                `
+                SELECT *
+                FROM pedidos
+                WHERE payment_id = ?
+                LIMIT 1
+                `,
+                [String(paymentId)]
+            );
+
+        return rows[0] || null;
     }
 
     static async countTrials() {
-        try {
-            const [rows] = await db.query('SELECT COUNT(*) as count FROM pedidos WHERE plano = ?', ['trial']);
-            return rows[0].count;
-        } catch (error) {
-            console.error('Erro ao contar trials:', error);
-            throw error;
-        }
+
+        const [rows] =
+            await db.query(
+                `
+                SELECT COUNT(*) AS count
+                FROM pedidos
+                WHERE plano = 'trial'
+                AND status IN (
+                    'pendente',
+                    'aprovado'
+                )
+                `
+            );
+
+        return Number(
+            rows[0].count
+        );
     }
 }
 
-module.exports = OrderModel;
+module.exports =
+    OrderModel;
