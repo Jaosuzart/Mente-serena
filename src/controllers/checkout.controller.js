@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const { registrarFiltroUsuario } = require('../services/checkout/userService');
 const { validarCupom, aplicarDesconto } = require('../services/checkout/couponService');
 const { getPaymentMethodConfig, isMetodoPagamentoValido } = require('../services/checkout/paymentService');
+const { reserveTrial, releaseTrial, TrialUnavailableError } = require('../services/checkout/trialService');
 
 const client = new MercadoPagoConfig({
     accessToken: process.env.MP_ACCESS_TOKEN
@@ -14,9 +15,6 @@ const preference = new Preference(client);
 const preapproval = new PreApproval(client);
 
 const isDev = process.env.NODE_ENV !== 'production';
-
-const FREE_SPOTS_LIMIT =
-    Number.parseInt(process.env.FREE_SPOTS_LIMIT || '20', 10);
 
 if (isDev) {
     console.info(
@@ -60,7 +58,9 @@ const createPreference = async (req, res) => {
         let cupomCodigo = null;
         let cupomMensagem = null;
 
-        if (cupom) {
+        // O cupom se aplica aos planos pagos. O trial sempre começa em R$ 0
+        // e passa ao preço cheio informado no checkout após o período grátis.
+        if (cupom && plan !== 'trial') {
             const resultadoCupom =
                 await validarCupom(email, cupom);
 
@@ -92,22 +92,12 @@ const createPreference = async (req, res) => {
             plan === 'trial' ||
             plan.includes('mensal')
         ) {
+            let trialReserved = false;
+            let subscriptionCreated = false;
             try {
                 if (plan === 'trial') {
-                    const totalTrials =
-                        await OrderModel.countTrials();
-
-                    if (
-                        totalTrials >=
-                        FREE_SPOTS_LIMIT
-                    ) {
-                        return res
-                            .status(403)
-                            .json({
-                                error:
-                                    `As ${FREE_SPOTS_LIMIT} vagas do Teste Grátis já foram preenchidas.`
-                            });
-                    }
+                    await reserveTrial(email);
+                    trialReserved = true;
                 }
 
                 const autoRecurring = {
@@ -120,7 +110,7 @@ const createPreference = async (req, res) => {
 
                 if (plan === 'trial') {
                     autoRecurring.free_trial = {
-                        frequency: 15,
+                        frequency: selectedPlan.trialDays,
                         frequency_type: 'days'
                     };
                 }
@@ -147,6 +137,7 @@ const createPreference = async (req, res) => {
                                 'pending'
                         }
                     });
+                subscriptionCreated = true;
 
                 await OrderModel.createOrder({
                     preference_id:
@@ -203,10 +194,24 @@ const createPreference = async (req, res) => {
                             cupomMensagem,
                     });
             } catch (error) {
+                if (trialReserved && !subscriptionCreated) {
+                    try {
+                        await releaseTrial(email);
+                    } catch (releaseError) {
+                        console.error('Erro ao liberar reserva de teste:', releaseError);
+                    }
+                }
+
                 console.error(
                     'Erro ao criar assinatura:',
                     error
                 );
+
+                if (error instanceof TrialUnavailableError) {
+                    return res.status(error.code === 'SOLD_OUT' ? 403 : 409).json({
+                        error: error.message
+                    });
+                }
 
                 const errorMsg =
                     error?.message ||

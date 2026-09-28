@@ -23,6 +23,7 @@ test('checkout mantém os quatro planos e normaliza os dados', () => {
         assert.equal(body.nome, 'Maria Silva');
     }
     assert.deepEqual(['trial', 'mensal1', 'mensal2', 'mensal3'].map(id => getPlan(id).price), [30, 30, 50, 90]);
+    assert.equal(getPlan('trial').trialDays, 15);
 });
 
 test('planos ausentes, objetos e nomes herdados são rejeitados', () => {
@@ -72,6 +73,7 @@ test('inicialização prepara a tabela antes de inserir e propaga falhas', async
     await initializeDatabase({ query: async sql => queries.push(sql) });
     assert.match(queries[0], /CREATE TABLE IF NOT EXISTS/);
     assert.match(queries[1], /INSERT IGNORE/);
+    assert.match(queries[2], /free_spot_claims/);
     let calls = 0;
     await assert.rejects(initializeDatabase({ query: async () => { calls++; throw new Error('offline'); } }), /offline/);
     assert.equal(calls, 1);

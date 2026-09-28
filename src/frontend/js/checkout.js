@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spanVagas = document.getElementById('vagas-restantes');
     const radiosPlan = document.getElementsByName('plan');
     const btnComprarText = document.getElementById('btn-comprar-text');
+    const trialDetails = document.getElementById('trial-details');
 
     const inputCupom = document.getElementById('cupom');
     const btnAplicarCupom = document.getElementById('btn-aplicar-cupom');
@@ -33,10 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedPlan = Array.from(radiosPlan).find(r => r.checked)?.value;
         if (!selectedPlan) return;
         const preco = getPrecoComDesconto(selectedPlan);
-        const label = descontoAtual > 0
-            ? `Garantir Minha Vaga (R$ ${preco}) 🏷️ -${descontoAtual}%`
-            : `Garantir Minha Vaga (R$ ${preco})`;
+        const isTrial = selectedPlan === 'trial';
+        const label = isTrial
+            ? 'Começar teste grátis — R$ 0 hoje'
+            : descontoAtual > 0
+                ? `Garantir Minha Vaga (R$ ${preco}) 🏷️ -${descontoAtual}%`
+                : `Garantir Minha Vaga (R$ ${preco})`;
         btnComprarText.textContent = label;
+        if (trialDetails) trialDetails.hidden = !isTrial;
+        if (inputCupom) inputCupom.disabled = isTrial;
+        if (btnAplicarCupom) btnAplicarCupom.disabled = isTrial;
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -137,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 email,
                 plan: selectedPlan,
                 pagamento,
-                cupom: cupomValidado || undefined,
+                cupom: selectedPlan === 'trial' ? undefined : (cupomValidado || undefined),
             };
 
             const response = await fetch(`${API_URL}/create_preference`, {

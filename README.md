@@ -92,6 +92,9 @@ MP_ACCESS_TOKEN=APP_USR-sua-chave-secreta-de-producao-ou-teste
 MP_PUBLIC_KEY=APP_USR-sua-chave-publica
 MP_WEBHOOK_SECRET=seu_webhook_secret_do_mercadopago
 
+# Teste grátis (15 dias; depois R$ 30/mês)
+FREE_SPOTS_LIMIT=20
+
 # WhatsApp Bot
 WHATSAPP_NUMBER=5511999999999
 ```
@@ -125,7 +128,7 @@ Feito com dedicação para maximizar a tranquilidade e a conversão do **Mente S
 
 - `npm test`: executa testes locais de validação, configuração, inicialização e rotas HTTP, sem pagamentos, mensagens ou acesso ao banco externo.
 - `src/app.js` exporta a aplicação Express sem abrir a porta nem iniciar integrações ao ser importado. `npm start`, `node src/app.js` e `node server.js` continuam iniciando o serviço.
-- `src/server.js` prepara a tabela `free_spots` antes de aceitar requisições. Uma falha no banco aborta a inicialização. Em SIGINT/SIGTERM, o servidor para de aceitar conexões e encerra o pool, com prazo máximo de 15 segundos.
+- `src/server.js` prepara as tabelas de controle do teste grátis antes de aceitar requisições. Uma falha no banco aborta a inicialização. Em SIGINT/SIGTERM, o servidor para de aceitar conexões e encerra o pool, com prazo máximo de 15 segundos.
 - As regras internas de cupons, usuários e pagamentos ficam em `src/services/filters`, fora da pasta pública. O catálogo aceito pelo checkout está em `src/config/plans.js`.
 - `DB_CONN_LIMIT` limita conexões por processo (padrão 10); `DB_QUEUE_LIMIT` limita requisições aguardando conexão (padrão 100); `DB_CONNECT_TIMEOUT_MS` limita o estabelecimento da conexão (padrão 10000 ms). Valores inválidos interrompem a inicialização. Fila cheia produz erro, em vez de acumular espera sem limite.
 - `DATABASE_URL`, quando definida, tem prioridade sobre os campos `DB_*` de conexão. Sem URL, as credenciais são passadas diretamente ao driver, preservando caracteres especiais. `DB_SSL=false` permite conexão local sem TLS; a política de certificados existente foi preservada.
@@ -134,7 +137,7 @@ Feito com dedicação para maximizar a tranquilidade e a conversão do **Mente S
 
 Estas melhorias não tornam o sistema automaticamente distribuído. O limite de conexões deve considerar a soma de todos os processos. O rate limit atual usa memória local; múltiplas instâncias precisam compartilhar seu armazenamento. A sessão WhatsApp ainda é local: mantenha apenas um processo com `WHATSAPP_ENABLED=true` e planeje um serviço dedicado para compartilhar seu estado. Os endpoints de status das demais instâncias não representam o processo do bot.
 
-O limite de 20 trials ainda usa contagem seguida de criação, portanto pode ser ultrapassado por requisições concorrentes. Reservas transacionais, idempotência do checkout e tratamento durável de webhooks permanecem como trabalho adicional antes de operar em grande escala. Os testes locais não substituem a homologação com MySQL e Mercado Pago de teste.
+O teste grátis dura 15 dias e depois renova no Plano Básico por R$ 30/mês. A reserva de vagas é transacional, respeita `FREE_SPOTS_LIMIT` (padrão 20) e permite somente um teste por e-mail. Idempotência completa do checkout e tratamento durável de webhooks permanecem como trabalho adicional antes de operar em grande escala. Os testes locais não substituem a homologação com MySQL e Mercado Pago de teste.
 
 
 ### Testes de integração externos
