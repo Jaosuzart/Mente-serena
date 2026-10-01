@@ -1,0 +1,39 @@
+# Configuração opcional da API. O site continua na Cloudflare.
+# O plano gratuito é destinado à validação; ele suspende a API quando ociosa.
+services:
+  - type: web
+    name: mente-serena-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        value: https://mente-serena-web.suzartlimacastrojoaomarcelo.workers.dev
+      - key: WHATSAPP_ENABLED
+        value: "false"
+      - key: FREE_SPOTS_LIMIT
+        value: "20"
+      - key: DB_SSL
+        value: "true"
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: MP_ACCESS_TOKEN
+        sync: false
+      - key: MP_WEBHOOK_SECRET
+        sync: false
+      - key: MP_WEBHOOK_URL
+        value: https://mente-serena-web.suzartlimacastrojoaomarcelo.workers.dev/webhook

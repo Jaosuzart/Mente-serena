@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = '';
+    const api = globalThis.MenteSerenaApi;
 
     const form = document.getElementById('checkout-form');
     const btnComprar = document.getElementById('btn-comprar');
@@ -79,12 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnAplicarCupom.textContent = 'Verificando...';
 
             try {
-                const res = await fetch(`${API_URL}/validar_cupom`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, cupom }),
-                });
-                const data = await res.json();
+                const { response: res, data } = await api.post('/validar_cupom', { email, cupom });
 
                 if (res.ok && data.valido) {
                     cupomValidado = data.cupom;
@@ -98,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     updateButtonPrice();
                 }
             } catch (err) {
-                showCupomStatus('Erro ao verificar o cupom. Tente novamente.', 'error');
+                showCupomStatus(err.message || 'Erro ao verificar o cupom. Tente novamente.', 'error');
             } finally {
                 btnAplicarCupom.disabled = false;
                 btnAplicarCupom.textContent = 'Aplicar';
@@ -147,13 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cupom: selectedPlan === 'trial' ? undefined : (cupomValidado || undefined),
             };
 
-            const response = await fetch(`${API_URL}/create_preference`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
-
-            const data = await response.json();
+            const { response, data } = await api.post('/create_preference', payload);
 
             if (response.ok && data.init_point) {
                 if (data.desconto_aplicado > 0) {
@@ -168,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('[Checkout] Erro no pagamento:', error);
-            showMessage('Erro de conexão com o servidor. Verifique sua internet.', 'error');
+            showMessage(error.message || 'Não foi possível conectar ao serviço de pagamento. Tente novamente.', 'error');
         } finally {
             toggleLoading(btnComprar, false);
         }
@@ -187,13 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideMessage();
 
             try {
-                const response = await fetch(`${API_URL}/claim_free_spot`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email }),
-                });
-
-                const data = await response.json();
+                const { response, data } = await api.post('/claim_free_spot', { email });
 
                 if (response.ok) {
                     showMessage(data.message, 'success');
@@ -219,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error('[Checkout] Erro na vaga grátis:', error);
-                showMessage('Falha ao comunicar com o servidor.', 'error');
+                showMessage(error.message || 'Falha ao comunicar com o servidor.', 'error');
             } finally {
                 toggleLoading(btnGratis, false);
             }
