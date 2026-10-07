@@ -28,3 +28,7 @@ lerna-debug.log*
 .DS_Store
 Thumbs.db
 
+
+# Arquivos privados e ferramentas locais
+/env
+/.local-tools/
