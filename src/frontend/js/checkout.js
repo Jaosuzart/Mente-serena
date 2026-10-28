@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cupomValidado = null;
     let descontoAtual = 0;
-    const PRECOS = { trial: 0, mensal1: 30, mensal2: 50, mensal3: 90 };
+    const PRECOS = { trial: 0, mensal1: 20, mensal2: 30, mensal3: 40 };
 
     function getPrecoComDesconto(plano) {
         const base = PRECOS[plano] || 0;

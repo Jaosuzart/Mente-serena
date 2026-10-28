@@ -17,9 +17,8 @@
       "/webhook",
       "/webhook/*",
       "/api/*"
-    ]
-  },
-  "vars": {
-    "BACKEND_URL": "https://mente-serena.onrender.com"
+    ],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
   }
 }

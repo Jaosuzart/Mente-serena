@@ -14,7 +14,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: FRONTEND_URL
-        value: https://mente-serena-web.suzartlimacastrojoaomarcelo.workers.dev
+        value: https://menteserena.life
       - key: WHATSAPP_ENABLED
         value: "false"
       - key: FREE_SPOTS_LIMIT
@@ -36,4 +36,4 @@ services:
       - key: MP_WEBHOOK_SECRET
         sync: false
       - key: MP_WEBHOOK_URL
-        value: https://mente-serena-web.suzartlimacastrojoaomarcelo.workers.dev/webhook
+        value: https://menteserena.life/webhook

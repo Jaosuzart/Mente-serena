@@ -34,7 +34,7 @@
 <body class="home-page">
     <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
     <div id="promoBanner" class="promo-banner">
-        <p><strong>Especial Semana do Cliente:</strong> Aproveite os planos promocionais com descontos exclusivos por tempo limitado!</p>
+        <p><strong>Novos planos acessíveis:</strong> Básico R$ 20, Intermediário R$ 30 e Avançado R$ 40 por mês.</p>
         <button type="button" id="btnFecharPromo" class="icon-button promo-banner__close" aria-label="Fechar promoção" hidden><span aria-hidden="true">×</span></button>
     </div>
     <header class="site-header">
@@ -47,6 +47,7 @@
                 <a href="#hero-title">Sobre o curso</a>
                 <a href="#modules-title">Módulos</a>
                 <a href="#avaliacoes-title">Depoimentos</a>
+                <a href="#equipe-title">Equipe</a>
                 <a href="#pricing-title">Planos</a>
             </nav>
             <button type="button" id="theme-toggle" class="icon-button" aria-label="Ativar modo escuro" aria-pressed="false" hidden>
@@ -123,7 +124,7 @@
             <div class="section-heading">
                 <span class="eyebrow">Depoimentos do curso</span>
                 <h2 id="avaliacoes-title">O que dizem sobre o Mente Serena</h2>
-                <p>Confira os depoimentos sobre o curso e seu instrutor.</p>
+                <p>Relatos apresentados no projeto. A autoria e a autorização de publicação devem ser confirmadas antes do lançamento.</p>
             </div>
             <div class="testimonials-layout">
                 <img class="testimonials-layout__image" src="assets/images/dialogo-sereno.webp" alt="Duas pessoas dialogando calmamente, com uma planta entre elas." width="960" height="640" loading="lazy" decoding="async">
@@ -169,14 +170,26 @@
             <div class="mentor-card">
                 <img class="mentor-card__portrait" src="assets/images/foto_de_joao.webp" alt="João Marcelo, mentor do curso Mente Serena" width="1024" height="1024" loading="lazy" decoding="async">
                 <div>
-                    <span class="eyebrow">Seu mentor</span>
+                    <span class="eyebrow">Coordenação educacional</span>
                     <h2 id="sobre-mim-title">João Marcelo</h2>
-                    <p>Sou estudante de técnico em desenvolvimento de sistemas e apaixonado pelas nuances das <strong>ciências humanas</strong>. Além de tudo, <strong>eu sou o Thomas Shelby</strong>. É importante esclarecer que <strong>não sou psicólogo</strong> para ministrar um curso clínico de psicologia — essas etapas serão conduzidas por outros profissionais qualificados da área. O meu domínio e o que eu posso ensinar a fundo envolve feminismo, muita teoria e programação.</p>
+                    <p>Sou estudante de Desenvolvimento de Sistemas e organizador do Mente Serena. O projeto reúne conteúdos educacionais sobre comunicação, relações interpessoais, ciências humanas e tecnologia. Materiais especializados só serão apresentados como conduzidos por profissionais depois da confirmação de sua participação e qualificações.</p>
                     <aside class="notice" aria-label="Aviso importante">
                         <p><strong>Aviso importante:</strong> Este site é apenas para fins de estudo e compartilhamento de conhecimento. Ele de forma alguma substitui uma consulta formal com um psicólogo.</p>
                     </aside>
                     <blockquote class="mentor-card__quote"><p>“Para alguns é perigoso, mas para os íntimos é Thomas Shelby.”</p></blockquote>
                 </div>
+            </div>
+        </section>
+        <section class="page-section" aria-labelledby="equipe-title">
+            <div class="section-heading section-heading--centered">
+                <span class="eyebrow">Equipe de ensino</span>
+                <h2 id="equipe-title">Três perspectivas para ampliar o aprendizado.</h2>
+                <p>Conheça a organização dos conteúdos e as próximas participações previstas no Mente Serena.</p>
+            </div>
+            <div class="instructors-grid">
+                <article class="instructor-card"><span class="instructor-card__icon" aria-hidden="true">01</span><h3>João Marcelo</h3><p class="instructor-card__role">Coordenação e conteúdos introdutórios</p><p>Comunicação, ciências humanas e tecnologia.</p></article>
+                <article class="instructor-card"><span class="instructor-card__icon" aria-hidden="true">02</span><h3>Instrutor(a) convidado(a)</h3><p class="instructor-card__role">Participação em planejamento</p><p>Nome, especialidade e aulas serão divulgados após confirmação.</p></article>
+                <article class="instructor-card"><span class="instructor-card__icon" aria-hidden="true">03</span><h3>Instrutor(a) convidado(a)</h3><p class="instructor-card__role">Participação em planejamento</p><p>Nome, especialidade e aulas serão divulgados após confirmação.</p></article>
             </div>
         </section>
         <section class="page-section trailer" aria-labelledby="trailer-title">
@@ -193,42 +206,42 @@
             <div class="section-heading section-heading--centered">
                 <span class="eyebrow">Invista no seu aprendizado</span>
                 <h2 id="pricing-title">Um plano para o seu momento.</h2>
-                <p>Invista em você e na qualidade duradoura dos seus relacionamentos.</p>
-                <p class="funding-note">100% da arrecadação é revertida para custeio de estúdio e melhorias das aulas.</p>
+                <p>Compare os conteúdos disponíveis e escolha o plano adequado aos seus objetivos.</p>
+                <p class="funding-note">As assinaturas contribuem para a manutenção e melhoria dos materiais e da plataforma.</p>
             </div>
             <div class="plans-grid">
                 <article class="plan-card" aria-labelledby="plan-basic-title">
 
                     <h3 id="plan-basic-title">Plano Básico</h3>
                     <p class="plan-card__description">O ponto de partida ideal.</p>
-                    <p class="plan-card__price"><strong>R$ 30</strong><span>/mês</span></p>
+                    <p class="plan-card__price"><strong>R$ 20</strong><span>/mês</span></p>
                     <ul class="plan-card__features">
                         <li>Acesso aos módulos básicos do curso</li>
                     </ul>
                     <div class="plan-card__actions">
                         <a id="btn-buy-trial" class="button button--secondary" href="checkout.html?plan=trial">Teste grátis por 15 dias</a>
-                        <a id="btn-buy-basic-mensal" class="button button--primary" href="checkout.html?plan=mensal1">Assinar Básico (R$ 30/mês)</a>
+                        <a id="btn-buy-basic-mensal" class="button button--primary" href="checkout.html?plan=mensal1">Assinar Básico (R$ 20/mês)</a>
                     </div>
                 </article>
                 <article class="plan-card" aria-labelledby="plan-intermediary-title">
 
                     <h3 id="plan-intermediary-title">Plano Intermediário</h3>
                     <p class="plan-card__description">Para quem busca acompanhamento.</p>
-                    <p class="plan-card__price"><strong>R$ 50</strong><span>/mês</span></p>
+                    <p class="plan-card__price"><strong>R$ 30</strong><span>/mês</span></p>
                     <ul class="plan-card__features">
                         <li>Benefícios do Básico</li>
-                        <li>Suporte exclusivo da equipe</li>
-                        <li>Live semanal</li>
+                        <li>Canal de suporte educacional</li>
+                        <li>Encontros online conforme calendário divulgado</li>
                     </ul>
                     <div class="plan-card__actions">
-                        <a id="btn-buy-intermediary-mensal" class="button button--primary" href="checkout.html?plan=mensal2">Assinar Intermediário (R$ 50/mês)</a>
+                        <a id="btn-buy-intermediary-mensal" class="button button--primary" href="checkout.html?plan=mensal2">Assinar Intermediário (R$ 30/mês)</a>
                     </div>
                 </article>
                 <article class="plan-card plan-card--featured" aria-labelledby="plan-premium-title">
                     <span class="plan-card__badge">Recomendado</span>
                     <h3 id="plan-premium-title">Plano Avançado</h3>
-                    <p class="plan-card__description">A experiência completa de transformação.</p>
-                    <p class="plan-card__price"><strong>R$ 90</strong><span>/mês</span></p>
+                    <p class="plan-card__description">A experiência mais completa de aprendizado.</p>
+                    <p class="plan-card__price"><strong>R$ 40</strong><span>/mês</span></p>
                     <ul class="plan-card__features">
                         <li>Benefícios Intermediários</li>
                         <li>Clube da leitura de filósofos</li>
@@ -236,10 +249,10 @@
                         <li>Curso de programação avançada</li>
                         <li>Curso de política</li>
                         <li>Curso de feminismo</li>
-                        <li>Acesso completo garantido</li>
+                        <li>Acesso aos conteúdos disponíveis do plano</li>
                     </ul>
                     <div class="plan-card__actions">
-                        <a id="btn-buy-premium-mensal" class="button button--primary" href="checkout.html?plan=mensal3">Assinar Avançado (R$ 90/mês)</a>
+                        <a id="btn-buy-premium-mensal" class="button button--primary" href="checkout.html?plan=mensal3">Assinar Avançado (R$ 40/mês)</a>
                     </div>
                 </article>
             </div>
@@ -252,7 +265,7 @@
                 <span>Mente Serena</span>
             </a>
             <p>© 2026 Mente Serena. Todos os direitos reservados.</p>
-            <p>CNPJ: 68.655.211/0001-04 — Salvador/BA</p>
+            <p>Projeto educacional independente · Conteúdo informativo, não clínico.</p>
             <nav class="footer-nav" aria-label="Informações legais">
                 <a href="politica-de-privacidade.html">Política de Privacidade</a>
                 <a href="termos-de-uso.html">Termos de Uso</a>

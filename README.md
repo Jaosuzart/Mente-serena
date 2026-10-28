@@ -74,7 +74,7 @@ MP_ACCESS_TOKEN=APP_USR-sua-chave-secreta-de-producao-ou-teste
 MP_PUBLIC_KEY=APP_USR-sua-chave-publica
 MP_WEBHOOK_SECRET=seu_webhook_secret_do_mercadopago
 
-# Teste grátis (15 dias; depois R$ 30/mês)
+# Teste grátis (15 dias; depois R$ 20/mês)
 FREE_SPOTS_LIMIT=20
 
 # WhatsApp Bot
@@ -104,7 +104,7 @@ Feito com dedicação para maximizar a tranquilidade e a conversão do **Mente S
 ### Antes de executar várias instâncias
 Estas melhorias não tornam o sistema automaticamente distribuído. O limite de conexões deve considerar a soma de todos os processos. O rate limit atual usa memória local; múltiplas instâncias precisam compartilhar seu armazenamento. A sessão WhatsApp ainda é local: mantenha apenas um processo com `WHATSAPP_ENABLED=true` e planeje um serviço dedicado para compartilhar seu estado. Os endpoints de status das demais instâncias não representam o processo do bot.
 
-O teste grátis dura 15 dias e depois renova no Plano Básico por R$ 30/mês. A reserva de vagas é transacional, respeita `FREE_SPOTS_LIMIT` (padrão 20) e permite somente um teste por e-mail. Idempotência completa do checkout e tratamento durável de webhooks permanecem como trabalho adicional antes de operar em grande escala. Os testes locais não substituem a homologação com MySQL e Mercado Pago de teste.
+O teste grátis dura 15 dias e depois renova no Plano Básico por R$ 20/mês. A reserva de vagas é transacional, respeita `FREE_SPOTS_LIMIT` (padrão 20) e permite somente um teste por e-mail. Idempotência completa do checkout e tratamento durável de webhooks permanecem como trabalho adicional antes de operar em grande escala. Os testes locais não substituem a homologação com MySQL e Mercado Pago de teste.
 
 
 ### Testes de integração externos
