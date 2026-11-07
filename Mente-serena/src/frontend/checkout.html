@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Oficial | Mente Serena</title>
+    <meta name="description"
+        content="Garanta sua vaga no curso Mente Serena. Desenvolva calma, resiliência e comunicação assertiva.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="icon" type="image/webp" href="assets/images/logo-premium.webp">
+    <script src="js/theme.js"></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/checkout.js" defer></script>
+    <link rel="stylesheet" href="css/typography.css">
+</head>
+
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>Mente Serena Curso Completo</h1>
+            <p>Desenvolva calma, resiliência e comunicação assertiva com estratégias inspiradas em psicologia e
+                neurociência.</p>
+        </header>
+
+        <section class="checkout-card">
+            <div class="price-info">
+                <span class="original-price">Escolha seu plano:</span>
+            </div>
+
+            <form id="checkout-form" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail de Acesso</label>
+                    <input type="email" id="email" name="email" required placeholder="seu.melhor@email.com">
+                </div>
+
+                <fieldset class="plan-selection">
+                    <legend>Selecione o Plano</legend>
+
+                    <div class="plan-option">
+                        <input type="radio" id="plan-trial" name="plan" value="trial">
+                        <label for="plan-trial">
+                            <strong>Teste Grátis de 15 Dias</strong> — R$ 0,00 hoje; depois R$ 20,00/mês
+                        </label>
+                    </div>
+
+                    <div class="plan-option">
+                        <input type="radio" id="plan-mensal1" name="plan" value="mensal1" checked>
+                        <label for="plan-mensal1">
+                            <strong>Plano Básico (Mensal)</strong> — R$ 20,00
+                        </label>
+                    </div>
+
+                    <div class="plan-option">
+                        <input type="radio" id="plan-mensal2" name="plan" value="mensal2">
+                        <label for="plan-mensal2">
+                            <strong>Plano Intermediário (Mensal)</strong> — R$ 30,00
+                        </label>
+                    </div>
+
+                    <div class="plan-option">
+                        <input type="radio" id="plan-mensal3" name="plan" value="mensal3">
+                        <label for="plan-mensal3">
+                            <strong>Plano Avançado (Mensal)</strong> — R$ 40,00
+                        </label>
+                    </div>
+                </fieldset>
+                <p id="trial-details" class="trial-details" hidden>
+                    Você não paga nada nos primeiros 15 dias. Depois, a assinatura do Plano Básico passa a custar
+                    R$ 20,00 por mês. Cancele antes do fim do teste para não ser cobrado. Limitado a um teste por e-mail.
+                </p>
+                <div class="alert notice" role="alert">
+                    <strong>Aviso:</strong> As aulas serão gravadas. Pagamento processado com segurança pelo Mercado
+                    Pago.
+                </div>
+
+                <div id="mensagem-status" class="mensagem" hidden></div>
+
+                <div class="actions">
+                    <button type="submit" id="btn-comprar" class="btn-primary">
+                        <span class="btn-text" id="btn-comprar-text">Garantir Minha Vaga</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

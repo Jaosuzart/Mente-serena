@@ -45,10 +45,15 @@ const processWebhook =
             type ===
             'subscription_preapproval'
         ) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
             console.log(
                 `[WEBHOOK] Assinatura recebida: ${paymentId}`
             );
 
+<<<<<<< HEAD
             const preapprovalResp = await fetch(
                 `https://api.mercadopago.com/preapproval/${encodeURIComponent(paymentId)}`,
                 {
@@ -91,6 +96,8 @@ const processWebhook =
                 );
             }
 
+=======
+>>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
             return res
                 .status(200)
                 .send('OK');

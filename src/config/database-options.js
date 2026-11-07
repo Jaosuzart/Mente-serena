@@ -14,7 +14,11 @@ function buildDatabaseOptions(env = process.env) {
         user: env.DB_USER,
         password: env.DB_PASSWORD,
         database: env.DB_NAME,
+<<<<<<< HEAD
         ssl: env.DB_SSL === 'false' ? undefined : { rejectUnauthorized: env.DB_SSL_REJECT_UNAUTHORIZED !== 'false' }
+=======
+        ssl: env.DB_SSL === 'false' ? undefined : { rejectUnauthorized: false }
+>>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
     };
     return {
         ...connection,

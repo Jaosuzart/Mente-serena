@@ -70,10 +70,14 @@ function hideSuccessUI() {
 
 async function fetchStatus() {
     try {
+<<<<<<< HEAD
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
         const endpoint = token ? `/api/whatsapp/status?token=${encodeURIComponent(token)}` : '/api/whatsapp/status';
         const response = await fetch(endpoint);
+=======
+        const response = await fetch('/api/whatsapp/status');
+>>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
         const result = await response.json();
 
         if (!result.success) throw new Error(result.message);

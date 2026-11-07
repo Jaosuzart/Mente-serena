@@ -1,4 +1,5 @@
 async function initializeDatabase(pool) {
+<<<<<<< HEAD
     await pool.query(`CREATE TABLE IF NOT EXISTS pedidos (
         id INT AUTO_INCREMENT PRIMARY KEY,
         preference_id VARCHAR(100),
@@ -34,6 +35,8 @@ async function initializeDatabase(pool) {
     )`);
 
 
+=======
+>>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
     await pool.query(`CREATE TABLE IF NOT EXISTS free_spots (
         id INT PRIMARY KEY,
         spots_taken INT NOT NULL DEFAULT 0

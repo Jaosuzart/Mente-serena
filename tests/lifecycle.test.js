@@ -42,7 +42,11 @@ test('servidor aguarda inicialização e SIGTERM encerra HTTP antes do pool', ()
         listener.close = callback => { httpClosed = true; callback(); };
         require.cache[require.resolve('./src/app')] = { exports: {
             listen(port, callback) {
+<<<<<<< HEAD
                 assert.equal(queries, 6);
+=======
+                assert.equal(queries, 3);
+>>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
                 queueMicrotask(callback);
                 return listener;
             }
