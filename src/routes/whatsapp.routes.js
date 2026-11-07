@@ -3,7 +3,6 @@ const router = express.Router();
 const { getConnectionState } = require('../services/whatsapp');
 const ResponseHelper = require('../helpers/response.helper');
 
-<<<<<<< HEAD
 function requireAdminAuth(req, res, next) {
     const adminToken = process.env.ADMIN_TOKEN || process.env.WHATSAPP_ADMIN_TOKEN;
     if (adminToken) {
@@ -17,8 +16,6 @@ function requireAdminAuth(req, res, next) {
 
 router.use(requireAdminAuth);
 
-=======
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
 router.get('/status', (req, res) => {
     try {
         const state = getConnectionState();

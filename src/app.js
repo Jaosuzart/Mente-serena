@@ -11,7 +11,6 @@ const whatsappRoutes = require('./routes/whatsapp.routes');
 const freeSpotsRoutes = require('./routes/free_spots.routes');
 const app = express();
 app.use(helmet({
-<<<<<<< HEAD
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
@@ -25,9 +24,6 @@ app.use(helmet({
             objectSrc: ["'none'"]
         }
     },
-=======
-    contentSecurityPolicy: false,
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
     hsts: {
         maxAge: 31536000, // 1 ano
         includeSubDomains: true,
@@ -41,20 +37,12 @@ const limiter = rateLimit({
     message: "Muitas requisições geradas por este IP. Por favor, tente novamente em 15 minutos.",
     standardHeaders: true,
     legacyHeaders: false,
-<<<<<<< HEAD
     skip: (req) => req.path === '/webhook',
 });
 app.use(limiter);
 const allowedFrontend = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://menteserena.life' : 'http://localhost:3000');
 app.use(cors({
     origin: allowedFrontend,
-=======
-});
-app.use(limiter);
-
-app.use(cors({
-    origin: process.env.FRONTEND_URL || '*',
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
