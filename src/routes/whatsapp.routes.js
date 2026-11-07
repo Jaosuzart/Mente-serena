@@ -3,6 +3,19 @@ const router = express.Router();
 const { getConnectionState } = require('../services/whatsapp');
 const ResponseHelper = require('../helpers/response.helper');
 
+function requireAdminAuth(req, res, next) {
+    const adminToken = process.env.ADMIN_TOKEN || process.env.WHATSAPP_ADMIN_TOKEN;
+    if (adminToken) {
+        const token = req.headers['x-admin-token'] || req.query.token;
+        if (!token || token !== adminToken) {
+            return ResponseHelper.error(res, 'Não autorizado: token de administrador inválido ou ausente.', 401);
+        }
+    }
+    next();
+}
+
+router.use(requireAdminAuth);
+
 router.get('/status', (req, res) => {
     try {
         const state = getConnectionState();

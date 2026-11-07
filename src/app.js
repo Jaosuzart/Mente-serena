@@ -11,7 +11,19 @@ const whatsappRoutes = require('./routes/whatsapp.routes');
 const freeSpotsRoutes = require('./routes/free_spots.routes');
 const app = express();
 app.use(helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
+            imgSrc: ["'self'", "data:", "blob:", "https:"],
+            mediaSrc: ["'self'", "data:", "blob:"],
+            connectSrc: ["'self'", "https://api.mercadopago.com"],
+            frameSrc: ["'self'"],
+            objectSrc: ["'none'"]
+        }
+    },
     hsts: {
         maxAge: 31536000, // 1 ano
         includeSubDomains: true,
@@ -25,10 +37,9 @@ const limiter = rateLimit({
     message: "Muitas requisições geradas por este IP. Por favor, tente novamente em 15 minutos.",
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => req.path === '/webhook',
 });
 app.use(limiter);
-
-// Nunca liberar CORS indiscriminadamente em produção.
 const allowedFrontend = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://menteserena.life' : 'http://localhost:3000');
 app.use(cors({
     origin: allowedFrontend,

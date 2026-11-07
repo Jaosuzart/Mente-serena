@@ -1,6 +1,7 @@
 # Node.js
 node_modules/
 src/services/whatsapp/auth_info/
+auth_info_baileys/
 public/
 npm-debug.log
 

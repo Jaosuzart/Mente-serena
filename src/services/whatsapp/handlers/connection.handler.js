@@ -13,12 +13,13 @@ function handleConnectionUpdate(update, reconnectCallback, setStateCallback) {
         console.log('\n[WHATSAPP] Escaneie o QR Code abaixo com seu celular (Aparelhos Conectados):');
         qrcode.generate(qr, { small: true });
 
-        const whatsappNumber = process.env.WHATSAPP_NUMBER || '5571982767129';
+        const whatsappNumber = process.env.WHATSAPP_NUMBER || '';
         const welcomeMsg = process.env.WHATSAPP_WELCOME_MSG || 'ol\u00e1, seja bem-vindo ao curso mente serena';
-        const whatsappApiUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(welcomeMsg)}`;
-
-        console.log('\n[WHATSAPP] \ud83d\udd17 Ou acesse a API externa abaixo (Segunda Op\u00e7\u00e3o - mensagem de boas-vindas):');
-        console.log(`${whatsappApiUrl}\n`);
+        if (whatsappNumber) {
+            const whatsappApiUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(welcomeMsg)}`;
+            console.log('\n[WHATSAPP] \ud83d\udd17 Ou acesse a API externa abaixo (Segunda Op\u00e7\u00e3o - mensagem de boas-vindas):');
+            console.log(`${whatsappApiUrl}\n`);
+        }
 
         setStateCallback('WAITING_QR', qr);
     }

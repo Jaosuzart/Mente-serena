@@ -3,8 +3,8 @@ const router = express.Router();
 const freeSpotsController = require('../controllers/free_spots.controller');
 
 const { validateEmailOnly } = require('../middlewares/validateInput');
-const { checkoutLimiter } = require('../middlewares/rateLimit');
+const { vagaGratisLimiter } = require('../middlewares/rateLimit');
 
-router.post('/', checkoutLimiter, validateEmailOnly, freeSpotsController.claimFreeSpot);
+router.post('/', vagaGratisLimiter, validateEmailOnly, freeSpotsController.claimFreeSpot);
 
 module.exports = router;

@@ -45,10 +45,51 @@ const processWebhook =
             type ===
             'subscription_preapproval'
         ) {
-
             console.log(
                 `[WEBHOOK] Assinatura recebida: ${paymentId}`
             );
+
+            const preapprovalResp = await fetch(
+                `https://api.mercadopago.com/preapproval/${encodeURIComponent(paymentId)}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`
+                    }
+                }
+            );
+
+            if (!preapprovalResp.ok) {
+                console.error(
+                    'Falha ao consultar assinatura preapproval:',
+                    preapprovalResp.status
+                );
+                return res.status(502).send('Falha ao consultar assinatura');
+            }
+
+            const subscriptionData = await preapprovalResp.json();
+            const orderId = subscriptionData.external_reference;
+            const subStatus = subscriptionData.status;
+
+            if (orderId) {
+                let mappedStatus = 'pendente';
+                if (subStatus === 'authorized') {
+                    mappedStatus = 'aprovado';
+                } else if (subStatus === 'cancelled') {
+                    mappedStatus = 'cancelado';
+                } else if (subStatus === 'paused') {
+                    mappedStatus = 'pausado';
+                }
+
+                await OrderModel.updateOrderStatusByPayment(
+                    paymentId,
+                    mappedStatus,
+                    orderId
+                );
+
+                console.log(
+                    `[WEBHOOK] Assinatura ${paymentId} atualizada para '${mappedStatus}' (Pedido: ${orderId})`
+                );
+            }
 
             return res
                 .status(200)

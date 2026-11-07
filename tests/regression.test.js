@@ -71,9 +71,14 @@ test('configuração rejeita valores que tornariam recursos ilimitados ou invál
 test('inicialização prepara a tabela antes de inserir e propaga falhas', async () => {
     const queries = [];
     await initializeDatabase({ query: async sql => queries.push(sql) });
-    assert.match(queries[0], /CREATE TABLE IF NOT EXISTS/);
-    assert.match(queries[1], /INSERT IGNORE/);
-    assert.match(queries[2], /free_spot_claims/);
+    // Deve criar todas as tabelas: pedidos, filtros_usuarios, uso_cupons, free_spots, INSERT seed, free_spot_claims
+    assert.ok(queries.length >= 6, `esperava >=6 queries, recebeu ${queries.length}`);
+    assert.match(queries[0], /CREATE TABLE IF NOT EXISTS pedidos/);
+    assert.match(queries[1], /CREATE TABLE IF NOT EXISTS filtros_usuarios/);
+    assert.match(queries[2], /CREATE TABLE IF NOT EXISTS uso_cupons/);
+    assert.match(queries[3], /CREATE TABLE IF NOT EXISTS free_spots/);
+    assert.match(queries[4], /INSERT IGNORE/);
+    assert.match(queries[5], /free_spot_claims/);
     let calls = 0;
     await assert.rejects(initializeDatabase({ query: async () => { calls++; throw new Error('offline'); } }), /offline/);
     assert.equal(calls, 1);
