@@ -24,11 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10);
     }
 
-<<<<<<< HEAD
     const navbar = document.querySelector('.site-header');
 
-=======
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -37,11 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-<<<<<<< HEAD
                 const navHeight = navbar ? navbar.offsetHeight : 0;
-=======
-                const navHeight = document.querySelector('.navbar-ms').offsetHeight;
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - navHeight;
 
@@ -55,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-<<<<<<< HEAD
     if (navbar) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -65,14 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-=======
-    const navbar = document.querySelector('.navbar-ms');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-        }
-    });
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
 });

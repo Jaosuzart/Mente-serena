@@ -21,11 +21,8 @@ services:
         value: "20"
       - key: DB_SSL
         value: "true"
-<<<<<<< HEAD
       - key: DB_SSL_REJECT_UNAUTHORIZED
         value: "true"
-=======
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
       - key: DB_HOST
         sync: false
       - key: DB_PORT

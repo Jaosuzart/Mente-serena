@@ -1,47 +1,16 @@
-<<<<<<< HEAD
-# Node.js
-node_modules/
-src/services/whatsapp/auth_info/
-auth_info_baileys/
-public/
-npm-debug.log
-
-# Environment variables
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
-# Dotenv Vault
-# .env.vault is committed to the repository, but .env is ignored.
-.env.me
-
-# Logs
-logs
-*.log
-=======
-
 # ============================================
 # MENTE SERENA - GITIGNORE
 # ============================================
 
 # Node.js
 node_modules/
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-<<<<<<< HEAD
-# OS Files
-.DS_Store
-Thumbs.db
-
-=======
-# Credenciais e variaveis de ambiente
+# Credenciais e variáveis de ambiente
 .env
 .env.*
 env
@@ -49,12 +18,16 @@ env.*
 !.env.example
 !.env.test.example
 !.env.*.example
-!env.example
+!.env.test.local
+!.env.development.local
+!.env.production.local
+!.env.local
 .env.me
 .env.vault
 
-# WhatsApp - dados de autenticacao
+# WhatsApp - dados de autenticação
 src/services/whatsapp/auth_info/
+auth_info_baileys/
 
 # Logs
 logs/
@@ -90,5 +63,4 @@ Thumbs.db
 *.bak
 *.backup
 *.old
-  
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
+Mente serena/

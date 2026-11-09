@@ -169,7 +169,6 @@ video {
   max-width: 400px;
   margin: 1.5rem auto 0;
   width: 100%;
-<<<<<<< HEAD
 }
 
 /* Ajustes de leitura para páginas internas */
@@ -181,6 +180,3 @@ body { font-size: 1rem; line-height: 1.65; }
 :where(img, video) { max-width: 100%; height: auto; }
 :where(button, .btn) { min-height: 44px; }
 @media(max-width: 600px) { body { font-size: 1rem; } }
-=======
-}
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8

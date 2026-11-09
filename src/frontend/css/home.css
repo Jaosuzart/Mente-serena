@@ -481,6 +481,47 @@
   font-style: italic;
 }
 
+.home-page .instructors-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+
+.home-page .instructor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.home-page .instructor-card__avatar {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.home-page .instructor-card h3 {
+  margin-bottom: .25rem;
+}
+
+.home-page .instructor-card__role {
+  margin-bottom: .5rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.home-page .instructor-card p {
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
 .home-page .trailer__video {
   width: min(100%, 52rem);
   aspect-ratio: 16 / 9;
@@ -632,7 +673,8 @@
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
 
-  .home-page .reflections__grid {
+  .home-page .reflections__grid,
+  .home-page .instructors-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -685,30 +727,3 @@
   }
 }
 
-/* Equipe: cartões responsivos com contraste e navegação acessível */
-.instructors-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;margin-top:1.75rem}
-.instructor-card{padding:1.65rem;border:1px solid var(--border-color, #cddbd6);border-radius:1.25rem;background:var(--card-bg, transparent);box-shadow:0 8px 24px rgba(0,0,0,.04)}
-.instructor-card h3{margin:.8rem 0 .5rem;font-size:1.2rem}
-.instructor-card p{line-height:1.6}
-.instructor-card__icon{display:inline-flex;justify-content:center;align-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:#126b55;color:#fff;font-weight:700}
-.instructor-card__role{font-weight:700}
-@media(max-width:800px){.instructors-grid{grid-template-columns:1fr}}
-<<<<<<< HEAD
-
-
-/* Ajustes responsivos de tipografia e leitura - 28/10/2026 */
-.home-page { font-size: 1rem; line-height: 1.65; }
-.home-page :where(p, li, input, textarea, select) { font-size: clamp(1rem, 0.25vw + 0.97rem, 1.1rem); }
-.home-page :where(h1) { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; }
-.home-page :where(h2) { font-size: clamp(1.55rem, 3vw, 2.4rem); line-height: 1.25; }
-.home-page :where(h3) { font-size: clamp(1.2rem, 2vw, 1.5rem); }
-.home-page :where(button, .btn, a[role="button"]) { font-size: 1rem; min-height: 44px; }
-.home-page :where(img, video) { max-width: 100%; height: auto; }
-.home-page :where(.container, section) { max-width: 100%; }
-@media (max-width: 600px) {
-  .home-page { font-size: 1rem; }
-  .home-page :where(p, li) { line-height: 1.6; }
-  .home-page :where(h1, h2, h3) { overflow-wrap: anywhere; }
-}
-=======
->>>>>>> 172885066c8ae2a0cc1e61506b18a25e7d0fa1e8
