@@ -13,7 +13,6 @@ async function seed() {
     await initializeCoursesDatabase(pool);
     console.log('✅ [Seed] Tabelas verificadas/criadas com sucesso.');
 
-    // 1. Cadastrar Administrador Geral & Instrutor Titular: João Marcelo
     let joao = await UserModel.findByEmail('joao.marcelo@menteserena.life', pool);
     if (!joao) {
         const hash = PasswordHelper.hashPassword('Admin@MenteSerena2026!');
@@ -27,7 +26,6 @@ async function seed() {
         console.log(`✅ [Seed] Administrador João Marcelo cadastrado com ID: ${joaoId}`);
     }
 
-    // 2. Cadastrar Instrutor: Luan Castro
     let luan = await UserModel.findByEmail('luan.castro@menteserena.life', pool);
     if (!luan) {
         const hash = PasswordHelper.hashPassword('Luan@Instrutor2026!');
@@ -41,7 +39,6 @@ async function seed() {
         console.log(`✅ [Seed] Instrutor Luan Castro cadastrado com ID: ${luanId}`);
     }
 
-    // 3. Cadastrar Instrutor: Nilton Lima Filho
     let nilton = await UserModel.findByEmail('nilton.lima@menteserena.life', pool);
     if (!nilton) {
         const hash = PasswordHelper.hashPassword('Nilton@Instrutor2026!');
@@ -55,7 +52,6 @@ async function seed() {
         console.log(`✅ [Seed] Instrutor Nilton Lima Filho cadastrado com ID: ${niltonId}`);
     }
 
-    // 4. Cadastrar Instrutor Convidado: Eliseu
     let eliseu = await UserModel.findByEmail('eliseu@menteserena.life', pool);
     if (!eliseu) {
         const hash = PasswordHelper.hashPassword('Eliseu@Instrutor2026!');
@@ -69,7 +65,6 @@ async function seed() {
         console.log(`✅ [Seed] Instrutor Eliseu cadastrado com ID: ${eliseuId}`);
     }
 
-    // 5. Cadastrar Curso Mente Serena / Consciência
     const courseSlug = 'mente-serena-formacao-completa';
     let curso = await CourseModel.findBySlug(courseSlug, pool);
     if (!curso) {
@@ -85,7 +80,6 @@ async function seed() {
         console.log(`✅ [Seed] Curso cadastrado (ID: ${cursoId}, Administrador Geral: João Marcelo)`);
     }
 
-    // 6. Vincular os 4 Instrutores ao Curso
     await CourseModel.assignInstructor({
         curso_id: curso.id,
         instrutor_id: joao.id,
@@ -115,10 +109,8 @@ async function seed() {
     }, pool);
     console.log('✅ [Seed] Todos os 4 instrutores vinculados com suas especialidades.');
 
-    // 7. Criar os Módulos de cada Instrutor
     const modulosExistentes = await ModuleModel.findByCourse(curso.id, pool);
 
-    // Módulo 1 - João Marcelo
     let modJoao = modulosExistentes.find(m => m.instrutor_responsavel_id === joao.id);
     if (!modJoao) {
         const modId = await ModuleModel.create({
@@ -135,7 +127,6 @@ async function seed() {
         console.log('✅ [Seed] Módulo 1 (João Marcelo) e aulas criadas.');
     }
 
-    // Módulo 2 - Luan Castro
     let modLuan = modulosExistentes.find(m => m.instrutor_responsavel_id === luan.id);
     if (!modLuan) {
         const modId = await ModuleModel.create({
@@ -152,7 +143,6 @@ async function seed() {
         console.log('✅ [Seed] Módulo 2 (Luan Castro) e aulas criadas.');
     }
 
-    // Módulo 3 - Nilton Lima Filho
     let modNilton = modulosExistentes.find(m => m.instrutor_responsavel_id === nilton.id);
     if (!modNilton) {
         const modId = await ModuleModel.create({
@@ -169,7 +159,6 @@ async function seed() {
         console.log('✅ [Seed] Módulo 3 (Nilton Lima Filho) e aulas criadas.');
     }
 
-    // Módulo 4 - Eliseu (Instrutor Convidado / Bônus)
     let modEliseu = modulosExistentes.find(m => m.instrutor_responsavel_id === eliseu.id);
     if (!modEliseu) {
         const modId = await ModuleModel.create({

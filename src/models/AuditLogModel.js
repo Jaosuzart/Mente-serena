@@ -10,7 +10,6 @@ class AuditLogModel {
             );
             return result.insertId;
         } catch (error) {
-            // Em auditoria, falhas de log secundárias não devem derrubar o fluxo transacional principal
             console.error('[AuditLog] Falha ao registrar log:', error.message);
             return null;
         }
