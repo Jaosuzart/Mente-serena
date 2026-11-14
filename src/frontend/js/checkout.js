@@ -152,8 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     showMessage('Link de pagamento inválido retornado pelo servidor. Tente novamente.', 'error');
                     return;
                 }
-
-                // Armazena o order_id para rastreamento na página de sucesso
                 if (data.order_id) {
                     sessionStorage.setItem('ms_order_id', data.order_id);
                 }
