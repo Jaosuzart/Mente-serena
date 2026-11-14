@@ -70,26 +70,40 @@ const processWebhook =
             const orderId = subscriptionData.external_reference;
             const subStatus = subscriptionData.status;
 
-            if (orderId) {
-                let mappedStatus = 'pendente';
-                if (subStatus === 'authorized') {
-                    mappedStatus = 'aprovado';
-                } else if (subStatus === 'cancelled') {
-                    mappedStatus = 'cancelado';
-                } else if (subStatus === 'paused') {
-                    mappedStatus = 'pausado';
-                }
-
-                await OrderModel.updateOrderStatusByPayment(
-                    paymentId,
-                    mappedStatus,
-                    orderId
-                );
-
-                console.log(
-                    `[WEBHOOK] Assinatura ${paymentId} atualizada para '${mappedStatus}' (Pedido: ${orderId})`
-                );
+            if (!orderId) {
+                console.warn(`[WEBHOOK] Assinatura ${paymentId} sem external_reference.`);
+                return res.status(200).send('Sem referencia');
             }
+
+            const order = await OrderModel.getOrderByOrderId(orderId);
+
+            if (!order) {
+                console.warn(
+                    `[WEBHOOK] Assinatura: pedido ${orderId} não encontrado no banco.`
+                );
+                return res
+                    .status(404)
+                    .send('Pedido nao encontrado');
+            }
+
+            let mappedStatus = 'pendente';
+            if (subStatus === 'authorized') {
+                mappedStatus = 'aprovado';
+            } else if (subStatus === 'cancelled') {
+                mappedStatus = 'cancelado';
+            } else if (subStatus === 'paused') {
+                mappedStatus = 'pausado';
+            }
+
+            await OrderModel.updateOrderStatusByPayment(
+                paymentId,
+                mappedStatus,
+                orderId
+            );
+
+            console.log(
+                `[WEBHOOK] Assinatura ${paymentId} → '${mappedStatus}' (Pedido: ${orderId})`
+            );
 
             return res
                 .status(200)
@@ -150,11 +164,11 @@ const processWebhook =
         if (!order) {
 
             console.warn(
-                `Pedido ${orderId} não encontrado.`
+                `[WEBHOOK] Pedido ${orderId} não encontrado no banco.`
             );
 
             return res
-                .status(200)
+                .status(404)
                 .send(
                     'Pedido nao encontrado'
                 );
@@ -242,7 +256,7 @@ const processWebhook =
             }
 
             console.log(
-                `Pagamento ${paymentId} aprovado. Pedido ${orderId} liberado.`
+                `[WEBHOOK] Pagamento ${paymentId} aprovado. Pedido ${orderId} liberado.`
             );
         }
 

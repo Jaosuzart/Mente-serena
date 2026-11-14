@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cupomStatus.className = `cupom-status ${tipo}`;
         cupomStatus.hidden = false;
     }
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -145,6 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const { response, data } = await api.post('/create_preference', payload);
 
             if (response.ok && data.init_point) {
+                // Bloqueia redirecionamento relativo caso a API retorne apenas um hash/ID
+                if (!/^https?:\/\//i.test(data.init_point)) {
+                    console.error('[Checkout] URL de redirecionamento inválida:', data.init_point);
+                    showMessage('Link de pagamento inválido retornado pelo servidor. Tente novamente.', 'error');
+                    return;
+                }
+
+                // Armazena o order_id para rastreamento na página de sucesso
+                if (data.order_id) {
+                    sessionStorage.setItem('ms_order_id', data.order_id);
+                }
+
                 if (data.desconto_aplicado > 0) {
                     showMessage(`${data.cupom_mensagem} Redirecionando para o pagamento...`, 'success');
                     setTimeout(() => { window.location.href = data.init_point; }, 1500);
@@ -162,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleLoading(btnComprar, false);
         }
     });
+
     if (btnGratis) {
         btnGratis.addEventListener('click', async () => {
             const email = inputEmail.value.trim();
@@ -208,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
     function toggleLoading(btn, isLoading) {
         const textSpan = btn.querySelector('.btn-text');
         btn.disabled = isLoading;

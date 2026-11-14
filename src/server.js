@@ -5,11 +5,23 @@ const { initializeDatabase } = require('./config/initialize-database');
 async function start() {
     let server;
     try {
-        // Não aceita tráfego antes de o banco estar pronto.
         await initializeDatabase(pool);
+        const port = process.env.PORT || 3000;
         server = await new Promise((resolve, reject) => {
-            const listener = app.listen(process.env.PORT || 3000, () => resolve(listener));
-            listener.once('error', reject);
+            const listener = app.listen(port, () => resolve(listener));
+            listener.once('error', err => {
+                if (err.code === 'EADDRINUSE') {
+                    console.error(
+                        `\n❌ Porta ${port} já está em uso.\n` +
+                        `   Execute no terminal para liberar:\n\n` +
+                        `   # Windows (Git Bash / PowerShell):\n` +
+                        `   node scripts/kill-port.js && NODE_ENV=development node server.js\n\n` +
+                        `   # Ou use o atalho npm:\n` +
+                        `   npm run dev:safe\n`
+                    );
+                }
+                reject(err);
+            });
         });
     } catch (error) {
         await pool.end();
@@ -26,7 +38,6 @@ async function start() {
     const shutdown = () => {
         if (stopping) return;
         stopping = true;
-        // Limita a espera por clientes lentos e sockets externos persistentes.
         const deadline = setTimeout(() => process.exit(1), 15000);
         deadline.unref();
         server.close(async error => {

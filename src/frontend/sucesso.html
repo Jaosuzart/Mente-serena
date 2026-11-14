@@ -20,11 +20,31 @@
 
         <section class="checkout-card" style="text-align: center;">
             <p>O seu pagamento foi confirmado com sucesso. Você receberá um e-mail em breve com as instruções de acesso ao curso.</p>
+            <p id="order-id-display" style="margin-top: 12px; font-size: 0.85rem; color: var(--text-muted, #aaa); display: none;">
+                Número do pedido: <strong id="order-id-value"></strong>
+            </p>
             <div class="actions" style="margin-top: 30px;">
                 <a href="/" class="btn-primary" style="display: inline-block; text-decoration: none;">Voltar para o Início</a>
             </div>
         </section>
     </main>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const orderId =
+                params.get('external_reference') ||
+                params.get('order_id') ||
+                sessionStorage.getItem('ms_order_id');
+
+            if (orderId) {
+                const display = document.getElementById('order-id-display');
+                const value = document.getElementById('order-id-value');
+                value.textContent = orderId;
+                display.style.display = 'block';
+                sessionStorage.setItem('ms_order_id', orderId);
+            }
+        })();
+    </script>
 </body>
 
 </html>

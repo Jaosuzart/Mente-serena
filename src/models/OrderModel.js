@@ -1,11 +1,23 @@
 const db = require('../config/database');
 
-class OrderModel {
+function normalizeEmail(email) {
+    return typeof email === 'string' ? email.trim().toLowerCase() : email;
+}
 
+function sanitizePaymentId(paymentId) {
+    if (paymentId === null || paymentId === undefined) return null;
+    const normalized = String(paymentId).trim();
+    if (normalized === '' || normalized.toLowerCase() === 'null' || normalized.toLowerCase() === 'undefined') {
+        return null;
+    }
+    return normalized;
+}
+
+class OrderModel {
     static async createOrder(orderData) {
 
         const {
-            preference_id,
+            preference_id = null,
             order_id,
             nome,
             email,
@@ -30,8 +42,8 @@ class OrderModel {
                 [
                     preference_id,
                     order_id,
-                    nome,
-                    email,
+                    typeof nome === 'string' ? nome.trim() : nome,
+                    normalizeEmail(email),
                     plano,
                     status || 'pendente'
                 ]
@@ -40,11 +52,48 @@ class OrderModel {
         return result.insertId;
     }
 
+    static async updatePreferenceId(orderId, preferenceId) {
+
+        const [result] =
+            await db.query(
+                `
+                UPDATE pedidos
+                SET preference_id = ?
+                WHERE order_id = ?
+                `,
+                [preferenceId, orderId]
+            );
+
+        return result.affectedRows > 0;
+    }
+
+    static async findPendingOrder(email, plano) {
+
+        const [rows] =
+            await db.query(
+                `
+                SELECT *
+                FROM pedidos
+                WHERE LOWER(TRIM(email)) = ?
+                AND plano = ?
+                AND status = 'pendente'
+                AND preference_id IS NOT NULL
+                AND preference_id != ''
+                ORDER BY created_at DESC
+                LIMIT 1
+                `,
+                [normalizeEmail(email), plano]
+            );
+
+        return rows[0] || null;
+    }
+
     static async updateOrderStatusByPayment(
         paymentId,
         status,
         orderId
     ) {
+        const cleanPaymentId = sanitizePaymentId(paymentId);
 
         const [result] =
             await db.query(
@@ -52,12 +101,12 @@ class OrderModel {
                 UPDATE pedidos
                 SET
                     status = ?,
-                    payment_id = ?
+                    payment_id = COALESCE(?, payment_id)
                 WHERE order_id = ?
                 `,
                 [
                     status,
-                    String(paymentId),
+                    cleanPaymentId,
                     orderId
                 ]
             );
@@ -104,6 +153,8 @@ class OrderModel {
     static async getOrderByPaymentId(
         paymentId
     ) {
+        const cleanPaymentId = sanitizePaymentId(paymentId);
+        if (!cleanPaymentId) return null;
 
         const [rows] =
             await db.query(
@@ -113,7 +164,7 @@ class OrderModel {
                 WHERE payment_id = ?
                 LIMIT 1
                 `,
-                [String(paymentId)]
+                [cleanPaymentId]
             );
 
         return rows[0] || null;
