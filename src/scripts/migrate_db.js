@@ -1,5 +1,5 @@
 cat << 'EOF' > src/scripts/migrate_db.js
-required('dotenv').config();
+require('dotenv').config();
 const db = require('../config/database');
 async function run() {
     await db.query('ALTER TABLE pedidos MODIFY COLUMN preference_id VARCHAR(100) NULL');
